@@ -1,0 +1,29 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.27448",
+   "Default View_TopLeft":"10,-705",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port led_4bits -pg 1 -lvl 5 -x 1710 -y -310 -defaultsOSRD
+preplace port GPIO_0_0 -pg 1 -lvl 5 -x 1710 -y -190 -defaultsOSRD
+preplace inst zynq_ultra_ps_e_0 -pg 1 -lvl 2 -x 620 -y -150 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 1 -x 150 -y -460 -defaultsOSRD
+preplace inst ps8_0_axi_periph -pg 1 -lvl 4 -x 1540 -y -430 -defaultsOSRD
+preplace inst rst_ps8_0_100M -pg 1 -lvl 3 -x 1190 -y -320 -defaultsOSRD
+preplace netloc zynq_ultra_ps_e_0_pl_clk0 1 0 4 30 -180 260 -30 1000 -210 1380
+preplace netloc zynq_ultra_ps_e_0_pl_resetn0 1 2 1 1010 -340n
+preplace netloc rst_ps8_0_100M_peripheral_aresetn 1 0 4 40 -380 NJ -380 1010J -420 1390
+preplace netloc axi_gpio_0_GPIO 1 1 4 260J -430 NJ -430 1370J -310 NJ
+preplace netloc zynq_ultra_ps_e_0_M_AXI_HPM0_LPD 1 2 2 980J -440 1370
+preplace netloc ps8_0_axi_periph_M00_AXI 1 0 5 20 -270 NJ -270 990J -220 NJ -220 1690
+preplace netloc zynq_ultra_ps_e_0_GPIO_0 1 2 3 NJ -190 NJ -190 NJ
+levelinfo -pg 1 0 150 620 1190 1540 1710
+pagesize -pg 1 -db -bbox -sgen -50 -550 1830 180
+"
+}
+{
+   "da_axi4_cnt":"1",
+   "da_board_cnt":"1",
+   "da_zynq_ultra_ps_e_cnt":"1"
+}
