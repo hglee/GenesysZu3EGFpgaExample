@@ -511,7 +511,7 @@ sudo mkfs.vfat /dev/sdc1
 sudo mkfs.ext4 /dev/sdc2
 ```
 
-1. Mount paritions
+1. Mount partitions
 
 Skip this if you OS mounts automatically.
 
@@ -530,7 +530,7 @@ sudo cp images/linux/image.ub /mnt/sd_card_vfat/
 Extract rootfs.tar.gz to the ext4 partition of your SD card.
 
 ```
-tar -xvzf images/linux/roofs.tar.gz -C /mnt/sd_card_ext4/
+sudo tar -xvzf images/linux/roofs.tar.gz -C /mnt/sd_card_ext4/
 ```
 
 4. Unmount partitions
@@ -594,7 +594,7 @@ sudo service tftpd-hpa restart
 
 - Install the USB cable driver if you have not installed
 
-You can find the driver installation script in `data/xicom/cable_drivers/lin64/install_script/install_drivers` under vivado installation directory.
+You can find the driver installation script in `data/xicom/cable_drivers/lin64/install_script/install_drivers` under Vivado installation directory.
 
 1. Change boot jumper to JTAG
 
