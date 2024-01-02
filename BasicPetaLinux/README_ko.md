@@ -1,93 +1,99 @@
 # BasicPetaLinux
 
-Minimum petalinux example with GPIO LED only.
+GPIO LED 만을 사용한 기본 petalinux 예제입니다.
 
-## Target
-### Software
+## 대상
+### 소프트웨어
 
 * Xilinx Vivado 2023.2
 * PetaLinux 2023.2
 
-### Hardware
+### 하드웨어
 
 * Genesys ZU 3EG Board : Zynq MPSoC
 
-## Create Vivado Project and Build
+## Vivado 프로젝트 생성 및 빌드
 
-You can find prebuilt project in `hw` directory.
+`hw` 디렉토리에서 미리 생성된 프로젝트를 찾을 수 있습니다.
 
-1. Create new RTL project in Vivado
+1. Vivado에서 새 RTL 프로젝트를 생성합니다.
 
-You need to select board `Genesys ZU 3EG`. If you cannot find board, refresh list first.
+생성 중 `Genesys ZU 3EG` 보드를 선택합니다. 해당 보드를 찾을 수 없는 경우, 갱신 버튼을 눌러서 항목을 먼저 갱신합니다.
 
 ![Board](doc/01_board.png)
 
-2. Create new block design
+2. 새 블럭 디자인 생성
 
 ![Create block](doc/02_create_block.png)
 
 ![Create block dialog](doc/03_create_block.png)
 
-3. Add Zynq MPSoC IP
+3. Zynq MPSoC IP 추가
 
-Add Zynq MPSoC IP and run block automation and apply board preset. Then double click block and add 1 bit GPIO EMIO. This will be I2C mux reset pin.
+Zynq MPSoC IP를 추가하고 block automation 을 board preset으로 실행합니다. Zynq 블럭을 더블 클릭하여 1비트 GPIO EMIO를 추가해줍니다. 이것은 회로상 I2C mux reset pin으로 사용됩니다.
 
 ![Add IP](doc/04_add_ip.png)
 ![GPIO EMIO](doc/05_gpio.png)
 
-3. Add AXI GPIO IP
+3. AXI GPIO IP 추가
 
-Add AXI GPIO IP and run block automation with GPIO (led 4bits), S_AXI (auto).
+AXI GPIO IP를 추가하고 block automation 을 GPIO (led 4bits), S_AXI (auto)로 실행합니다.
 
 ![GPIO LED](doc/06_gpio_led.png)
 
-4. Connect remains
+4. 남은 항목 연결
 
-Connect `saxihpc0_fpd_aclk` to `pl_clk0`. Make external to GPIO_0 of Zynq block.
+`saxihpc0_fpd_aclk` 을 `pl_clk0` 에 연결합니다. Zynq 블럭의 GPIO_0을 외부로 내보냅니다.
 
 ![Block Design](doc/07_block.png)
 
-5. Validate block design
+5. 블럭 디자인 검증
 
-6. Create HDL Wrapper
+블럭 디자인 검증 버튼을 눌러서 오류를 미리 확인합니다.
+
+6. HDL Wrapper 생성
+
+Source 쪽의 design에서 우클릭하여 HDL Wrapper를 생성합니다.
 
 ![Create HDL Wrapper](doc/08_wrapper.png)
 
-7. Add constraints
+7. Constraints 추가
 
-Add constraints using `constratins/Genesys-ZU-3EG-D-Master.xdc`. Make sure I2C mux pin match to name in external pin. In this case, it will be `GPIO_0_0_tri`. The GPIO LED pins can be skipped since they are handled internally.
+`constratins/Genesys-ZU-3EG-D-Master.xdc` 파일을 사용하여 constratins를 추가합니다. I2C mux pin이 외부 pin의 이름과 일치하도록 주의합니다. GPIO LED pin은 내부적으로 처리되므로 constratins에 추가할 필요는 없습니다.
 
-7. Generate bitstream
+7. Bitstream 생성
 
-8. Export hardware
+8. 하드웨어 내보내기
 
-Run `File/Export/Export Hardware` with `Include bitstream`.
+`File/Export/Export Hardware`를  `Include bitstream` 옵션으로 실행합니다.
 
-## Create PetaLinux Project and Build
+## PetaLinux 프로젝트 생성 및 빌드
 
-You can find prebuilt project in `os` directory.
+`os` 디렉토리에서 미리 생성된 프로젝트를 찾을 수 있습니다.
 
-1. Create new PetaLinux project
+1. 새 PetaLinux 프로젝트 생성
 
 ```
 petalinux-create --type project --template zynqMP --name test_min
 ```
 
-2. Configure project with exported hardware
+2. Export된 하드웨어로 프로젝트 설정
 
-Specifies the exported xsa directory.
+내보낸 xsa 디렉토리를 지정하여 설정을 실행합니다.
+
+Run config with exported xsa directory.
 
 ```
 petalinux-config --get-hw-description ../hw
 ```
 
-Enable `Auto Config Settings/Specify a manual device tree include directory` and set to default value, `${STAGING_KERNEL_DIR}/include`.
+`Auto Config Settings/Specify a manual device tree include directory` 옵션을 활성화하고 기본값인 `${STAGING_KERNEL_DIR}/include` 로 설정합니다.
 
-To boot with tftp, change tftp directory in `Image Packaging Configuration/tftpboot directory` to `/srv/tftp`.
+tftp로 부팅을 위해서는 `Image Packaging Configuration/tftpboot directory`의 tftp 디렉토리를 `/srv/tftp` 로 변경합니다.
 
-3. Edit user device tree file
+3. 사용자 device tree 파일 수정
 
-Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` before building. The file below was taken from https://github.com/Digilent/Genesys-ZU and edited for 2023.2.
+빌드 전 `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 https://github.com/Digilent/Genesys-ZU 의 내용을 기반으로 2023.2 에 맞게 수정되었습니다.
 
 ```
 /include/ "system-conf.dtsi"
@@ -480,29 +486,29 @@ devicetree/bindings/mux/mux-controller.txt
 };
 ```
 
-4. Build PetaLinux
+4. PetaLinux 빌드
 
 ```
 petalinux-build
 ```
 
-5. Create boot image
+5. 부트 이미지 생성
 
 ```
 petalinux-package --boot --force --fsbl images/linux/zynqmp_fsbl.elf --fpga images/linux/system.bit --u-boot
 ```
 
-## Booting with SD Card
+## SD 카드로 부팅하기
 
-0. Partition SD card and create new file system
+0. SD 카드 파티션 및 새 파일 시스템 생성
 
-If you haven't prepared SD card before, create partitions and new file systems first. You can use any partitioning program, such as `fdisk`, `parted` or `gparted`.
+이전에 SD 카드를 준비한 적이 없다면, 파티션 및 새 파일 시스템을 먼저 생성합니다. `fdisk`, `parted`, `gparted` 등 어떠한 파티션 프로그램도 사용가능합니다.
 
-If your partitioning program doesn't recognize it, use `dd` to remove the head region.
+파티션 프로그램에서 SD 카드 파티션을 제대로 인식하지 못한다면 `dd`를 사용하여 head 영역을 삭제할 필요가 있습니다.
 
-Create the first partition with 512 MBytes FAT. And the second partition for ext4.
+첫번째 파티션은 512 MBytes FAT으로, 두번째 파티션은 남은 용량으로 ext4 로 생성합니다.
 
-For example, if your SD card is /dev/sdc
+예를 들어 SD 카드가 /dev/sdc 라면 다음의 명령을 사용합니다.
 
 ```
 sudo dd if=/dev/zero of=/dev/sdc bs=512 count=1024
@@ -511,20 +517,20 @@ sudo mkfs.vfat /dev/sdc1
 sudo mkfs.ext4 /dev/sdc2
 ```
 
-1. Mount partitions
+1. 파티션 mount
 
-Skip this if you OS mounts automatically.
+OS 에서 자동적으로 mount한다면 이 단계를 생략합니다.
 
-For example, if your SD card is /dev/sdc
+예를 들어 SD 카드가 /dev/sdc 라면 다음의 명령을 사용합니다.
 
 ```
 sudo mount /dev/sdc1 /mnt/sd_card_vfat
 sudo mount /dev/sdc2 /mnt/sd_card_ext4
 ```
 
-2. Copy boot files
+2. 부트 파일 복사
 
-Copy BOOT.BIN, boot.scr, image.ub to the FAT partition of your SD card.
+BOOT.BIN, boot.scr, image.ub 파일을 SD카드의 FAT 파티션으로 복사합니다.
 
 ```
 sudo cp images/linux/BOOT.BIN /mnt/sd_card_vfat/
@@ -532,100 +538,100 @@ sudo cp images/linux/boot.scr /mnt/sd_card_vfat/
 sudo cp images/linux/image.ub /mnt/sd_card_vfat/
 ```
 
-3. Copy root files
+3. 루트 파일 복사
 
-Extract rootfs.tar.gz to the ext4 partition of your SD card.
+rootfs.tar.gz 파일을 SD 카드의 ext4 파티션에 풉니다.
 
 ```
 sudo tar -xvzf images/linux/roofs.tar.gz -C /mnt/sd_card_ext4/
 ```
 
-4. Unmount partitions
+4. 파티션 unmount
 
-5. Insert SD card to board
+5. SD 카드를 보드에 삽입
 
-6. Connect micro USB to board
+6. Micro USB를 보드에 연결
 
-7. Open serial terminal
+7. 시리얼 터미널 열기
 
-If you have not set a password before, you must login with serial first.
+이전에 부트 이미지에 암호를 설정한 적이 없다면 시리얼로 먼저 로그인해야 합니다.
 
-If you use the minicom, you must disable 'Hardware Flow Control' in the options.
+minicom을 사용한다면 옵션에서 'Hardware Flow Control' 를 비활성화합니다.
 
 ```
 sudo minicom -b 115200 -D /dev/ttyUSB1
 ```
 
-8. Power on the board
+8. 보드에 전원 넣기
 
-Make sure the boot jumper is set to SD.
+보드의 부팅 점퍼는 미리 SD로 되어있어야 합니다.
 
-9. Login to Linux
+9. Linux로 로그인
 
-The root account is disabled, so you need to log in to `petalinux` account.
+root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 해야 합니다.
 
-When logging in for the first time, there is no password and you must set a password.
+첫 로그인이라면 암호는 설정되어있지않고, 새 암호를 지정해야 합니다.
 
-After setting a password, you can log in using SSH.
+암호를 지정한 후에는 SSH로 로그인 할 수 있습니다.
 
-## Booting with tftp
+## tftp 로 부팅하기
 
-If you use tftp, you can skip the copy process.
+tftp를 사용하면 위의 복사 과정을 생략할 수 있습니다.
 
-0. Setup environment
+0. 환경 설정
 
-See for detailed setting: https://www.pixela.co.jp/products/pickup/dev/petalinux/p4_tftp.html
+세부 설정은 다음을 참고합니다: https://www.pixela.co.jp/products/pickup/dev/petalinux/p4_tftp.html
 
-- Install tftpd-hpa
+- tftpd-hpa 설치
 
 ```
 sudo apt install tftpd-hpa
 ```
 
-- Edit tftpd-hpa config
+- tftpd-hpa 설정 편집
 
-Change TFTP_OPTIONS option to `--secure --create`.
+TFTP_OPTIONS 옵션을 `--secure --create` 로 변경합니다.
 
-- Adjust permissions
+- 권한 조정
 
 ```
 sudo chown -R tftp /srv/tftp
 sudo chmod 777 /srv/tftp
 ```
 
-- Restart tftp-hpa
+- tftp-hpa 재시작
 
 ```
 sudo service tftpd-hpa restart
 ```
 
-- Install the USB cable driver if you have not installed
+- USB 케이블 드라이버를 설치한적이 없다면 설치
 
-You can find the driver installation script in `data/xicom/cable_drivers/lin64/install_script/install_drivers` under Vivado installation directory.
+케이블 드라이버 설치 스크립트는 Vivado 설치 디렉토리의 `data/xicom/cable_drivers/lin64/install_script/install_drivers` 에서 찾을 수 있습니다.
 
-1. Change boot jumper to JTAG
+1. 보드 부트 점퍼를 JTAG으로 변경
 
-2. Open serial terminal
+2. 시리얼 터미널 열기
 
-If you use the minicom, you must disable 'hardware flow control' in the options.
+minicom을 사용한다면 옵션에서 'Hardware Flow Control' 를 비활성화합니다.
 
 ```
 sudo minicom -b 115200 -D /dev/ttyUSB1
 ```
 
-3. Power on the board
+3. 보드에 전원 넣기
 
-Make sure there is no boot image on SD card. If there is a boot image on the SD card, it will boot from that image.
+SD 카드 상에 부트 이미지가 없도록 합니다. SD 카드에 부트 이미지가 있으면 해당 이미지로 부팅됩니다.
 
-4. Boot to JTAG
+4. JTAG 부팅
 
 ```
 petalinux-boot --jtag --u-boot
 ```
 
-5. Run command to boot
+5. 부팅하기 위한 명령 실행
 
-For example, if the address of your tftp server is 192.168.0.18,
+예를 들어 tftp 서버의 주소가 192.168.0.18 이면 다음과 같이 명령을 입력합니다.
 
 ```
 setenv serverip 192.168.0.18
@@ -633,26 +639,26 @@ pxe get
 pxe boot
 ```
 
-6. Login to Linux
+6. Linux로 로그인
 
-The root account is disabled, so you need to log in to `petalinux` account.
+root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 해야 합니다.
 
-When logging in for the first time, there is no password and you must set a password.
+첫 로그인이라면 암호는 설정되어있지않고, 새 암호를 지정해야 합니다.
 
-After setting a password, you can log in using SSH.
+암호를 지정한 후에는 SSH로 로그인 할 수 있습니다.
 
-If your Ethernet device does not work after booting with tftp, you may need to re-enable it.
+tftp로 부팅 이후 이더넷 장치가 동작하지 않는다면, 다음의 명령으로 재활성화합니다.
 
 ```
 sudo ifconfig eth0 down
 sudo ifconfig eth0 up
 ```
 
-## Control GPIO LED
+## GPIO LED 제어
 
-Check `/sys/class/gpio` to find the target device.
+대상 장치를 찾기 위해서 `/sys/class/gpio` 를 확인합니다.
 
-For example, the address of the GPIO LED is 0x80000000, so you should use `gpiochip504`. This address can be found when createing a hardware project in Vivado.
+예를 들어 GPIO LED의 주소가 0x80000000 이므로, `gpiochip504`를 사용해야 합니다. 이 주소는 Vivado에서 하드웨어 프로젝트 생성 시 확인할 수 있습니다.
 
 ```
 testmin:~$ ls -l /sys/class/gpio/                                                                                                                
@@ -664,7 +670,7 @@ lrwxrwxrwx    1 root     root             0 Jan  2 18:26 gpiochip508 -> ../../de
 --w-------    1 root     root          4096 Jan  2 18:27 unexport     
 ```
 
-With root privileges (`sudo su`), export the 4 GPIOs and change their direction.
+root 권한으로 (`sudo su`), GPIO 4개를 내보내고 방향을 변경합니다.
 
 ```
 echo -n 504 > /sys/class/gpio/export
@@ -678,7 +684,7 @@ echo -n out > /sys/class/gpio/gpio506/direction
 echo -n out > /sys/class/gpio/gpio507/direction
 ```
 
-You can control the GPIO LED by setting value with root privileges.
+root 권한으로 값을 설정하는 것으로 GPIO LED를 제어할 수 있습니다.
 
 ```
 echo 1 > /sys/class/gpio/gpio504/value
