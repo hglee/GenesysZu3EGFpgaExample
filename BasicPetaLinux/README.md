@@ -85,6 +85,8 @@ Enable `Auto Config Settings/Specify a manual device tree include directory` and
 
 To boot with tftp, change tftp directory in `Image Packaging Configuration/tftpboot directory` to `/srv/tftp`.
 
+To boot with writable rootfs, change the root file system type in `Image Packaging Configuration/Root filesystem type` to `ext4`. The default is `initrd` and changes will not be saved. Leave it as `initrd` if you don't care.
+
 3. Edit user device tree file
 
 Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` before building. The file below was taken from https://github.com/Digilent/Genesys-ZU and edited for 2023.2.
@@ -566,6 +568,8 @@ The root account is disabled, so you need to log in to `petalinux` account.
 
 When logging in for the first time, there is no password and you must set a password.
 
+If you use the root file system as `initrd`, changed password will not be saved.
+
 After setting a password, you can log in using SSH.
 
 ## Booting with tftp
@@ -638,6 +642,8 @@ pxe boot
 The root account is disabled, so you need to log in to `petalinux` account.
 
 When logging in for the first time, there is no password and you must set a password.
+
+If you use the root file system as `initrd`, changed password will not be saved.
 
 After setting a password, you can log in using SSH.
 

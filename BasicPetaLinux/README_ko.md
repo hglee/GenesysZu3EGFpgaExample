@@ -91,6 +91,8 @@ petalinux-config --get-hw-description ../hw
 
 tftp로 부팅을 위해서는 `Image Packaging Configuration/tftpboot directory`의 tftp 디렉토리를 `/srv/tftp` 로 변경합니다.
 
+쓰기 가능한 rootfs로 부팅하기 위해서는 `Image Packaging Configuration/Root filesystem type` 의 root file system을 `ext4`로 변경합니다. 기본값은 `initrd`이고 변경된 값은 저장되지 않습니다. 이 동작이 상관없다면 기본값인 `initrd`로 두어도 괜찮습니다.
+
 3. 사용자 device tree 파일 수정
 
 빌드 전 `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 https://github.com/Digilent/Genesys-ZU 의 내용을 기반으로 2023.2 에 맞게 수정되었습니다.
@@ -572,6 +574,8 @@ root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 �
 
 첫 로그인이라면 암호는 설정되어있지않고, 새 암호를 지정해야 합니다.
 
+루트 파일 시스템으로 `initrd`를 사용하고 있다면 변경한 암호는 저장되지 않습니다.
+
 암호를 지정한 후에는 SSH로 로그인 할 수 있습니다.
 
 ## tftp 로 부팅하기
@@ -644,6 +648,8 @@ pxe boot
 root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 해야 합니다.
 
 첫 로그인이라면 암호는 설정되어있지않고, 새 암호를 지정해야 합니다.
+
+루트 파일 시스템으로 `initrd`를 사용하고 있다면 변경한 암호는 저장되지 않습니다.
 
 암호를 지정한 후에는 SSH로 로그인 할 수 있습니다.
 
