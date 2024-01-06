@@ -103,6 +103,38 @@ Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/fil
 / {
 };
 
+&pinctrl0 {
+	status = "okay";
+
+	pinctrl_i2c0_default: i2c0-default {
+		mux {
+			groups = "i2c0_5_grp"; /* MIO22, MIO23 */
+			function = "i2c0";
+		};
+
+		conf {
+			groups = "i2c0_5_grp";
+			bias-pull-up;
+			slew-rate = <0>;
+			io-standard = <1>;
+		};
+	};
+
+	pinctrl_i2c1_default: i2c1-default {
+		mux {
+			groups = "i2c1_2_grp"; /* MIO8, MIO 9 */
+			function = "i2c1";
+		};
+
+		conf {
+			groups = "i2c1_2_grp";
+			bias-pull-up;
+			slew-rate = <0>;
+			io-standard = <1>;
+		};
+	};
+};
+
 &sdhci1 {
 	disable-wp;
 	xlnx,itap-delay-sd-hsd = <0x29>;
@@ -142,6 +174,9 @@ devicetree/bindings/i2c/i2c-mux-pca954x.txt
 devicetree/bindings/mux/mux-controller.txt
 */
 &i2c0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c0_default>;
+
 	i2c-mux@70 {
 		compatible = "nxp,pca9548";
 		#address-cells = <1>;
@@ -205,6 +240,11 @@ devicetree/bindings/mux/mux-controller.txt
 			reg = <7>;
 		};
 	};
+};
+
+&i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c1_default>;
 };
 
 &spi0 {
