@@ -806,6 +806,24 @@ convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 
 ![Camera Image](doc/cam.png)
 
+## Test Pattern
+
+You can check user control by the following command. You can check the camera device name by `media-ctrl -p`
+
+```
+yavta -l /dev/v4l-subdev4
+```
+
+Change output to the test pattern by the following command. For the actual address, refer to the user control above.
+
+```
+yavta -w '0x009f0903 1' /dev/v4l-subdev4
+```
+
+Checking the test pattern can be done in the same way as the camera capture above.
+
+![Test Pattern Camera Image](doc/test_patt.png)
+
 ## Limitations
 
 * ov5640 driver does not support RAW10 format.
@@ -820,8 +838,8 @@ When output is set to YUV420 or YUV422 at the end, a `Stream Buffer Full` error 
 
 ### Different resolution
 
-* 2592x1944 (RAW8) : Problem with only white screen being captured
+* 2592x1944 (RAW8) : Problem with only white screen being captured. Only the test pattern was captured normally.
 * 1280x960 (RAW8) : `Broken pipe` error occurred
-* 1920x1080 (RAW8) : Problem with only abnormal screen being captured
+* 1920x1080 (RAW8) : Problem with only abnormal screen being captured. Only the test pattern was captured normally.
 
 ### Capture image quality

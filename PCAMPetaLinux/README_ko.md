@@ -805,7 +805,24 @@ Captured 10 frames in 0.502684 seconds (19.893205 fps, 0.000000 B/s).
 convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 ```
 
-![Camera Image](doc/cam.png)
+![카메라 이미지](doc/cam.png)
+
+## 테스트 패턴
+
+다음 명령을 통하여 user control을 확인할 수 있습니다. 카메라 장치명은 `media-ctl -p` 실행 시 확인할 수 있습니다.
+
+```
+yavta -l /dev/v4l-subdev4
+```
+
+다음 명령을 통해서 테스트 패턴을 출력하도록 지정합니다. 실제 주소는 위의 user control을 참고합니다.
+
+```
+yavta -w '0x009f0903 1' /dev/v4l-subdev4
+```
+테스트 패턴 확인은 위의 카메라 캡쳐와 동일하게 수행할 수 있습니다.
+
+![테스트 패턴 카메라 이미지](doc/test_patt.png)
 
 ## 제한점
 
@@ -821,8 +838,8 @@ convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 
 ### 다른 해상도 동작 확인
 
-* 2592x1944 (RAW8) : 흰색 화면만 캡쳐
-* 1280x960 (RAW8) : Broken pipe
-* 1920x1080 (RAW8) : 깨진 화면만 캡쳐
+* 2592x1944 (RAW8) : 테스트 패턴은 정상 캡쳐됨. 실제 화면은 흰색 화면만 캡쳐
+* 1280x960 (RAW8) : Broken pipe 오류 발생
+* 1920x1080 (RAW8) : 테스트 패턴은 정상 캡쳐됨. 실제 화면은 깨진 화면만 캡쳐
 
 ### 캡쳐 이미지 품질 확인
