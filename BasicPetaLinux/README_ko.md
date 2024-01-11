@@ -59,7 +59,7 @@ Source 쪽의 design에서 우클릭하여 HDL Wrapper를 생성합니다.
 
 7. Constraints 추가
 
-`constraints/Genesys-ZU-3EG-D-Master.xdc` 파일을 사용하여 constratins를 추가합니다. I2C mux pin이 외부 pin의 이름과 일치하도록 주의합니다. GPIO LED pin은 내부적으로 처리되므로 constratins에 추가할 필요는 없습니다.
+`constraints/Genesys-ZU-3EG-D-Master.xdc` 파일을 사용하여 constraints 를 추가합니다. I2C mux pin이 외부 pin의 이름과 일치하도록 주의합니다. GPIO LED pin은 내부적으로 처리되므로 constratins에 추가할 필요는 없습니다.
 
 7. Bitstream 생성
 
