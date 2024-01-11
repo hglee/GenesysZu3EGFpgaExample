@@ -17,7 +17,7 @@ Pcam 5C petalinux example
 
 You can find prebuilt project in `hw` directory.
 
-See [BasicPetaLinux](../BasicPetaLinux/README_ko.md) for base.
+See [BasicPetaLinux](../BasicPetaLinux/README.md) for base.
 
 1. Create new RTL project in Vivado
 
@@ -94,7 +94,7 @@ Add constraints using `constraints/Genesys-ZU-3EG-D-Master.xdc`. Make sure I2C m
 
 You can find prebuilt project in `os` directory.
 
-See [BasicPetaLinux](../BasicPetaLinux/README_ko.md) for base.
+See [BasicPetaLinux](../BasicPetaLinux/README.md) for base.
 
 1. Create new PetaLinux project
 
@@ -126,7 +126,7 @@ In kernel configuration, select the following items.
 
 * Device Drivers/Multimedia support/Media ancillary drivers/Camera sensor device/OmniVision OV5640 sensor support
 
-Uncheck the following items in kernel configuration. If the following items are slected, the driver will intercept and capture will not be possible. 
+Uncheck the following items in kernel configuration. If the following items are selected, the driver will intercept and capture will not be possible. 
 
 * Device Drivers/Graphic support/Xilinx DRM CSC Driver
 * Device Drivers/Graphic support/Xilinx DRM Scaler Driver
@@ -651,7 +651,7 @@ devicetree/bindings/mux/mux-controller.txt
 
 ## Camera capture
 
-You can find the `/dev/video0` and `/dev/media0` devices if probed properly. If is is not probed, review the kernel configuration and device tree.
+You can find the `/dev/video0` and `/dev/media0` devices if probed properly. If it is not probed, review the kernel configuration and device tree.
 
 Following commands are need to be executed with root privileges. Verify the entire configuration with the following command.
 
@@ -818,10 +818,10 @@ convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 
 When output is set to YUV420 or YUV422 at the end, a `Stream Buffer Full` error occurs.
 
-### Different resoltion
+### Different resolution
 
-* 2592x1944 RAW8 : Problem with only white screen being captured
-* 1280x960 RAW8 : `Broken pipe` error occurred
-* 1920x1080 RAW8 : Problem with only abnormal screen being captured
+* 2592x1944 (RAW8) : Problem with only white screen being captured
+* 1280x960 (RAW8) : `Broken pipe` error occurred
+* 1920x1080 (RAW8) : Problem with only abnormal screen being captured
 
 ### Capture image quality

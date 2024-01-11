@@ -821,8 +821,8 @@ convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 
 ### 다른 해상도 동작 확인
 
-* 2592x1944 RAW8 : 흰색 화면만 캡쳐
-* 1280x960 RAW8 : Broken pipe
-* 1920x1080 RAW8 : 깨진 화면만 캡쳐
+* 2592x1944 (RAW8) : 흰색 화면만 캡쳐
+* 1280x960 (RAW8) : Broken pipe
+* 1920x1080 (RAW8) : 깨진 화면만 캡쳐
 
 ### 캡쳐 이미지 품질 확인
