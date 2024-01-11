@@ -55,7 +55,7 @@ Connect `saxihpc0_fpd_aclk` to `pl_clk0`. Make external to GPIO_0 of Zynq block.
 
 7. Add constraints
 
-Add constraints using `constratins/Genesys-ZU-3EG-D-Master.xdc`. Make sure I2C mux pin match to name in external pin. In this case, it will be `GPIO_0_0_tri`. The GPIO LED pins can be skipped since they are handled internally.
+Add constraints using `constraints/Genesys-ZU-3EG-D-Master.xdc`. Make sure I2C mux pin match to name in external pin. In this case, it will be `GPIO_0_0_tri`. The GPIO LED pins can be skipped since they are handled internally.
 
 7. Generate bitstream
 
