@@ -37,11 +37,11 @@ After applying board preset, edit properties of Zynq block. Set 9-bit GPIO EMIO.
 * EMIO 7 (GPIO 85) : ov5640 power down
 * EMIO 8 (GPIO 86) : ov5640 reset
 
-![GPIO](doc/01_GPIO.png)
+<img src='doc/01_GPIO.png' alt='GPIO' width='600'/>
 
 Change the PL clock output as follows. The second clock (PL1) is used for DPHY 200MHz.
 
-![Clock](doc/02_clock.png)
+<img src='doc/02_clock.png' alt='Clock' width='600'/>
 
 3. Full block configuration
 
@@ -53,26 +53,29 @@ MIPI CSI2 RX -> demosaic -> gamma LUT -> CSC -> Video frame buffer write
 
 - Add MIPI CSI-2 RX IP. Connect EMIO to reset with Slice and connect pl_clk1 to DPHY 200MHz. Video clock connects to pl_clk0. Set the properties as follows.
 
-![CSI RX 1](doc/03_csi_01.png)
-![CSI RX 2](doc/04_csi_02.png)
-![CSI RX 3](doc/05_csi_03.png)
+<img src='doc/03_csi_01.png' alt='CSI RX 1' width='600'/>
+
+<img src='doc/04_csi_02.png' alt='CSI RX 2' width='600'/>
+
+<img src='doc/05_csi_03.png' alt='CSI RX 3' width='600'/>
 
 - Add Demosaic IP. Connect EMIO to reset with Slice. Set the properties as follows.
 
-![Demosaic](doc/06_demosaic.png)
+<img src='doc/06_demosaic.png' alt='Demosaic' width='600'/>
 
 - Add Gamma LUT IP. Connect EMIO to reset with Slice. Set the properties as follows.
 
-![Gamma LUT](doc/07_gamma.png)
+<img src='doc/07_gamma.png' alt='Gamma LUT' width='600'/>
 
 - Add Video processing subsystem IP. Connect EMIO to reset with Slice. Set the properties as follows.
 
-![CSC 1](doc/08_csc_01.png)
-![CSC 2](doc/09_csc_02.png)
+<img src='doc/08_csc_01.png' alt='CSC 1' width='600'/>
+
+<img src='doc/09_csc_02.png' alt='CSC 2' width='600'/>
 
 - Add Video frame buffer write IP. Connect EMIO to reset with Slice. Set the properties as follows.
 
-![Video frame buffer](doc/10_vframe_buf.png)
+<img src='doc/10_vframe_buf.png' alt='Video frame buffer' width='600'/>
 
 4. Connect the remaining
 
@@ -803,8 +806,7 @@ Transfer the file to the PC using `sftp`, etc and check the image. To convert wi
 ```
 convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 ```
-
-![Camera Image](doc/cam.png)
+<img src='doc/cam.png' alt='Camera Image' width='800'/>
 
 ## Test Pattern
 
@@ -822,7 +824,7 @@ yavta -w '0x009f0903 1' /dev/v4l-subdev4
 
 Checking the test pattern can be done in the same way as the camera capture above.
 
-![Test Pattern Camera Image](doc/test_patt.png)
+<img src='doc/test_patt.png' alt='Test Pattern Camera Image' width='800'/>
 
 ## Limitations
 

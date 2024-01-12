@@ -37,11 +37,11 @@ Board preset으로 자동화한 후, 블럭을 더블 클릭하여 수정합니�
 * EMIO 7 (GPIO 85) : ov5640 power down
 * EMIO 8 (GPIO 86) : ov5640 reset
 
-![GPIO](doc/01_GPIO.png)
+<img src='doc/01_GPIO.png' alt='GPIO' width='600'/>
 
 PL 클럭 출력을 다음과 같이 변경합니다. 두번째 클럭(PL1)은 DPHY 200MHz에 사용됩니다. 
 
-![Clock](doc/02_clock.png)
+<img src='doc/02_clock.png' alt='클럭' width='600'/>
 
 3. 전체 블럭 구성
 
@@ -53,26 +53,29 @@ MIPI CSI2 RX -> demosaic -> gamma LUT -> CSC -> Video frame buffer write
 
 - MIPI CSI2 RX를 추가합니다. EMIO를 slice를 통하여 reset에 연결하고, pl_clk1을 DPHY 200MHz에 연결합니다. Video clock은 pl_clk0 에 연결합니다. 속성을 다음과 같이 설정합니다.
 
-![CSI RX 1](doc/03_csi_01.png)
-![CSI RX 2](doc/04_csi_02.png)
-![CSI RX 3](doc/05_csi_03.png)
+<img src='doc/03_csi_01.png' alt='CSI RX 1' width='600'/>
+
+<img src='doc/04_csi_02.png' alt='CSI RX 2' width='600'/>
+
+<img src='doc/05_csi_03.png' alt='CSI RX 3' width='600'/>
 
 - Demosaic 을 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
 
-![Demosaic](doc/06_demosaic.png)
+<img src='doc/06_demosaic.png' alt='Demosaic' width='600'/>
 
 - Gamma LUT를 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
 
-![Gamma LUT](doc/07_gamma.png)
+<img src='doc/07_gamma.png' alt='Gamma LUT' width='600'/>
 
 - Video processing subsystem을 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
 
-![CSC 1](doc/08_csc_01.png)
-![CSC 2](doc/09_csc_02.png)
+<img src='doc/08_csc_01.png' alt='CSC 1' width='600'/>
+
+<img src='doc/09_csc_02.png' alt='CSC 2' width='600'/>
 
 - Video frame buffer write를 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
 
-![Video frame buffer](doc/10_vframe_buf.png)
+<img src='doc/10_vframe_buf.png' alt='Video frame buffer' width='600'/>
 
 4. 남은 항목 연결
 
@@ -804,8 +807,7 @@ Captured 10 frames in 0.502684 seconds (19.893205 fps, 0.000000 B/s).
 ```
 convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
 ```
-
-![카메라 이미지](doc/cam.png)
+<img src='doc/cam.png' alt='카메라 이미지' width='800'/>
 
 ## 테스트 패턴
 
@@ -822,7 +824,7 @@ yavta -w '0x009f0903 1' /dev/v4l-subdev4
 ```
 테스트 패턴 확인은 위의 카메라 캡쳐와 동일하게 수행할 수 있습니다.
 
-![테스트 패턴 카메라 이미지](doc/test_patt.png)
+<img src='doc/test_patt.png' alt='테스트 패턴 카메라 이미지' width='800'/>
 
 ## 제한점
 

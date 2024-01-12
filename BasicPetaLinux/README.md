@@ -20,38 +20,39 @@ You can find prebuilt project in `hw` directory.
 
 You need to select board `Genesys ZU 3EG`. If you cannot find board, refresh list first.
 
-![Board](doc/01_board.png)
+<img src='doc/01_board.png' alt='Board' width='800'/>
 
 2. Create new block design
 
-![Create block](doc/02_create_block.png)
+<img src='doc/02_create_block.png' alt='Create block' width='250' />
 
-![Create block dialog](doc/03_create_block.png)
+<img src='doc/03_create_block.png' alt='Create block dialog' width='350' />
 
 3. Add Zynq MPSoC IP
 
 Add Zynq MPSoC IP and run block automation and apply board preset. Then double click block and add 1 bit GPIO EMIO. This will be I2C mux reset pin.
 
-![Add IP](doc/04_add_ip.png)
-![GPIO EMIO](doc/05_gpio.png)
+<img src='doc/04_add_ip.png' alt='Add IP' width='350' />
+
+<img src='doc/05_gpio.png' alt='GPIO EMIO' width='800' />
 
 3. Add AXI GPIO IP
 
 Add AXI GPIO IP and run block automation with GPIO (led 4bits), S_AXI (auto).
 
-![GPIO LED](doc/06_gpio_led.png)
+<img src='doc/06_gpio_led.png' alt='GPIO LED' width='800' />
 
 4. Connect remains
 
 Connect `saxihpc0_fpd_aclk` to `pl_clk0`. Make external to GPIO_0 of Zynq block.
 
-![Block Design](doc/07_block.png)
+<img src='doc/07_block.png' alt='Block Design' width='800' />
 
 5. Validate block design
 
 6. Create HDL Wrapper
 
-![Create HDL Wrapper](doc/08_wrapper.png)
+<img src='doc/08_wrapper.png' alt='Create HDL Wrapper' width='700' />
 
 7. Add constraints
 

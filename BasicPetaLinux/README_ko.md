@@ -20,32 +20,33 @@ GPIO LED 만을 사용한 기본 petalinux 예제입니다.
 
 생성 중 `Genesys ZU 3EG` 보드를 선택합니다. 해당 보드를 찾을 수 없는 경우, 갱신 버튼을 눌러서 항목을 먼저 갱신합니다.
 
-![Board](doc/01_board.png)
+<img src='doc/01_board.png' alt='보드' width='800'/>
 
 2. 새 블럭 디자인 생성
 
-![Create block](doc/02_create_block.png)
+<img src='doc/02_create_block.png' alt='블럭 디자인 생성' width='250' />
 
-![Create block dialog](doc/03_create_block.png)
+<img src='doc/03_create_block.png' alt='블럭 디자인 생성 다이얼로그' width='350' />
 
 3. Zynq MPSoC IP 추가
 
 Zynq MPSoC IP를 추가하고 block automation 을 board preset으로 실행합니다. Zynq 블럭을 더블 클릭하여 1비트 GPIO EMIO를 추가해줍니다. 이것은 회로상 I2C mux reset pin으로 사용됩니다.
 
-![Add IP](doc/04_add_ip.png)
-![GPIO EMIO](doc/05_gpio.png)
+<img src='doc/04_add_ip.png' alt='IP 추가' width='350' />
+
+<img src='doc/05_gpio.png' alt='GPIO EMIO' width='800' />
 
 3. AXI GPIO IP 추가
 
 AXI GPIO IP를 추가하고 block automation 을 GPIO (led 4bits), S_AXI (auto)로 실행합니다.
 
-![GPIO LED](doc/06_gpio_led.png)
+<img src='doc/06_gpio_led.png' alt='GPIO LED' width='800' />
 
 4. 남은 항목 연결
 
 `saxihpc0_fpd_aclk` 을 `pl_clk0` 에 연결합니다. Zynq 블럭의 GPIO_0을 외부로 내보냅니다.
 
-![Block Design](doc/07_block.png)
+<img src='doc/07_block.png' alt='블럭 디자인' width='800' />
 
 5. 블럭 디자인 검증
 
@@ -55,7 +56,7 @@ AXI GPIO IP를 추가하고 block automation 을 GPIO (led 4bits), S_AXI (auto)�
 
 Source 쪽의 design에서 우클릭하여 HDL Wrapper를 생성합니다.
 
-![Create HDL Wrapper](doc/08_wrapper.png)
+<img src='doc/08_wrapper.png' alt='HDL Wrapper 생성' width='700' />
 
 7. Constraints 추가
 
