@@ -747,6 +747,8 @@ media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:RBG888_1X24/1280x7
 media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1280x720 field:none]"
 ```
 
+After executing the above command, review again using `media-ctrl -p` command. If you see something that isn't set up correctly during review, set them again. If any of the items do not match, errors such as `Broken pipe` may occur.
+
 Check the supported formats of `/dev/video0` with the following command.
 
 ```
@@ -831,6 +833,7 @@ Checking the test pattern can be done in the same way as the camera capture abov
 * ov5640 driver does not support RAW10 format.
 * ov5640 driver support at least 1280x720 at 8bpp.
 * ov5640 driver only supports up to 1280x720 at 24bpp.
+* ov5640 driver only supports predefined modes. If you specify a different resolution, it will be set to predefined mode.
 
 ## TODO
 
@@ -841,7 +844,6 @@ When output is set to YUV420 or YUV422 at the end, a `Stream Buffer Full` error 
 ### Different resolution
 
 * 2592x1944 (RAW8) : Problem with only white screen being captured. Only the test pattern was captured normally.
-* 1280x960 (RAW8) : `Broken pipe` error occurred
 * 1920x1080 (RAW8) : Problem with only abnormal screen being captured. Only the test pattern was captured normally.
 
 ### Capture image quality
