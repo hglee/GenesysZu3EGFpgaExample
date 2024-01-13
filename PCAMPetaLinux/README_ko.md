@@ -736,10 +736,10 @@ Device topology
 다음 명령으로 각 해상도 및 color format을 지정합니다.
 
 ```
-media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:SRGGB8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:SRGGB8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:SRGGB8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":0 [fmt:SRGGB8_1X8/1280x720 field:none]"
+media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:SBGGR8_1X8/1280x720 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
 media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":1 [fmt:RBG888_1X24/1280x720 field:none]"
 media-ctl -d /dev/media0 -v -V "\"80030000.v_gamma_lut\":0 [fmt:RBG888_1X24/1280x720 field:none]"
 media-ctl -d /dev/media0 -v -V "\"80030000.v_gamma_lut\":1 [fmt:RBG888_1X24/1280x720 field:none]"
