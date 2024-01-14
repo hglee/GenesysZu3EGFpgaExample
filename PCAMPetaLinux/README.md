@@ -793,10 +793,10 @@ Checking the test pattern can be done in the same way as the camera capture abov
 
 ## Limitations
 
-* ov5640 driver does not support RAW10 format.
-* ov5640 driver support at least 1280x720 at 8bpp.
-* ov5640 driver only supports up to 1280x720 at 24bpp.
-* ov5640 driver only supports predefined modes. If you specify a different resolution, it will be set to predefined mode.
+* Linux ov5640 driver does not support RAW10 format.
+* Linux ov5640 driver support at least 1280x720 at 8bpp.
+* Linux ov5640 driver only supports up to 1280x720 at 24bpp.
+* Linux ov5640 driver only supports predefined modes. If you specify a different resolution, it will be set to predefined mode.
 
 ## TODO
 
@@ -808,3 +808,5 @@ Checking the test pattern can be done in the same way as the camera capture abov
 ### Capture image quality
 
 * 1280x720 (RAW8, YUV422) : Especially poor image quality at 1280x720.
+
+<img src='doc/cam.png' alt='Camera Image (1280x720 RAW8)' width='800'/>
