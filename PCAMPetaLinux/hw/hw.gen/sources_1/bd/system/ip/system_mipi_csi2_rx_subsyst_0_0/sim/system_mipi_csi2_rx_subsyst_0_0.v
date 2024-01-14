@@ -103,7 +103,7 @@ input wire lite_aresetn;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.dphy_clk_200M, FREQ_HZ 198750000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.dphy_clk_200M CLK" *)
 input wire dphy_clk_200M;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.rxbyteclkhs CLK" *)
 output wire rxbyteclkhs;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.clkoutphy_out, FREQ_HZ 1500000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN bd_22c6_phy_0_clkoutphy_out, INSERT_VIP 0" *)
@@ -160,7 +160,7 @@ input wire [3 : 0] csirxss_s_axi_wstrb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 csirxss_s_axi WVALID" *)
 input wire csirxss_s_axi_wvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_out TDATA" *)
-output wire [15 : 0] video_out_tdata;
+output wire [31 : 0] video_out_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_out TDEST" *)
 output wire [9 : 0] video_out_tdest;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_out TLAST" *)
@@ -169,7 +169,7 @@ output wire video_out_tlast;
 input wire video_out_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_out TUSER" *)
 output wire [0 : 0] video_out_tuser;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME video_out, TDATA_NUM_BYTES 2, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME video_out, TDATA_NUM_BYTES 4, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_out TVALID" *)
 output wire video_out_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if CLK_N" *)

@@ -100,7 +100,7 @@ module bd_22c6_phy_0
    // Valid values are from 80 to 1500 in the order of 1 Mbps for D-PHY v1.1 Spec
    // Valid values are from 80 to 2500 in the order of 1 Mbps for D-PHY v1.2 Spec
    // No real values are allowed in Line Rate	   
-   parameter C_HS_LINE_RATE = 800,
+   parameter C_HS_LINE_RATE = 336,
    // Transmit first deskew calibration sequence by D-PHY TX for line rates above 1.5 Gbps
    parameter C_XMIT_FIRST_DESKEW_SEQ  =  "false",  
    // Transmit periodic deskew calibration sequence by D-PHY TX for line rates above 1.5 Gbps
@@ -146,9 +146,9 @@ module bd_22c6_phy_0
    // Simulation control
    parameter C_EXAMPLE_SIMULATION = "true",
    // TXPLL input clock frequency in ns
-   parameter C_TXPLL_CLKIN_PERIOD = 10.000,
+   parameter C_TXPLL_CLKIN_PERIOD = 8.000,
    // byteclkhs clock period derived from line rate  
-   parameter C_DIV4_CLK_PERIOD = 10.000,     
+   parameter C_DIV4_CLK_PERIOD = 23.810,     
    // Calibration Mode for IDELAY in Slave mode of IP
    parameter C_CAL_MODE = "FIXED",
    parameter C_EN_EXT_TAP = "0",

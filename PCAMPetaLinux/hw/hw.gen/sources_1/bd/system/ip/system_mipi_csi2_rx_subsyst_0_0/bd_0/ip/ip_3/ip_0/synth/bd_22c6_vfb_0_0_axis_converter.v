@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "axis_dwidth_converter_v1_1_28_axis_dwidth_converter,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "bd_22c6_vfb_0_0_axis_converter,axis_dwidth_converter_v1_1_28_axis_dwidth_converter,{}" *)
-(* CORE_GENERATION_INFO = "bd_22c6_vfb_0_0_axis_converter,axis_dwidth_converter_v1_1_28_axis_dwidth_converter,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_dwidth_converter,x_ipVersion=1.1,x_ipCoreRevision=28,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynquplus,C_S_AXIS_TDATA_WIDTH=32,C_M_AXIS_TDATA_WIDTH=16,C_AXIS_TID_WIDTH=32,C_AXIS_TDEST_WIDTH=1,C_S_AXIS_TUSER_WIDTH=12,C_M_AXIS_TUSER_WIDTH=6,C_AXIS_SIGNAL_SET=0b00000000000000000000000010111011}" *)
+(* CORE_GENERATION_INFO = "bd_22c6_vfb_0_0_axis_converter,axis_dwidth_converter_v1_1_28_axis_dwidth_converter,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_dwidth_converter,x_ipVersion=1.1,x_ipCoreRevision=28,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_FAMILY=zynquplus,C_S_AXIS_TDATA_WIDTH=64,C_M_AXIS_TDATA_WIDTH=32,C_AXIS_TID_WIDTH=32,C_AXIS_TDEST_WIDTH=1,C_S_AXIS_TUSER_WIDTH=24,C_M_AXIS_TUSER_WIDTH=12,C_AXIS_SIGNAL_SET=0b00000000000000000000000010111011}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_22c6_vfb_0_0_axis_converter (
   aclk,
@@ -84,40 +84,40 @@ input wire s_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TREADY" *)
 output wire s_axis_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TDATA" *)
-input wire [31 : 0] s_axis_tdata;
+input wire [63 : 0] s_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TKEEP" *)
-input wire [3 : 0] s_axis_tkeep;
+input wire [7 : 0] s_axis_tkeep;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TLAST" *)
 input wire s_axis_tlast;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TID" *)
 input wire [31 : 0] s_axis_tid;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 1, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TUSER" *)
-input wire [11 : 0] s_axis_tuser;
+input wire [23 : 0] s_axis_tuser;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TVALID" *)
 output wire m_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TREADY" *)
 input wire m_axis_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TDATA" *)
-output wire [15 : 0] m_axis_tdata;
+output wire [31 : 0] m_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TKEEP" *)
-output wire [1 : 0] m_axis_tkeep;
+output wire [3 : 0] m_axis_tkeep;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TLAST" *)
 output wire m_axis_tlast;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TID" *)
 output wire [31 : 0] m_axis_tid;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 1, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TUSER" *)
-output wire [5 : 0] m_axis_tuser;
+output wire [11 : 0] m_axis_tuser;
 
   axis_dwidth_converter_v1_1_28_axis_dwidth_converter #(
     .C_FAMILY("zynquplus"),
-    .C_S_AXIS_TDATA_WIDTH(32),
-    .C_M_AXIS_TDATA_WIDTH(16),
+    .C_S_AXIS_TDATA_WIDTH(64),
+    .C_M_AXIS_TDATA_WIDTH(32),
     .C_AXIS_TID_WIDTH(32),
     .C_AXIS_TDEST_WIDTH(1),
-    .C_S_AXIS_TUSER_WIDTH(12),
-    .C_M_AXIS_TUSER_WIDTH(6),
+    .C_S_AXIS_TUSER_WIDTH(24),
+    .C_M_AXIS_TUSER_WIDTH(12),
     .C_AXIS_SIGNAL_SET(32'B00000000000000000000000010111011)
   ) inst (
     .aclk(aclk),
@@ -126,7 +126,7 @@ output wire [5 : 0] m_axis_tuser;
     .s_axis_tvalid(s_axis_tvalid),
     .s_axis_tready(s_axis_tready),
     .s_axis_tdata(s_axis_tdata),
-    .s_axis_tstrb(4'HF),
+    .s_axis_tstrb(8'HFF),
     .s_axis_tkeep(s_axis_tkeep),
     .s_axis_tlast(s_axis_tlast),
     .s_axis_tid(s_axis_tid),

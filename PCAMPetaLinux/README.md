@@ -25,19 +25,15 @@ See [BasicPetaLinux](../BasicPetaLinux/README.md) for base.
 
 3. Add Zynq MPSoC IP
 
-After applying board preset, edit properties of Zynq block. Set 9-bit GPIO EMIO. The GPIO EMIO configuration is as follows.
+After applying board preset, edit properties of Zynq block. Set 5-bit GPIO EMIO. The GPIO EMIO configuration is as follows.
 
 * EMIO 0 (GPIO 78) : I2C mux reset
 * EMIO 1 (GPIO 79) : MIPI A power
 * EMIO 2 (GPIO 80) : MIPI CSI RX reset
-* EMIO 3 (GPIO 81) : demosaic reset
-* EMIO 4 (GPIO 82) : gamma LUT reset
-* EMIO 5 (GPIO 83) : Video processing CSC reset
-* EMIO 6 (GPIO 84) : Video frame buffer write reset
-* EMIO 7 (GPIO 85) : reserved
-* EMIO 8 (GPIO 86) : reserved
+* EMIO 3 (GPIO 81) : Video processing CSC reset
+* EMIO 4 (GPIO 82) : Video frame buffer write reset
 
-<img src='doc/01_GPIO.png' alt='GPIO' width='600'/>
+<img src='doc/11_GPIO.png' alt='GPIO' width='600'/>
 
 Change the PL clock output as follows. The second clock (PL1) is used for DPHY 200MHz.
 
@@ -47,25 +43,21 @@ Change the PL clock output as follows. The second clock (PL1) is used for DPHY 2
 
 For complete block configuration, see [output file](doc/system.pdf).
 
-MIPI CSI2 RX -> demosaic -> gamma LUT -> CSC -> Video frame buffer write
+MIPI CSI2 RX -> CSC -> Video frame buffer write
 
 - EMIO 0, 1 are exported externally with Slice. The name must match to constraints.
 
 - Add MIPI CSI-2 RX IP. Connect EMIO to reset with Slice and connect pl_clk1 to DPHY 200MHz. Video clock connects to pl_clk0. Set the properties as follows.
 
-<img src='doc/03_csi_01.png' alt='CSI RX 1' width='600'/>
+<img src='doc/12_csi_01.png' alt='CSI RX 1' width='600'/>
 
 <img src='doc/04_csi_02.png' alt='CSI RX 2' width='600'/>
 
 <img src='doc/05_csi_03.png' alt='CSI RX 3' width='600'/>
 
-- Add Demosaic IP. Connect EMIO to reset with Slice. Set the properties as follows.
+- Add AXIS4-Stream Subset Converter IP. Set the properties as follows.
 
-<img src='doc/06_demosaic.png' alt='Demosaic' width='600'/>
-
-- Add Gamma LUT IP. Connect EMIO to reset with Slice. Set the properties as follows.
-
-<img src='doc/07_gamma.png' alt='Gamma LUT' width='600'/>
+<img src='doc/13_subset.png' alt='Subset' width='600'/>
 
 - Add Video processing subsystem IP. Connect EMIO to reset with Slice. Set the properties as follows.
 
@@ -152,10 +144,8 @@ Review the `components/plnx_workspace/device-tree/device-tree/pl.dtsi` file that
 // GPIO 78 : I2C mux reset
 // GPIO 79 : MIPI A power
 // GPIO 80 : MIPI CSI RX
-// GPIO 81 : demosaic
-// GPIO 82 : gamma
-// GPIO 83 : vp csc
-// GPIO 84 : vframe buffer write
+// GPIO 81 : vp csc
+// GPIO 82 : vframe buffer write
 
 / {
 	pcam_clk: pcam_clk {
@@ -623,7 +613,7 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &mipi_csi2_rx_subsyst_0 {
-        xlnx,csi-pxl-format = <0x2a>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
+        xlnx,csi-pxl-format = <0x1e>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
 };
 
 &mipi_csi_inmipi_csi2_rx_subsyst_0 {
@@ -636,7 +626,7 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &csc_port0v_proc_ss_csc {
-        xlnx,video-format = <XVIP_VF_RBG>; // gamma -> csc in
+        xlnx,video-format = <XVIP_VF_YUV_422>; // mipi -> csc in
 };
 ```
 
@@ -655,7 +645,7 @@ You can find the `/dev/video0` and `/dev/media0` devices if probed properly. If 
 Following commands are need to be executed with root privileges. Verify the entire configuration with the following command.
 
 ```
-media-ctrl -p
+media-ctl -p
 ```
 
 It will look like this if probed properly.
@@ -667,7 +657,7 @@ Media device information
 ------------------------
 driver          xilinx-video
 model           Xilinx Video Composite Device
-serial          
+serial
 bus info        platform:amba_pl@0:vcap_v_proc_
 hw revision     0x0
 driver version  6.1.30
@@ -683,45 +673,25 @@ Device topology
             type V4L2 subdev subtype Unknown flags 0
             device node name /dev/v4l-subdev0
         pad0: Sink
-                [fmt:SRGGB8_1X8/1920x1080 field:none colorspace:srgb]
+                [fmt:UYVY8_1X16/1920x1080 field:none colorspace:srgb]
                 <- "ov5640 2-003c":0 [ENABLED]
         pad1: Source
-                [fmt:SRGGB8_1X8/1920x1080 field:none colorspace:srgb]
-                -> "80010000.v_demosaic":0 [ENABLED]
+                [fmt:UYVY8_1X16/1920x1080 field:none colorspace:srgb]
+                -> "80040000.v_proc_ss":0 [ENABLED]
 
-- entity 8: 80010000.v_demosaic (2 pads, 2 links)
+- entity 8: 80040000.v_proc_ss (2 pads, 2 links)
             type V4L2 subdev subtype Unknown flags 0
             device node name /dev/v4l-subdev1
         pad0: Sink
-                [fmt:SRGGB8_1X8/1280x720 field:none colorspace:srgb]
+                [fmt:UYVY8_1X16/1280x720 field:none colorspace:rec709]
                 <- "80000000.mipi_csi2_rx_subsystem":1 [ENABLED]
-        pad1: Source
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:srgb]
-                -> "80030000.v_gamma_lut":0 [ENABLED]
-
-- entity 11: 80030000.v_gamma_lut (2 pads, 2 links)
-             type V4L2 subdev subtype Unknown flags 0
-             device node name /dev/v4l-subdev2
-        pad0: Sink
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:srgb]
-                <- "80010000.v_demosaic":1 [ENABLED]
-        pad1: Source
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:srgb]
-                -> "80040000.v_proc_ss":0 [ENABLED]
-
-- entity 14: 80040000.v_proc_ss (2 pads, 2 links)
-             type V4L2 subdev subtype Unknown flags 0
-             device node name /dev/v4l-subdev3
-        pad0: Sink
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:rec709]
-                <- "80030000.v_gamma_lut":1 [ENABLED]
         pad1: Source
                 [fmt:RBG888_1X24/1280x720 field:none colorspace:rec709]
                 -> "vcap_v_proc_ss_csc output 0":0 [ENABLED]
 
-- entity 17: ov5640 2-003c (1 pad, 1 link)
+- entity 11: ov5640 2-003c (1 pad, 1 link)
              type V4L2 subdev subtype Sensor flags 0
-             device node name /dev/v4l-subdev4
+             device node name /dev/v4l-subdev2
         pad0: Source
                 [fmt:UYVY8_2X8/640x480@1/30 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range
                  crop.bounds:(0,0)/2624x1964
@@ -732,18 +702,14 @@ Device topology
 Configure resolution and color format with the follwing commands.
 
 ```
-media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":1 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80030000.v_gamma_lut\":0 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80030000.v_gamma_lut\":1 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1280x720 field:none]"
+media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1024x768 field:none]"
 ```
 
-After executing the above command, review again using `media-ctrl -p` command. If you see something that isn't set up correctly during review, set them again. If any of the items do not match, errors such as `Broken pipe` may occur.
+After executing the above command, review again using `media-ctl -p` command. If you see something that isn't set up correctly during review, set them again. If any of the items do not match, errors such as `Broken pipe` may occur.
 
 Check the supported formats of `/dev/video0` with the following command.
 
@@ -761,13 +727,13 @@ Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 
         Type: Video capture mplanes (9)
         Name: 24-bit RGB 8-8-8
 
-Video format: YUYV (56595559) 1920x0 field none, 0 planes: 
+Video format: YUYV (56595559) 1920x0 field none, 0 planes:
 ```
 
 Capture with the following command and save it as a file.
 
 ```
-yavta -n 3 -c10 -f RGB24 -s 1280x720 --skip 7 -F /dev/video0
+yavta -n 3 -c10 -f RGB24 -s 1024x768 --skip 7 -F /dev/video0
 ```
 
 It will look like this if work properly.
@@ -775,49 +741,50 @@ It will look like this if work properly.
 ```
 Device /dev/video0 opened.
 Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 'xilinx-vipp') supports video, capture, with mplanes.
-Video format set: RGB24 (33424752) 1280x720 field none, 1 planes: 
- * Stride 3840, buffer size 2764800
-Video format: RGB24 (33424752) 1280x720 field none, 1 planes: 
- * Stride 3840, buffer size 2764800
+Video format set: RGB24 (33424752) 1024x768 field none, 1 planes:
+ * Stride 3072, buffer size 2359296
+Video format: RGB24 (33424752) 1024x768 field none, 1 planes:
+ * Stride 3072, buffer size 2359296
 3 buffers requested.
-length: 1 offset: 3593392984 timestamp type/source: mono/EoF
-Buffer 0/0 mapped at address 0xffffb03bd000.
-length: 1 offset: 3593392984 timestamp type/source: mono/EoF
-Buffer 1/0 mapped at address 0xffffb011a000.
-length: 1 offset: 3593392984 timestamp type/source: mono/EoF
-Buffer 2/0 mapped at address 0xffffafe77000.
-0 (0) [-] none 0 2764800 B 305.285052 305.285067 5.557 fps ts mono/EoF
-1 (1) [-] none 1 2764800 B 305.318083 305.318094 30.275 fps ts mono/EoF
-2 (2) [-] none 2 2764800 B 305.351115 305.351126 30.274 fps ts mono/EoF
-3 (0) [-] none 3 2764800 B 305.384147 305.384158 30.274 fps ts mono/EoF
-4 (1) [-] none 4 2764800 B 305.417179 305.417189 30.274 fps ts mono/EoF
-5 (2) [-] none 5 2764800 B 305.450211 305.450221 30.274 fps ts mono/EoF
-6 (0) [-] none 6 2764800 B 305.483243 305.483253 30.274 fps ts mono/EoF
-7 (1) [-] none 7 2764800 B 305.516275 305.516285 30.274 fps ts mono/EoF
-8 (2) [-] none 8 2764800 B 305.549309 305.561894 30.272 fps ts mono/EoF
-9 (0) [-] none 9 2764800 B 305.582339 305.607783 30.276 fps ts mono/EoF
-Captured 10 frames in 0.502684 seconds (19.893205 fps, 0.000000 B/s).
+length: 1 offset: 4124529752 timestamp type/source: mono/EoF
+Buffer 0/0 mapped at address 0xffff9a630000.
+length: 1 offset: 4124529752 timestamp type/source: mono/EoF
+Buffer 1/0 mapped at address 0xffff9a3f0000.
+length: 1 offset: 4124529752 timestamp type/source: mono/EoF
+Buffer 2/0 mapped at address 0xffff9a1b0000.
+0 (0) [-] none 0 2359296 B 428.869881 428.869895 4.149 fps ts mono/EoF
+1 (1) [-] none 1 2359296 B 428.903181 428.903192 30.030 fps ts mono/EoF
+2 (2) [-] none 2 2359296 B 428.936478 428.936490 30.033 fps ts mono/EoF
+3 (0) [-] none 3 2359296 B 428.969777 428.969789 30.031 fps ts mono/EoF
+4 (1) [-] none 4 2359296 B 429.003077 429.003089 30.030 fps ts mono/EoF
+5 (2) [-] none 5 2359296 B 429.036375 429.036387 30.032 fps ts mono/EoF
+6 (0) [-] none 6 2359296 B 429.069674 429.069686 30.031 fps ts mono/EoF
+7 (1) [-] none 7 2359296 B 429.102974 429.102986 30.030 fps ts mono/EoF
+8 (2) [-] none 8 2359296 B 429.136274 429.142651 30.030 fps ts mono/EoF
+9 (0) [-] none 9 2359296 B 429.169570 429.182596 30.034 fps ts mono/EoF
+Captured 10 frames in 0.553732 seconds (18.059274 fps, 0.000000 B/s).
 3 buffers released.
 ```
+
 Transfer the file to the PC using `sftp`, etc and check the image. To convert with ImageMagick, install `imagemagick-6.q16` in advance and perform the conversion with the following command.
 
 ```
-convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
+convert -size 1024x768 -depth 8 RGB:frame-000008.bin cam.png
 ```
-<img src='doc/cam.png' alt='Camera Image' width='800'/>
+<img src='doc/cam2.png' alt='Camera Image (1024x768 YUV422)' width='800'/>
 
 ## Test Pattern
 
 You can check user control by the following command. You can check the camera device name by `media-ctrl -p`
 
 ```
-yavta -l /dev/v4l-subdev4
+yavta -l /dev/v4l-subdev2
 ```
 
 Change output to the test pattern by the following command. For the actual address, refer to the user control above.
 
 ```
-yavta -w '0x009f0903 1' /dev/v4l-subdev4
+yavta -w '0x009f0903 1' /dev/v4l-subdev2
 ```
 
 Checking the test pattern can be done in the same way as the camera capture above.
@@ -833,13 +800,11 @@ Checking the test pattern can be done in the same way as the camera capture abov
 
 ## TODO
 
-### YUV420, YUV422 output for terminal
-
-When output is set to YUV420 or YUV422 at the end, a `Stream Buffer Full` error occurs.
-
 ### Different resolution
 
-* 2592x1944 (RAW8) : Problem with only white screen being captured. Only the test pattern was captured normally.
-* 1920x1080 (RAW8) : Problem with only abnormal screen being captured. Only the test pattern was captured normally.
+* 2592x1944 (RAW8, YUV422) : Problem with only white screen being captured for RAW8, YUV422. Only the test pattern was captured normally.
+* 1920x1080 (RAW8, YUV422) : Problem with only abnormal screen being captured for RAW8. Problem with only gray screen being captured for YUV422. Only the test pattern was captured normally.
 
 ### Capture image quality
+
+* 1280x720 (RAW8, YUV422) : Especially poor image quality at 1280x720.

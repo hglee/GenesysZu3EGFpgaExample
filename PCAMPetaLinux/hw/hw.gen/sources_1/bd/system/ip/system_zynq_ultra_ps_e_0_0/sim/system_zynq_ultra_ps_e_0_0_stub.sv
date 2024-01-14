@@ -147,10 +147,10 @@ module system_zynq_ultra_ps_e_0_0 (
   input bit [3 : 0] saxigp0_awqos,
   input bit [3 : 0] saxigp0_arqos,
   output bit [93 : 0] emio_enet0_enet_tsu_timer_cnt,
-  input bit [8 : 0] emio_gpio_i,
-  output bit [8 : 0] emio_gpio_o,
-  output bit [8 : 0] emio_gpio_t,
-  input bit [3 : 0] pl_ps_irq0,
+  input bit [4 : 0] emio_gpio_i,
+  output bit [4 : 0] emio_gpio_o,
+  output bit [4 : 0] emio_gpio_t,
+  input bit [1 : 0] pl_ps_irq0,
   output bit_as_bool pl_resetn0,
   output bit_as_bool pl_clk0,
   output bit_as_bool pl_clk1
@@ -244,10 +244,10 @@ module system_zynq_ultra_ps_e_0_0 (maxihpm0_lpd_aclk,maxigp2_awid,maxigp2_awaddr
   input bit [3 : 0] saxigp0_awqos;
   input bit [3 : 0] saxigp0_arqos;
   output wire [93 : 0] emio_enet0_enet_tsu_timer_cnt;
-  input bit [8 : 0] emio_gpio_i;
-  output wire [8 : 0] emio_gpio_o;
-  output wire [8 : 0] emio_gpio_t;
-  input bit [3 : 0] pl_ps_irq0;
+  input bit [4 : 0] emio_gpio_i;
+  output wire [4 : 0] emio_gpio_o;
+  output wire [4 : 0] emio_gpio_t;
+  input bit [1 : 0] pl_ps_irq0;
   output wire pl_resetn0;
   output wire pl_clk0;
   output wire pl_clk1;

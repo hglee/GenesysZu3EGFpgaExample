@@ -25,19 +25,15 @@ Pcam 5C 를 사용한 petalinux 예제입니다.
 
 3. Zynq MPSoc IP 추가
 
-Board preset으로 자동화한 후, 블럭을 더블 클릭하여 수정합니다. 9비트 GPIO EMIO를 설정합니다. 전체 GPIO EMIO 구성은 다음과 같습니다.
+Board preset으로 자동화한 후, 블럭을 더블 클릭하여 수정합니다. 5비트 GPIO EMIO를 설정합니다. 전체 GPIO EMIO 구성은 다음과 같습니다.
 
 * EMIO 0 (GPIO 78) : I2C mux reset
 * EMIO 1 (GPIO 79) : MIPI A power
 * EMIO 2 (GPIO 80) : MIPI CSI RX reset
-* EMIO 3 (GPIO 81) : demosaic reset
-* EMIO 4 (GPIO 82) : gamma LUT reset
-* EMIO 5 (GPIO 83) : Video processing CSC reset
-* EMIO 6 (GPIO 84) : Video frame buffer write reset
-* EMIO 7 (GPIO 85) : reserved
-* EMIO 8 (GPIO 86) : reserved
+* EMIO 3 (GPIO 81) : Video processing CSC reset
+* EMIO 4 (GPIO 82) : Video frame buffer write reset
 
-<img src='doc/01_GPIO.png' alt='GPIO' width='600'/>
+<img src='doc/11_GPIO.png' alt='GPIO' width='600'/>
 
 PL 클럭 출력을 다음과 같이 변경합니다. 두번째 클럭(PL1)은 DPHY 200MHz에 사용됩니다. 
 
@@ -45,27 +41,23 @@ PL 클럭 출력을 다음과 같이 변경합니다. 두번째 클럭(PL1)은 D
 
 3. 전체 블럭 구성
 
-전체 블럭 구성은 [출력 파일](doc/system.pdf)을 참고합니다.
+전체 블럭 구성은 [출력 파일](doc/system2.pdf)을 참고합니다.
 
-MIPI CSI2 RX -> demosaic -> gamma LUT -> CSC -> Video frame buffer write
-
+MIPI CSI2 RX -> CSC -> Video frame buffer write
+c
 - Slice을 통하여 EMIO 0, 1을 외부로 내보냅니다. 이름은 추후 constraints 와 일치하여야 합니다.
 
 - MIPI CSI2 RX를 추가합니다. EMIO를 slice를 통하여 reset에 연결하고, pl_clk1을 DPHY 200MHz에 연결합니다. Video clock은 pl_clk0 에 연결합니다. 속성을 다음과 같이 설정합니다.
 
-<img src='doc/03_csi_01.png' alt='CSI RX 1' width='600'/>
+<img src='doc/12_csi_01.png' alt='CSI RX 1' width='600'/>
 
 <img src='doc/04_csi_02.png' alt='CSI RX 2' width='600'/>
 
 <img src='doc/05_csi_03.png' alt='CSI RX 3' width='600'/>
 
-- Demosaic 을 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
+- AXI4-Stream Subset Converter를 추가합니다. 속성을 다음과 같이 설정합니다.
 
-<img src='doc/06_demosaic.png' alt='Demosaic' width='600'/>
-
-- Gamma LUT를 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
-
-<img src='doc/07_gamma.png' alt='Gamma LUT' width='600'/>
+<img src='doc/13_subset.png' alt='Subset' width='600'/>
 
 - Video processing subsystem을 추가합니다. EMIO를 slice를 통하여 reset에 연결합니다. 속성을 다음과 같이 설정합니다.
 
@@ -152,10 +144,8 @@ PetaLinux 빌드 이후 자동으로 생성된 `components/plnx_workspace/device
 // GPIO 78 : I2C mux reset
 // GPIO 79 : MIPI A power
 // GPIO 80 : MIPI CSI RX
-// GPIO 81 : demosaic
-// GPIO 82 : gamma
-// GPIO 83 : vp csc
-// GPIO 84 : vframe buffer write
+// GPIO 81 : vp csc
+// GPIO 82 : vframe buffer write
 
 / {
 	pcam_clk: pcam_clk {
@@ -623,7 +613,7 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &mipi_csi2_rx_subsyst_0 {
-        xlnx,csi-pxl-format = <0x2a>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
+        xlnx,csi-pxl-format = <0x1e>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
 };
 
 &mipi_csi_inmipi_csi2_rx_subsyst_0 {
@@ -636,7 +626,7 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &csc_port0v_proc_ss_csc {
-        xlnx,video-format = <XVIP_VF_RBG>; // gamma -> csc in
+        xlnx,video-format = <XVIP_VF_YUV_422>; // mipi -> csc in
 };
 ```
 
@@ -655,7 +645,7 @@ devicetree/bindings/mux/mux-controller.txt
 이후 명령들은 root 권한으로 실행합니다. 다음 명령으로 전체 구성을 확인합니다.
 
 ```
-media-ctrl -p
+media-ctl -p
 ```
 
 정상적인 경우 다음과 같이 표시됩니다.
@@ -667,7 +657,7 @@ Media device information
 ------------------------
 driver          xilinx-video
 model           Xilinx Video Composite Device
-serial          
+serial
 bus info        platform:amba_pl@0:vcap_v_proc_
 hw revision     0x0
 driver version  6.1.30
@@ -683,45 +673,25 @@ Device topology
             type V4L2 subdev subtype Unknown flags 0
             device node name /dev/v4l-subdev0
         pad0: Sink
-                [fmt:SRGGB8_1X8/1920x1080 field:none colorspace:srgb]
+                [fmt:UYVY8_1X16/1920x1080 field:none colorspace:srgb]
                 <- "ov5640 2-003c":0 [ENABLED]
         pad1: Source
-                [fmt:SRGGB8_1X8/1920x1080 field:none colorspace:srgb]
-                -> "80010000.v_demosaic":0 [ENABLED]
+                [fmt:UYVY8_1X16/1920x1080 field:none colorspace:srgb]
+                -> "80040000.v_proc_ss":0 [ENABLED]
 
-- entity 8: 80010000.v_demosaic (2 pads, 2 links)
+- entity 8: 80040000.v_proc_ss (2 pads, 2 links)
             type V4L2 subdev subtype Unknown flags 0
             device node name /dev/v4l-subdev1
         pad0: Sink
-                [fmt:SRGGB8_1X8/1280x720 field:none colorspace:srgb]
+                [fmt:UYVY8_1X16/1280x720 field:none colorspace:rec709]
                 <- "80000000.mipi_csi2_rx_subsystem":1 [ENABLED]
-        pad1: Source
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:srgb]
-                -> "80030000.v_gamma_lut":0 [ENABLED]
-
-- entity 11: 80030000.v_gamma_lut (2 pads, 2 links)
-             type V4L2 subdev subtype Unknown flags 0
-             device node name /dev/v4l-subdev2
-        pad0: Sink
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:srgb]
-                <- "80010000.v_demosaic":1 [ENABLED]
-        pad1: Source
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:srgb]
-                -> "80040000.v_proc_ss":0 [ENABLED]
-
-- entity 14: 80040000.v_proc_ss (2 pads, 2 links)
-             type V4L2 subdev subtype Unknown flags 0
-             device node name /dev/v4l-subdev3
-        pad0: Sink
-                [fmt:RBG888_1X24/1280x720 field:none colorspace:rec709]
-                <- "80030000.v_gamma_lut":1 [ENABLED]
         pad1: Source
                 [fmt:RBG888_1X24/1280x720 field:none colorspace:rec709]
                 -> "vcap_v_proc_ss_csc output 0":0 [ENABLED]
 
-- entity 17: ov5640 2-003c (1 pad, 1 link)
+- entity 11: ov5640 2-003c (1 pad, 1 link)
              type V4L2 subdev subtype Sensor flags 0
-             device node name /dev/v4l-subdev4
+             device node name /dev/v4l-subdev2
         pad0: Source
                 [fmt:UYVY8_2X8/640x480@1/30 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range
                  crop.bounds:(0,0)/2624x1964
@@ -732,18 +702,14 @@ Device topology
 다음 명령으로 각 해상도 및 color format을 지정합니다.
 
 ```
-media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":0 [fmt:SBGGR8_1X8/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80010000.v_demosaic\":1 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80030000.v_gamma_lut\":0 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80030000.v_gamma_lut\":1 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:RBG888_1X24/1280x720 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1280x720 field:none]"
+media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1024x768 field:none]"
 ```
 
-위의 명령을 실행 후 `media-ctrl -p`을 통하여 다시 한번 검토합니다. 검토 중 정상적으로 설정되지 않은 항목이 있다면, 해당 항목을 다시 설정합니다. 각 항목 중 불일치하는 항목이 있다면 캡쳐 시 `Broken pipe` 등의 오류가 발생할 수 있습니다.
+위의 명령을 실행 후 `media-ctl -p`을 통하여 다시 한번 검토합니다. 검토 중 정상적으로 설정되지 않은 항목이 있다면, 해당 항목을 다시 설정합니다. 각 항목 중 불일치하는 항목이 있다면 캡쳐 시 `Broken pipe` 등의 오류가 발생할 수 있습니다.
 
 다음 명령으로 `/dev/video0` 의 지원 형식을 확인합니다.
 
@@ -761,13 +727,13 @@ Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 
         Type: Video capture mplanes (9)
         Name: 24-bit RGB 8-8-8
 
-Video format: YUYV (56595559) 1920x0 field none, 0 planes: 
+Video format: YUYV (56595559) 1920x0 field none, 0 planes:
 ```
 
 다음 명령으로 캡쳐를 수행하여 파일로 저장합니다.
 
 ```
-yavta -n 3 -c10 -f RGB24 -s 1280x720 --skip 7 -F /dev/video0
+yavta -n 3 -c10 -f RGB24 -s 1024x768 --skip 7 -F /dev/video0
 ```
 
 정상 동작시 다음과 같이 출력됩니다.
@@ -775,50 +741,50 @@ yavta -n 3 -c10 -f RGB24 -s 1280x720 --skip 7 -F /dev/video0
 ```
 Device /dev/video0 opened.
 Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 'xilinx-vipp') supports video, capture, with mplanes.
-Video format set: RGB24 (33424752) 1280x720 field none, 1 planes: 
- * Stride 3840, buffer size 2764800
-Video format: RGB24 (33424752) 1280x720 field none, 1 planes: 
- * Stride 3840, buffer size 2764800
+Video format set: RGB24 (33424752) 1024x768 field none, 1 planes:
+ * Stride 3072, buffer size 2359296
+Video format: RGB24 (33424752) 1024x768 field none, 1 planes:
+ * Stride 3072, buffer size 2359296
 3 buffers requested.
-length: 1 offset: 3593392984 timestamp type/source: mono/EoF
-Buffer 0/0 mapped at address 0xffffb03bd000.
-length: 1 offset: 3593392984 timestamp type/source: mono/EoF
-Buffer 1/0 mapped at address 0xffffb011a000.
-length: 1 offset: 3593392984 timestamp type/source: mono/EoF
-Buffer 2/0 mapped at address 0xffffafe77000.
-0 (0) [-] none 0 2764800 B 305.285052 305.285067 5.557 fps ts mono/EoF
-1 (1) [-] none 1 2764800 B 305.318083 305.318094 30.275 fps ts mono/EoF
-2 (2) [-] none 2 2764800 B 305.351115 305.351126 30.274 fps ts mono/EoF
-3 (0) [-] none 3 2764800 B 305.384147 305.384158 30.274 fps ts mono/EoF
-4 (1) [-] none 4 2764800 B 305.417179 305.417189 30.274 fps ts mono/EoF
-5 (2) [-] none 5 2764800 B 305.450211 305.450221 30.274 fps ts mono/EoF
-6 (0) [-] none 6 2764800 B 305.483243 305.483253 30.274 fps ts mono/EoF
-7 (1) [-] none 7 2764800 B 305.516275 305.516285 30.274 fps ts mono/EoF
-8 (2) [-] none 8 2764800 B 305.549309 305.561894 30.272 fps ts mono/EoF
-9 (0) [-] none 9 2764800 B 305.582339 305.607783 30.276 fps ts mono/EoF
-Captured 10 frames in 0.502684 seconds (19.893205 fps, 0.000000 B/s).
+length: 1 offset: 4124529752 timestamp type/source: mono/EoF
+Buffer 0/0 mapped at address 0xffff9a630000.
+length: 1 offset: 4124529752 timestamp type/source: mono/EoF
+Buffer 1/0 mapped at address 0xffff9a3f0000.
+length: 1 offset: 4124529752 timestamp type/source: mono/EoF
+Buffer 2/0 mapped at address 0xffff9a1b0000.
+0 (0) [-] none 0 2359296 B 428.869881 428.869895 4.149 fps ts mono/EoF
+1 (1) [-] none 1 2359296 B 428.903181 428.903192 30.030 fps ts mono/EoF
+2 (2) [-] none 2 2359296 B 428.936478 428.936490 30.033 fps ts mono/EoF
+3 (0) [-] none 3 2359296 B 428.969777 428.969789 30.031 fps ts mono/EoF
+4 (1) [-] none 4 2359296 B 429.003077 429.003089 30.030 fps ts mono/EoF
+5 (2) [-] none 5 2359296 B 429.036375 429.036387 30.032 fps ts mono/EoF
+6 (0) [-] none 6 2359296 B 429.069674 429.069686 30.031 fps ts mono/EoF
+7 (1) [-] none 7 2359296 B 429.102974 429.102986 30.030 fps ts mono/EoF
+8 (2) [-] none 8 2359296 B 429.136274 429.142651 30.030 fps ts mono/EoF
+9 (0) [-] none 9 2359296 B 429.169570 429.182596 30.034 fps ts mono/EoF
+Captured 10 frames in 0.553732 seconds (18.059274 fps, 0.000000 B/s).
 3 buffers released.
 ```
 
 `sftp` 등으로 접속하여 파일을 PC로 전송 후 이미지를 확인합니다. ImageMagick으로 변환하려면 `imagemagick-6.q16` 미리 설치하고 다음의 명령으로 변환을 수행합니다.
 
 ```
-convert -size 1280x720 -depth 8 RGB:frame-000008.bin cam.png
+convert -size 1024x768 -depth 8 RGB:frame-000008.bin cam.png
 ```
-<img src='doc/cam.png' alt='카메라 이미지' width='800'/>
+<img src='doc/cam2.png' alt='카메라 이미지 (1024x768 YUV422)' width='800'/>
 
 ## 테스트 패턴
 
 다음 명령을 통하여 user control을 확인할 수 있습니다. 카메라 장치명은 `media-ctl -p` 실행 시 확인할 수 있습니다.
 
 ```
-yavta -l /dev/v4l-subdev4
+yavta -l /dev/v4l-subdev2
 ```
 
 다음 명령을 통해서 테스트 패턴을 출력하도록 지정합니다. 실제 주소는 위의 user control을 참고합니다.
 
 ```
-yavta -w '0x009f0903 1' /dev/v4l-subdev4
+yavta -w '0x009f0903 1' /dev/v4l-subdev2
 ```
 테스트 패턴 확인은 위의 카메라 캡쳐와 동일하게 수행할 수 있습니다.
 
@@ -833,13 +799,11 @@ yavta -w '0x009f0903 1' /dev/v4l-subdev4
 
 ## 할일
 
-### 말단 YUV420, YUV422 출력 확인
-
-말단이 YUV420, YUV422 으로 출력 설정 시 `Stream Buffer Full` 오류 발생
-
 ### 다른 해상도 동작 확인
 
-* 2592x1944 (RAW8) : 테스트 패턴은 정상 캡쳐됨. 실제 화면은 흰색 화면만 캡쳐
-* 1920x1080 (RAW8) : 테스트 패턴은 정상 캡쳐됨. 실제 화면은 깨진 화면만 캡쳐
+* 2592x1944 (RAW8, YUV422) : 테스트 패턴은 정상 캡쳐됨. 실제 화면은 RAW8, YUV422 모두 흰색 화면만 캡쳐
+* 1920x1080 (RAW8, YUV422) : 테스트 패턴은 정상 캡쳐됨. 실제 화면은 RAW8은 깨진 화면, YUV422은 회색 화면으로만 캡쳐
 
 ### 캡쳐 이미지 품질 확인
+
+* 1280x720 (RAW8, YUV422): 이미지 품질이 특히 떨어짐

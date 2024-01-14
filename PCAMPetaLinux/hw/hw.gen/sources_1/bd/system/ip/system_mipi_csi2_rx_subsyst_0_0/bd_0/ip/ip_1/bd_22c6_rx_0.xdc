@@ -55,8 +55,8 @@ set_false_path -to [get_cells -hierarchical *syncstages_ff_reg[0]*]
 #xpm_cdc_arst
 set_false_path -to [get_pin -hierarchical {*arststages_ff_reg[*]/CLR}]
 #---------------------------------------------------------------------------#
-#create_clock -name ppi_clk0 -period 1.25 [get_ports { dl0_rxbyteclkhs } ]
-#create_clock -name ppi_clk1 -period 1.25 [get_ports { dl1_rxbyteclkhs } ]
+#create_clock -name ppi_clk0 -period 2.9761904761904763 [get_ports { dl0_rxbyteclkhs } ]
+#create_clock -name ppi_clk1 -period 2.9761904761904763 [get_ports { dl1_rxbyteclkhs } ]
 #---------------------------------------------------------------------------#
 #startgroup
 #create_pblock pblock_inst

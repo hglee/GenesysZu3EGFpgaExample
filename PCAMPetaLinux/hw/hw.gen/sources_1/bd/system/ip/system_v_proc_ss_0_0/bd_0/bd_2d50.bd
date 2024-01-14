@@ -163,7 +163,7 @@
           },
           "HAS_TKEEP": {
             "value": "1",
-            "value_src": "auto_prop"
+            "value_src": "ip"
           },
           "HAS_TLAST": {
             "value": "1",
@@ -175,7 +175,7 @@
           },
           "HAS_TSTRB": {
             "value": "1",
-            "value_src": "auto_prop"
+            "value_src": "ip"
           },
           "INSERT_VIP": {
             "value": "0",

@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
--- Date        : Fri Jan 12 03:15:43 2024
+-- Date        : Mon Jan 15 00:29:54 2024
 -- Host        : hglee-3900X running 64-bit Ubuntu 22.04.3 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/hglee/Workspace/GenesysZu3EGFpgaExample/PCAMPetaLinux/hw/hw.gen/sources_1/bd/system/ip/system_zynq_ultra_ps_e_0_0/system_zynq_ultra_ps_e_0_0_sim_netlist.vhdl
@@ -792,10 +792,10 @@ entity system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e is
     emio_enet1_dma_bus_width : out STD_LOGIC_VECTOR ( 1 downto 0 );
     emio_enet2_dma_bus_width : out STD_LOGIC_VECTOR ( 1 downto 0 );
     emio_enet3_dma_bus_width : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    emio_gpio_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    emio_gpio_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
-    emio_gpio_t : out STD_LOGIC_VECTOR ( 8 downto 0 );
-    emio_gpio_t_n : out STD_LOGIC_VECTOR ( 8 downto 0 );
+    emio_gpio_i : in STD_LOGIC_VECTOR ( 4 downto 0 );
+    emio_gpio_o : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    emio_gpio_t : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    emio_gpio_t_n : out STD_LOGIC_VECTOR ( 4 downto 0 );
     emio_i2c0_scl_i : in STD_LOGIC;
     emio_i2c0_scl_o : out STD_LOGIC;
     emio_i2c0_scl_t_n : out STD_LOGIC;
@@ -991,7 +991,7 @@ entity system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e is
     ps_pl_trigger_3 : out STD_LOGIC;
     ftm_gpo : out STD_LOGIC_VECTOR ( 31 downto 0 );
     ftm_gpi : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    pl_ps_irq0 : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    pl_ps_irq0 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     pl_ps_irq1 : in STD_LOGIC_VECTOR ( 0 to 0 );
     pl_resetn0 : out STD_LOGIC;
     pl_resetn1 : out STD_LOGIC;
@@ -1514,7 +1514,7 @@ entity system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e is
   attribute C_DP_USE_VIDEO : integer;
   attribute C_DP_USE_VIDEO of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 0;
   attribute C_EMIO_GPIO_WIDTH : integer;
-  attribute C_EMIO_GPIO_WIDTH of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 9;
+  attribute C_EMIO_GPIO_WIDTH of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 5;
   attribute C_EN_EMIO_TRACE : integer;
   attribute C_EN_EMIO_TRACE of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 0;
   attribute C_EN_FIFO_ENET0 : string;
@@ -1532,7 +1532,7 @@ entity system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e is
   attribute C_MAXIGP2_DATA_WIDTH : integer;
   attribute C_MAXIGP2_DATA_WIDTH of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 32;
   attribute C_NUM_F2P_0_INTR_INPUTS : integer;
-  attribute C_NUM_F2P_0_INTR_INPUTS of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 4;
+  attribute C_NUM_F2P_0_INTR_INPUTS of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 2;
   attribute C_NUM_F2P_1_INTR_INPUTS : integer;
   attribute C_NUM_F2P_1_INTR_INPUTS of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e : entity is 1;
   attribute C_NUM_FABRIC_RESETS : integer;
@@ -4220,10 +4220,6 @@ architecture STRUCTURE of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq
   signal PS8_i_n_370 : STD_LOGIC;
   signal PS8_i_n_371 : STD_LOGIC;
   signal PS8_i_n_372 : STD_LOGIC;
-  signal PS8_i_n_3723 : STD_LOGIC;
-  signal PS8_i_n_3724 : STD_LOGIC;
-  signal PS8_i_n_3725 : STD_LOGIC;
-  signal PS8_i_n_3726 : STD_LOGIC;
   signal PS8_i_n_3727 : STD_LOGIC;
   signal PS8_i_n_3728 : STD_LOGIC;
   signal PS8_i_n_3729 : STD_LOGIC;
@@ -4861,8 +4857,8 @@ architecture STRUCTURE of system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq
   signal NLW_PS8_i_PSS_ALTO_CORE_PAD_REFP3IN_UNCONNECTED : STD_LOGIC;
   signal NLW_PS8_i_PSS_ALTO_CORE_PAD_SRSTB_UNCONNECTED : STD_LOGIC;
   signal NLW_PS8_i_PSS_ALTO_CORE_PAD_ZQ_UNCONNECTED : STD_LOGIC;
-  signal NLW_PS8_i_EMIOGPIOO_UNCONNECTED : STD_LOGIC_VECTOR ( 94 downto 9 );
-  signal NLW_PS8_i_EMIOGPIOTN_UNCONNECTED : STD_LOGIC_VECTOR ( 95 downto 9 );
+  signal NLW_PS8_i_EMIOGPIOO_UNCONNECTED : STD_LOGIC_VECTOR ( 94 downto 5 );
+  signal NLW_PS8_i_EMIOGPIOTN_UNCONNECTED : STD_LOGIC_VECTOR ( 95 downto 5 );
   signal NLW_PS8_i_EMIOSDIO0DATAENA_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 5 );
   signal NLW_PS8_i_EMIOSDIO0DATAOUT_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 5 );
   signal NLW_PS8_i_MAXIGP2WDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 127 downto 32 );
@@ -5368,10 +5364,6 @@ begin
   emio_enet3_tx_r_status(1) <= \<const0>\;
   emio_enet3_tx_r_status(0) <= \<const0>\;
   emio_enet3_tx_sof <= \<const0>\;
-  emio_gpio_t_n(8) <= \<const0>\;
-  emio_gpio_t_n(7) <= \<const0>\;
-  emio_gpio_t_n(6) <= \<const0>\;
-  emio_gpio_t_n(5) <= \<const0>\;
   emio_gpio_t_n(4) <= \<const0>\;
   emio_gpio_t_n(3) <= \<const0>\;
   emio_gpio_t_n(2) <= \<const0>\;
@@ -9363,16 +9355,12 @@ PS8_i: unisim.vcomponents.PS8
       EMIOGEM3TSUTIMERCMPVAL => PS8_i_n_105,
       EMIOGEM3TXRFIXEDLAT => PS8_i_n_106,
       EMIOGEM3TXSOF => PS8_i_n_107,
-      EMIOGPIOI(95 downto 9) => B"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-      EMIOGPIOI(8 downto 0) => emio_gpio_i(8 downto 0),
+      EMIOGPIOI(95 downto 5) => B"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      EMIOGPIOI(4 downto 0) => emio_gpio_i(4 downto 0),
       EMIOGPIOO(95) => pl_resetn0,
-      EMIOGPIOO(94 downto 9) => NLW_PS8_i_EMIOGPIOO_UNCONNECTED(94 downto 9),
-      EMIOGPIOO(8 downto 0) => emio_gpio_o(8 downto 0),
-      EMIOGPIOTN(95 downto 9) => NLW_PS8_i_EMIOGPIOTN_UNCONNECTED(95 downto 9),
-      EMIOGPIOTN(8) => PS8_i_n_3723,
-      EMIOGPIOTN(7) => PS8_i_n_3724,
-      EMIOGPIOTN(6) => PS8_i_n_3725,
-      EMIOGPIOTN(5) => PS8_i_n_3726,
+      EMIOGPIOO(94 downto 5) => NLW_PS8_i_EMIOGPIOO_UNCONNECTED(94 downto 5),
+      EMIOGPIOO(4 downto 0) => emio_gpio_o(4 downto 0),
+      EMIOGPIOTN(95 downto 5) => NLW_PS8_i_EMIOGPIOTN_UNCONNECTED(95 downto 5),
       EMIOGPIOTN(4) => PS8_i_n_3727,
       EMIOGPIOTN(3) => PS8_i_n_3728,
       EMIOGPIOTN(2) => PS8_i_n_3729,
@@ -10353,8 +10341,8 @@ PS8_i: unisim.vcomponents.PS8
       PLPSAPUGICFIQ(3 downto 0) => B"0000",
       PLPSAPUGICIRQ(3 downto 0) => B"0000",
       PLPSEVENTI => '0',
-      PLPSIRQ0(7 downto 4) => B"0000",
-      PLPSIRQ0(3 downto 0) => pl_ps_irq0(3 downto 0),
+      PLPSIRQ0(7 downto 2) => B"000000",
+      PLPSIRQ0(1 downto 0) => pl_ps_irq0(1 downto 0),
       PLPSIRQ1(7 downto 0) => B"00000000",
       PLPSTRACECLK => '0',
       PLPSTRIGACK(3 downto 0) => B"0000",
@@ -12429,38 +12417,6 @@ PS8_i: unisim.vcomponents.PS8
         port map (
       I0 => PS8_i_n_3727,
       O => emio_gpio_t(4)
-    );
-\emio_gpio_t[5]_INST_0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => PS8_i_n_3726,
-      O => emio_gpio_t(5)
-    );
-\emio_gpio_t[6]_INST_0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => PS8_i_n_3725,
-      O => emio_gpio_t(6)
-    );
-\emio_gpio_t[7]_INST_0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => PS8_i_n_3724,
-      O => emio_gpio_t(7)
-    );
-\emio_gpio_t[8]_INST_0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => PS8_i_n_3723,
-      O => emio_gpio_t(8)
     );
 i_0: unisim.vcomponents.LUT1
     generic map(
@@ -14662,10 +14618,10 @@ entity system_zynq_ultra_ps_e_0_0 is
     saxigp0_awqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
     saxigp0_arqos : in STD_LOGIC_VECTOR ( 3 downto 0 );
     emio_enet0_enet_tsu_timer_cnt : out STD_LOGIC_VECTOR ( 93 downto 0 );
-    emio_gpio_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    emio_gpio_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
-    emio_gpio_t : out STD_LOGIC_VECTOR ( 8 downto 0 );
-    pl_ps_irq0 : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    emio_gpio_i : in STD_LOGIC_VECTOR ( 4 downto 0 );
+    emio_gpio_o : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    emio_gpio_t : out STD_LOGIC_VECTOR ( 4 downto 0 );
+    pl_ps_irq0 : in STD_LOGIC_VECTOR ( 1 downto 0 );
     pl_resetn0 : out STD_LOGIC;
     pl_clk0 : out STD_LOGIC;
     pl_clk1 : out STD_LOGIC
@@ -15194,7 +15150,7 @@ architecture STRUCTURE of system_zynq_ultra_ps_e_0_0 is
   signal NLW_inst_emio_enet3_rx_w_status_UNCONNECTED : STD_LOGIC_VECTOR ( 44 downto 0 );
   signal NLW_inst_emio_enet3_speed_mode_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_inst_emio_enet3_tx_r_status_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal NLW_inst_emio_gpio_t_n_UNCONNECTED : STD_LOGIC_VECTOR ( 8 downto 0 );
+  signal NLW_inst_emio_gpio_t_n_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal NLW_inst_emio_sdio0_bus_volt_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_inst_emio_sdio0_dataena_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal NLW_inst_emio_sdio0_dataout_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
@@ -15412,7 +15368,7 @@ architecture STRUCTURE of system_zynq_ultra_ps_e_0_0 is
   attribute C_DP_USE_VIDEO : integer;
   attribute C_DP_USE_VIDEO of inst : label is 0;
   attribute C_EMIO_GPIO_WIDTH : integer;
-  attribute C_EMIO_GPIO_WIDTH of inst : label is 9;
+  attribute C_EMIO_GPIO_WIDTH of inst : label is 5;
   attribute C_EN_EMIO_TRACE : integer;
   attribute C_EN_EMIO_TRACE of inst : label is 0;
   attribute C_EN_FIFO_ENET0 : string;
@@ -15430,7 +15386,7 @@ architecture STRUCTURE of system_zynq_ultra_ps_e_0_0 is
   attribute C_MAXIGP2_DATA_WIDTH : integer;
   attribute C_MAXIGP2_DATA_WIDTH of inst : label is 32;
   attribute C_NUM_F2P_0_INTR_INPUTS : integer;
-  attribute C_NUM_F2P_0_INTR_INPUTS of inst : label is 4;
+  attribute C_NUM_F2P_0_INTR_INPUTS of inst : label is 2;
   attribute C_NUM_F2P_1_INTR_INPUTS : integer;
   attribute C_NUM_F2P_1_INTR_INPUTS of inst : label is 1;
   attribute C_NUM_FABRIC_RESETS : integer;
@@ -15785,7 +15741,7 @@ architecture STRUCTURE of system_zynq_ultra_ps_e_0_0 is
   attribute X_INTERFACE_INFO of maxigp2_wdata : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_LPD WDATA";
   attribute X_INTERFACE_INFO of maxigp2_wstrb : signal is "xilinx.com:interface:aximm:1.0 M_AXI_HPM0_LPD WSTRB";
   attribute X_INTERFACE_INFO of pl_ps_irq0 : signal is "xilinx.com:signal:interrupt:1.0 PL_PS_IRQ0 INTERRUPT";
-  attribute X_INTERFACE_PARAMETER of pl_ps_irq0 : signal is "XIL_INTERFACENAME PL_PS_IRQ0, SENSITIVITY LEVEL_HIGH:LEVEL_HIGH:LEVEL_HIGH:LEVEL_HIGH, PortWidth 4";
+  attribute X_INTERFACE_PARAMETER of pl_ps_irq0 : signal is "XIL_INTERFACENAME PL_PS_IRQ0, SENSITIVITY LEVEL_HIGH:LEVEL_HIGH, PortWidth 2";
   attribute X_INTERFACE_INFO of saxigp0_araddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI_HPC0_FPD ARADDR";
   attribute X_INTERFACE_INFO of saxigp0_arburst : signal is "xilinx.com:interface:aximm:1.0 S_AXI_HPC0_FPD ARBURST";
   attribute X_INTERFACE_INFO of saxigp0_arcache : signal is "xilinx.com:interface:aximm:1.0 S_AXI_HPC0_FPD ARCACHE";
@@ -16069,10 +16025,10 @@ inst: entity work.system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_p
       emio_enet3_tx_r_valid => '0',
       emio_enet3_tx_sof => NLW_inst_emio_enet3_tx_sof_UNCONNECTED,
       emio_enet_tsu_clk => '0',
-      emio_gpio_i(8 downto 0) => emio_gpio_i(8 downto 0),
-      emio_gpio_o(8 downto 0) => emio_gpio_o(8 downto 0),
-      emio_gpio_t(8 downto 0) => emio_gpio_t(8 downto 0),
-      emio_gpio_t_n(8 downto 0) => NLW_inst_emio_gpio_t_n_UNCONNECTED(8 downto 0),
+      emio_gpio_i(4 downto 0) => emio_gpio_i(4 downto 0),
+      emio_gpio_o(4 downto 0) => emio_gpio_o(4 downto 0),
+      emio_gpio_t(4 downto 0) => emio_gpio_t(4 downto 0),
+      emio_gpio_t_n(4 downto 0) => NLW_inst_emio_gpio_t_n_UNCONNECTED(4 downto 0),
       emio_hub_port_overcrnt_usb2_0 => '0',
       emio_hub_port_overcrnt_usb2_1 => '0',
       emio_hub_port_overcrnt_usb3_0 => '0',
@@ -16646,7 +16602,7 @@ inst: entity work.system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_p
       pl_ps_apugic_fiq(3 downto 0) => B"0000",
       pl_ps_apugic_irq(3 downto 0) => B"0000",
       pl_ps_eventi => '0',
-      pl_ps_irq0(3 downto 0) => pl_ps_irq0(3 downto 0),
+      pl_ps_irq0(1 downto 0) => pl_ps_irq0(1 downto 0),
       pl_ps_irq1(0) => '0',
       pl_ps_trace_clk => '0',
       pl_ps_trigack_0 => '0',

@@ -54,7 +54,7 @@
 
 create_clock -period 5.031 -name core_clk [get_ports core_clk]
 
-create_clock -period 10 -name rxbyteclkhs [get_ports rxbyteclkhs]
+create_clock -period 23.810 -name rxbyteclkhs [get_ports rxbyteclkhs]
 
 create_clock -period 0.667 -name clkoutphy_out [get_ports clkoutphy_out]
 

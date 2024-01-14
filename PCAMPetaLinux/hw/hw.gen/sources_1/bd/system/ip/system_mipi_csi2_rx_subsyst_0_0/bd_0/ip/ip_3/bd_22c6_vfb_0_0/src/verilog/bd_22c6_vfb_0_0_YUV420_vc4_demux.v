@@ -50,36 +50,36 @@ module bd_22c6_vfb_0_0_YUV420_vc4_demux (
   input s_axis_tvalid,
   output s_axis_tready,
   output [3:0] cur_vc,
-  input [32-1:0] s_axis_tdata,
-  input [4-1:0] s_axis_tkeep,
+  input [64-1:0] s_axis_tdata,
+  input [8-1:0] s_axis_tkeep,
   input [4-1:0]  s_axis_tdest,
   input [96-1:0] s_axis_tuser,
   input s_axis_tlast,
   input m0_axis_tready ,
   output m0_axis_tvalid ,
-  output [32-1:0] m0_axis_tdata ,
-  output [4-1:0] m0_axis_tkeep ,
+  output [64-1:0] m0_axis_tdata ,
+  output [8-1:0] m0_axis_tkeep ,
   output [4-1:0]  m0_axis_tdest ,
   output [96-1:0] m0_axis_tuser ,
   output m0_axis_tlast ,
   input m1_axis_tready ,
   output m1_axis_tvalid ,
-  output [32-1:0] m1_axis_tdata ,
-  output [4-1:0] m1_axis_tkeep ,
+  output [64-1:0] m1_axis_tdata ,
+  output [8-1:0] m1_axis_tkeep ,
   output [4-1:0]  m1_axis_tdest ,
   output [96-1:0] m1_axis_tuser ,
   output m1_axis_tlast ,
   input m2_axis_tready ,
   output m2_axis_tvalid ,
-  output [32-1:0] m2_axis_tdata ,
-  output [4-1:0] m2_axis_tkeep ,
+  output [64-1:0] m2_axis_tdata ,
+  output [8-1:0] m2_axis_tkeep ,
   output [4-1:0]  m2_axis_tdest ,
   output [96-1:0] m2_axis_tuser ,
   output m2_axis_tlast ,
   input m3_axis_tready ,
   output m3_axis_tvalid ,
-  output [32-1:0] m3_axis_tdata ,
-  output [4-1:0] m3_axis_tkeep ,
+  output [64-1:0] m3_axis_tdata ,
+  output [8-1:0] m3_axis_tkeep ,
   output [4-1:0]  m3_axis_tdest ,
   output [96-1:0] m3_axis_tuser ,
   output m3_axis_tlast 
@@ -88,40 +88,40 @@ module bd_22c6_vfb_0_0_YUV420_vc4_demux (
 
 wire [3:0]          mx_axis_tready ;
 wire [3:0]          mx_axis_tvalid ;
-wire [128-1:0] mx_axis_tdata ;
-wire [16-1:0] mx_axis_tkeep ;
+wire [256-1:0] mx_axis_tdata ;
+wire [32-1:0] mx_axis_tkeep ;
 wire [16-1:0] mx_axis_tdest ;
 wire [384-1:0] mx_axis_tuser ;
 wire [3:0]          mx_axis_tlast;
 
 assign mx_axis_tready[0] = m0_axis_tready ;
 assign m0_axis_tvalid  = mx_axis_tvalid[0] ;
-assign m0_axis_tdata   = mx_axis_tdata[32-1:0] ;
-assign m0_axis_tkeep   = mx_axis_tkeep[4-1:0] ;
+assign m0_axis_tdata   = mx_axis_tdata[64-1:0] ;
+assign m0_axis_tkeep   = mx_axis_tkeep[8-1:0] ;
 assign m0_axis_tdest   = mx_axis_tdest[4-1:0] ;
 assign m0_axis_tuser   = mx_axis_tuser[96-1:0] ;
 assign m0_axis_tlast   = mx_axis_tlast[0];
 
 assign mx_axis_tready[1] = m1_axis_tready ;
 assign m1_axis_tvalid  = mx_axis_tvalid[1] ;
-assign m1_axis_tdata   = mx_axis_tdata[2*32-1:32] ;
-assign m1_axis_tkeep   = mx_axis_tkeep[2*4-1:4] ;
+assign m1_axis_tdata   = mx_axis_tdata[2*64-1:64] ;
+assign m1_axis_tkeep   = mx_axis_tkeep[2*8-1:8] ;
 assign m1_axis_tdest   = mx_axis_tdest[2*4-1:4] ;
 assign m1_axis_tuser   = mx_axis_tuser[2*96-1:96] ;
 assign m1_axis_tlast   = mx_axis_tlast[1];
 
 assign mx_axis_tready[2] = m2_axis_tready ;
 assign m2_axis_tvalid  = mx_axis_tvalid[2] ;
-assign m2_axis_tdata   = mx_axis_tdata[3*32-1:2*32] ;
-assign m2_axis_tkeep   = mx_axis_tkeep[3*4-1:2*4] ;
+assign m2_axis_tdata   = mx_axis_tdata[3*64-1:2*64] ;
+assign m2_axis_tkeep   = mx_axis_tkeep[3*8-1:2*8] ;
 assign m2_axis_tdest   = mx_axis_tdest[3*4-1:2*4] ;
 assign m2_axis_tuser   = mx_axis_tuser[3*96-1:2*96] ;
 assign m2_axis_tlast   = mx_axis_tlast[2];
 
 assign mx_axis_tready[3] = m3_axis_tready ;
 assign m3_axis_tvalid  = mx_axis_tvalid[3] ;
-assign m3_axis_tdata   = mx_axis_tdata[4*32-1:3*32] ;
-assign m3_axis_tkeep   = mx_axis_tkeep[4*4-1:3*4] ;
+assign m3_axis_tdata   = mx_axis_tdata[4*64-1:3*64] ;
+assign m3_axis_tkeep   = mx_axis_tkeep[4*8-1:3*8] ;
 assign m3_axis_tdest   = mx_axis_tdest[4*4-1:3*4] ;
 assign m3_axis_tuser   = mx_axis_tuser[4*96-1:3*96] ;
 assign m3_axis_tlast   = mx_axis_tlast[3];

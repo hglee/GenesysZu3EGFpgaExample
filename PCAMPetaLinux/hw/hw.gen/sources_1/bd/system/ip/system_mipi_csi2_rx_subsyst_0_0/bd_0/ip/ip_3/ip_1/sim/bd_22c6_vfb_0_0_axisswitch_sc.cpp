@@ -64,7 +64,7 @@ bd_22c6_vfb_0_0_axisswitch_sc::bd_22c6_vfb_0_0_axisswitch_sc(const sc_core::sc_m
     model_param_props.addLong("C_NUM_SI_SLOTS", "1");
     model_param_props.addLong("C_LOG_SI_SLOTS", "1");
     model_param_props.addLong("C_NUM_MI_SLOTS", "4");
-    model_param_props.addLong("C_AXIS_TDATA_WIDTH", "32");
+    model_param_props.addLong("C_AXIS_TDATA_WIDTH", "64");
     model_param_props.addLong("C_AXIS_TID_WIDTH", "1");
     model_param_props.addLong("C_AXIS_TDEST_WIDTH", "4");
     model_param_props.addLong("C_AXIS_TUSER_WIDTH", "96");

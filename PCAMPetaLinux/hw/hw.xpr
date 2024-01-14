@@ -113,20 +113,23 @@
         <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/ip_3/bd_22c6_vfb_0_0.xci">
           <Proxy FileSetName="bd_22c6_vfb_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_auto_pc_0/system_auto_pc_0.xci">
+          <Proxy FileSetName="system_auto_pc_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_axis_subset_converter_0_0/system_axis_subset_converter_0_0.xci">
+          <Proxy FileSetName="system_axis_subset_converter_0_0"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_mipi_csi2_rx_subsyst_0_0/system_mipi_csi2_rx_subsyst_0_0.xci">
           <Proxy FileSetName="system_mipi_csi2_rx_subsyst_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_rst_ps8_0_100M_0/system_rst_ps8_0_100M_0.xci">
           <Proxy FileSetName="system_rst_ps8_0_100M_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_v_demosaic_0_0/system_v_demosaic_0_0.xci">
-          <Proxy FileSetName="system_v_demosaic_0_0"/>
+        <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_smartconnect_0_0/system_smartconnect_0_0.xci">
+          <Proxy FileSetName="system_smartconnect_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_v_frmbuf_wr_0_0/system_v_frmbuf_wr_0_0.xci">
           <Proxy FileSetName="system_v_frmbuf_wr_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_v_gamma_lut_0_0/system_v_gamma_lut_0_0.xci">
-          <Proxy FileSetName="system_v_gamma_lut_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="system.bd" FileRelPathName="ip/system_v_proc_ss_0_0/system_v_proc_ss_0_0.xci">
           <Proxy FileSetName="system_v_proc_ss_0_0"/>
@@ -212,27 +215,9 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_22c6_phy_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_22c6_phy_0" RelGenDir="$PGENDIR/bd_22c6_phy_0">
-      <Config>
-        <Option Name="TopModule" Val="bd_22c6_phy_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="bd_2d50_csc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_2d50_csc_0" RelGenDir="$PGENDIR/bd_2d50_csc_0">
       <Config>
         <Option Name="TopModule" Val="bd_2d50_csc_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="bd_22c6_vfb_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_22c6_vfb_0_0" RelGenDir="$PGENDIR/bd_22c6_vfb_0_0">
-      <Config>
-        <Option Name="TopModule" Val="bd_22c6_vfb_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="system_v_demosaic_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_v_demosaic_0_0" RelGenDir="$PGENDIR/system_v_demosaic_0_0">
-      <Config>
-        <Option Name="TopModule" Val="system_v_demosaic_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -248,15 +233,15 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="system_v_gamma_lut_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_v_gamma_lut_0_0" RelGenDir="$PGENDIR/system_v_gamma_lut_0_0">
+    <FileSet Name="system_mipi_csi2_rx_subsyst_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_mipi_csi2_rx_subsyst_0_0" RelGenDir="$PGENDIR/system_mipi_csi2_rx_subsyst_0_0">
       <Config>
-        <Option Name="TopModule" Val="system_v_gamma_lut_0_0"/>
+        <Option Name="TopModule" Val="system_mipi_csi2_rx_subsyst_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="bd_22c6_r_sync_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_22c6_r_sync_0" RelGenDir="$PGENDIR/bd_22c6_r_sync_0">
+    <FileSet Name="system_smartconnect_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_smartconnect_0_0" RelGenDir="$PGENDIR/system_smartconnect_0_0">
       <Config>
-        <Option Name="TopModule" Val="bd_22c6_r_sync_0"/>
+        <Option Name="TopModule" Val="system_smartconnect_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -266,9 +251,33 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="system_mipi_csi2_rx_subsyst_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_mipi_csi2_rx_subsyst_0_0" RelGenDir="$PGENDIR/system_mipi_csi2_rx_subsyst_0_0">
+    <FileSet Name="bd_22c6_r_sync_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_22c6_r_sync_0" RelGenDir="$PGENDIR/bd_22c6_r_sync_0">
       <Config>
-        <Option Name="TopModule" Val="system_mipi_csi2_rx_subsyst_0_0"/>
+        <Option Name="TopModule" Val="bd_22c6_r_sync_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="system_axis_subset_converter_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_axis_subset_converter_0_0" RelGenDir="$PGENDIR/system_axis_subset_converter_0_0">
+      <Config>
+        <Option Name="TopModule" Val="system_axis_subset_converter_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_22c6_phy_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_22c6_phy_0" RelGenDir="$PGENDIR/bd_22c6_phy_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_22c6_phy_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="bd_22c6_vfb_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bd_22c6_vfb_0_0" RelGenDir="$PGENDIR/bd_22c6_vfb_0_0">
+      <Config>
+        <Option Name="TopModule" Val="bd_22c6_vfb_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="system_auto_pc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/system_auto_pc_0" RelGenDir="$PGENDIR/system_auto_pc_0">
+      <Config>
+        <Option Name="TopModule" Val="system_auto_pc_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -335,37 +344,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="bd_22c6_phy_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_phy_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_phy_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_phy_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="bd_2d50_csc_0_synth_1" Type="Ft3:Synth" SrcSet="bd_2d50_csc_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_2d50_csc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_2d50_csc_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_2d50_csc_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_2d50_csc_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="bd_22c6_vfb_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_vfb_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_vfb_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_vfb_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="system_v_demosaic_0_0_synth_1" Type="Ft3:Synth" SrcSet="system_v_demosaic_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_v_demosaic_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_v_demosaic_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_v_demosaic_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_v_demosaic_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
         <Step Id="synth_design"/>
@@ -395,7 +374,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="system_v_gamma_lut_0_0_synth_1" Type="Ft3:Synth" SrcSet="system_v_gamma_lut_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_v_gamma_lut_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_v_gamma_lut_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_v_gamma_lut_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_v_gamma_lut_0_0_synth_1">
+    <Run Id="system_mipi_csi2_rx_subsyst_0_0_synth_1" Type="Ft3:Synth" SrcSet="system_mipi_csi2_rx_subsyst_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_mipi_csi2_rx_subsyst_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_mipi_csi2_rx_subsyst_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
         <Step Id="synth_design"/>
@@ -405,9 +384,11 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="bd_22c6_r_sync_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_r_sync_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_r_sync_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_r_sync_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_synth_1">
+    <Run Id="system_smartconnect_0_0_synth_1" Type="Ft3:Synth" SrcSet="system_smartconnect_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_smartconnect_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_smartconnect_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_smartconnect_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_smartconnect_0_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -417,7 +398,9 @@
     </Run>
     <Run Id="bd_22c6_rx_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_rx_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_rx_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_rx_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_rx_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_rx_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -425,9 +408,59 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="system_mipi_csi2_rx_subsyst_0_0_synth_1" Type="Ft3:Synth" SrcSet="system_mipi_csi2_rx_subsyst_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_mipi_csi2_rx_subsyst_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_mipi_csi2_rx_subsyst_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_synth_1">
+    <Run Id="bd_22c6_r_sync_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_r_sync_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_r_sync_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_r_sync_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="system_axis_subset_converter_0_0_synth_1" Type="Ft3:Synth" SrcSet="system_axis_subset_converter_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_axis_subset_converter_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_axis_subset_converter_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_axis_subset_converter_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_axis_subset_converter_0_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="bd_22c6_phy_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_phy_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_phy_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_phy_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="bd_22c6_vfb_0_0_synth_1" Type="Ft3:Synth" SrcSet="bd_22c6_vfb_0_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_vfb_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/bd_22c6_vfb_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="system_auto_pc_0_synth_1" Type="Ft3:Synth" SrcSet="system_auto_pc_0" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_auto_pc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/system_auto_pc_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_auto_pc_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_auto_pc_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -504,58 +537,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="bd_22c6_phy_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_phy_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_phy_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="bd_2d50_csc_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_2d50_csc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_2d50_csc_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_2d50_csc_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_2d50_csc_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="bd_22c6_vfb_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_vfb_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_vfb_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="system_v_demosaic_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_v_demosaic_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_v_demosaic_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_v_demosaic_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_v_demosaic_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
         <Step Id="init_design"/>
@@ -606,7 +588,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="system_v_gamma_lut_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_v_gamma_lut_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_v_gamma_lut_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_v_gamma_lut_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_v_gamma_lut_0_0_impl_1">
+    <Run Id="system_mipi_csi2_rx_subsyst_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_mipi_csi2_rx_subsyst_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_mipi_csi2_rx_subsyst_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
         <Step Id="init_design"/>
@@ -623,9 +605,11 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="bd_22c6_r_sync_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_r_sync_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_r_sync_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_impl_1">
+    <Run Id="system_smartconnect_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_smartconnect_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_smartconnect_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_smartconnect_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_smartconnect_0_0_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -642,7 +626,9 @@
     </Run>
     <Run Id="bd_22c6_rx_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_rx_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_rx_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_rx_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_rx_0_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -657,9 +643,87 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="system_mipi_csi2_rx_subsyst_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_mipi_csi2_rx_subsyst_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_mipi_csi2_rx_subsyst_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_mipi_csi2_rx_subsyst_0_0_impl_1">
+    <Run Id="bd_22c6_r_sync_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_r_sync_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_r_sync_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_r_sync_0_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="system_axis_subset_converter_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_axis_subset_converter_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_axis_subset_converter_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_axis_subset_converter_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_axis_subset_converter_0_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="bd_22c6_phy_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_phy_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_phy_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_phy_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="bd_22c6_vfb_0_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="bd_22c6_vfb_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="bd_22c6_vfb_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/bd_22c6_vfb_0_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="system_auto_pc_0_impl_1" Type="Ft2:EntireDesign" Part="xczu3eg-sfvc784-1-e" ConstrsSet="system_auto_pc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="system_auto_pc_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/system_auto_pc_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/system_auto_pc_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

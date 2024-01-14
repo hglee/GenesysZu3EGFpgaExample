@@ -180,7 +180,7 @@ input wire vfb_full;
 input wire vfb_wc_full;
 input wire core_men_ack_vfb;
 output wire core_men_vfb;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl0_rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl0_rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 dl0_rxbyteclkhs CLK" *)
 input wire dl0_rxbyteclkhs;
 (* X_INTERFACE_INFO = "xilinx.com:interface:rx_mipi_ppi_if:1.0 rx_mipi_ppi_if DL0_RXDATAHS" *)
@@ -205,7 +205,7 @@ input wire dl0_errsotsynchs;
 input wire dl0_erresc;
 (* X_INTERFACE_INFO = "xilinx.com:interface:rx_mipi_ppi_if:1.0 rx_mipi_ppi_if DL0_ERRCONTROL" *)
 input wire dl0_errcontrol;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl1_rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl1_rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 dl1_rxbyteclkhs CLK" *)
 input wire dl1_rxbyteclkhs;
 (* X_INTERFACE_INFO = "xilinx.com:interface:rx_mipi_ppi_if:1.0 rx_mipi_ppi_if DL1_RXDATAHS" *)
@@ -246,12 +246,12 @@ output wire m_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TLAST" *)
 output wire m_axis_tlast;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TDATA" *)
-output wire [31 : 0] m_axis_tdata;
+output wire [63 : 0] m_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TKEEP" *)
-output wire [3 : 0] m_axis_tkeep;
+output wire [7 : 0] m_axis_tkeep;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TUSER" *)
 output wire [95 : 0] m_axis_tuser;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis, TDATA_NUM_BYTES 4, TDEST_WIDTH 4, TID_WIDTH 0, TUSER_WIDTH 96, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 0, TUSER_WIDTH 96, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TDEST" *)
 output wire [3 : 0] m_axis_tdest;
 input wire mdt_tv;
@@ -266,7 +266,7 @@ output wire frame_rcvd_pulse_out;
 output wire interrupt;
 
   mipi_csi2_rx_ctrl_v1_0_9_top #(
-    .C_HS_LINE_RATE(800),
+    .C_HS_LINE_RATE(336),
     .C_RCVE_DESKEW_SEQ("false"),
     .C_FAMILY("zynquplus"),
     .CMN_INC_VFB("true"),
@@ -304,7 +304,7 @@ output wire interrupt;
     .AXIS_FIFO_DCNT_WIDTH(12),
     .C_DISABLE_LITE(0),
     .AXIS_FIFO_DEPTH(4096),
-    .AXIS_TDATA_WIDTH(32),
+    .AXIS_TDATA_WIDTH(64),
     .AXIS_TUSER_WIDTH(96),
     .AXIS_TDEST_WIDTH(4)
   ) inst (

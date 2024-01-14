@@ -52,8 +52,8 @@
 
 (* X_CORE_INFO = "mipi_csi2_rx_ctrl_v1_0_9_top,Vivado 2023.2" *)
 (* CHECK_LICENSE_TYPE = "bd_22c6_rx_0,mipi_csi2_rx_ctrl_v1_0_9_top,{}" *)
-(* CORE_GENERATION_INFO = "bd_22c6_rx_0,mipi_csi2_rx_ctrl_v1_0_9_top,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=mipi_csi2_rx_ctrl,x_ipVersion=1.0,x_ipCoreRevision=9,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_HS_LINE_RATE=800,C_RCVE_DESKEW_SEQ=false,C_FAMILY=zynquplus,CMN_INC_VFB=true,C_S_AXI_ADDR_WIDTH=8,C_S_AXI_DATA_WIDTH=32,C_CSI_OPT1_REGS=0,C_CSI_OPT2_CRC=0,C_CSI_OPT3_FIXEDLANES=1,CSI_LANES=2,CSI_OFFLOAD_NONIMAGE=0,CSI_EN_VC_SUPPORT=1,C_SPRT_ISP_BRIDGE=false,CSI_FIXED_VC=0,C_CSI_FILTER_U\
-SERDATATYPE=0,C_EN_VCX=false,C_EN_CSI_V2_0=false,CSI_VC_OFF_0=1,CSI_VC_OFF_1=2,CSI_VC_OFF_2=3,CSI_VC_OFF_3=4,CSI_VC_OFF_4=5,CSI_VC_OFF_5=6,CSI_VC_OFF_6=7,CSI_VC_OFF_7=8,CSI_VC_OFF_8=9,CSI_VC_OFF_9=10,CSI_VC_OFF_10=11,CSI_VC_OFF_11=12,CSI_VC_OFF_12=13,CSI_VC_OFF_13=14,CSI_VC_OFF_14=15,CSI_INV_SHUTDOWN=1,C_MIPI_SLV_INT=0,C_CSI2RX_DBG=0,AXIS_FIFO_DCNT_WIDTH=12,C_DISABLE_LITE=0,AXIS_FIFO_DEPTH=4096,AXIS_TDATA_WIDTH=32,AXIS_TUSER_WIDTH=96,AXIS_TDEST_WIDTH=4}" *)
+(* CORE_GENERATION_INFO = "bd_22c6_rx_0,mipi_csi2_rx_ctrl_v1_0_9_top,{x_ipProduct=Vivado 2023.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=mipi_csi2_rx_ctrl,x_ipVersion=1.0,x_ipCoreRevision=9,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,C_HS_LINE_RATE=336,C_RCVE_DESKEW_SEQ=false,C_FAMILY=zynquplus,CMN_INC_VFB=true,C_S_AXI_ADDR_WIDTH=8,C_S_AXI_DATA_WIDTH=32,C_CSI_OPT1_REGS=0,C_CSI_OPT2_CRC=0,C_CSI_OPT3_FIXEDLANES=1,CSI_LANES=2,CSI_OFFLOAD_NONIMAGE=0,CSI_EN_VC_SUPPORT=1,C_SPRT_ISP_BRIDGE=false,CSI_FIXED_VC=0,C_CSI_FILTER_U\
+SERDATATYPE=0,C_EN_VCX=false,C_EN_CSI_V2_0=false,CSI_VC_OFF_0=1,CSI_VC_OFF_1=2,CSI_VC_OFF_2=3,CSI_VC_OFF_3=4,CSI_VC_OFF_4=5,CSI_VC_OFF_5=6,CSI_VC_OFF_6=7,CSI_VC_OFF_7=8,CSI_VC_OFF_8=9,CSI_VC_OFF_9=10,CSI_VC_OFF_10=11,CSI_VC_OFF_11=12,CSI_VC_OFF_12=13,CSI_VC_OFF_13=14,CSI_VC_OFF_14=15,CSI_INV_SHUTDOWN=1,C_MIPI_SLV_INT=0,C_CSI2RX_DBG=0,AXIS_FIFO_DCNT_WIDTH=12,C_DISABLE_LITE=0,AXIS_FIFO_DEPTH=4096,AXIS_TDATA_WIDTH=64,AXIS_TUSER_WIDTH=96,AXIS_TDEST_WIDTH=4}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module bd_22c6_rx_0 (
   core_clk,
@@ -182,7 +182,7 @@ input wire vfb_full;
 input wire vfb_wc_full;
 input wire core_men_ack_vfb;
 output wire core_men_vfb;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl0_rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl0_rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 dl0_rxbyteclkhs CLK" *)
 input wire dl0_rxbyteclkhs;
 (* X_INTERFACE_INFO = "xilinx.com:interface:rx_mipi_ppi_if:1.0 rx_mipi_ppi_if DL0_RXDATAHS" *)
@@ -207,7 +207,7 @@ input wire dl0_errsotsynchs;
 input wire dl0_erresc;
 (* X_INTERFACE_INFO = "xilinx.com:interface:rx_mipi_ppi_if:1.0 rx_mipi_ppi_if DL0_ERRCONTROL" *)
 input wire dl0_errcontrol;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl1_rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME dl1_rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 dl1_rxbyteclkhs CLK" *)
 input wire dl1_rxbyteclkhs;
 (* X_INTERFACE_INFO = "xilinx.com:interface:rx_mipi_ppi_if:1.0 rx_mipi_ppi_if DL1_RXDATAHS" *)
@@ -248,12 +248,12 @@ output wire m_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TLAST" *)
 output wire m_axis_tlast;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TDATA" *)
-output wire [31 : 0] m_axis_tdata;
+output wire [63 : 0] m_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TKEEP" *)
-output wire [3 : 0] m_axis_tkeep;
+output wire [7 : 0] m_axis_tkeep;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TUSER" *)
 output wire [95 : 0] m_axis_tuser;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis, TDATA_NUM_BYTES 4, TDEST_WIDTH 4, TID_WIDTH 0, TUSER_WIDTH 96, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axis, TDATA_NUM_BYTES 8, TDEST_WIDTH 4, TID_WIDTH 0, TUSER_WIDTH 96, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 m_axis TDEST" *)
 output wire [3 : 0] m_axis_tdest;
 input wire mdt_tv;
@@ -268,7 +268,7 @@ output wire frame_rcvd_pulse_out;
 output wire interrupt;
 
   mipi_csi2_rx_ctrl_v1_0_9_top #(
-    .C_HS_LINE_RATE(800),
+    .C_HS_LINE_RATE(336),
     .C_RCVE_DESKEW_SEQ("false"),
     .C_FAMILY("zynquplus"),
     .CMN_INC_VFB("true"),
@@ -306,7 +306,7 @@ output wire interrupt;
     .AXIS_FIFO_DCNT_WIDTH(12),
     .C_DISABLE_LITE(0),
     .AXIS_FIFO_DEPTH(4096),
-    .AXIS_TDATA_WIDTH(32),
+    .AXIS_TDATA_WIDTH(64),
     .AXIS_TUSER_WIDTH(96),
     .AXIS_TDEST_WIDTH(4)
   ) inst (

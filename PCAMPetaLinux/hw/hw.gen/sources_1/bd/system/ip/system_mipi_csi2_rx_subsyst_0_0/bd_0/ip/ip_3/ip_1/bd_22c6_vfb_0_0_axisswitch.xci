@@ -11,7 +11,7 @@
         "NUM_MI": [ { "value": "4", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "ROUTING_MODE": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "HAS_TREADY": [ { "value": "1", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "TDATA_NUM_BYTES": [ { "value": "4", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "TDATA_NUM_BYTES": [ { "value": "8", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "HAS_TSTRB": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "HAS_TKEEP": [ { "value": "1", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "HAS_TLAST": [ { "value": "1", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -321,7 +321,7 @@
         "C_NUM_SI_SLOTS": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_LOG_SI_SLOTS": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_NUM_MI_SLOTS": [ { "value": "4", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_AXIS_TDATA_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_AXIS_TDATA_WIDTH": [ { "value": "64", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_AXIS_TID_WIDTH": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_AXIS_TDEST_WIDTH": [ { "value": "4", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_AXIS_TUSER_WIDTH": [ { "value": "96", "resolve_type": "generated", "format": "long", "usage": "all" } ],
@@ -371,15 +371,15 @@
         "aresetn": [ { "direction": "in" } ],
         "s_axis_tvalid": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0x0" } ],
         "s_axis_tready": [ { "direction": "out", "size_left": "0", "size_right": "0" } ],
-        "s_axis_tdata": [ { "direction": "in", "size_left": "31", "size_right": "0", "driver_value": "0x00000000" } ],
-        "s_axis_tkeep": [ { "direction": "in", "size_left": "3", "size_right": "0", "driver_value": "0xF" } ],
+        "s_axis_tdata": [ { "direction": "in", "size_left": "63", "size_right": "0", "driver_value": "0x0000000000000000" } ],
+        "s_axis_tkeep": [ { "direction": "in", "size_left": "7", "size_right": "0", "driver_value": "0xFF" } ],
         "s_axis_tlast": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0x1" } ],
         "s_axis_tdest": [ { "direction": "in", "size_left": "3", "size_right": "0", "driver_value": "0x0" } ],
         "s_axis_tuser": [ { "direction": "in", "size_left": "95", "size_right": "0", "driver_value": "0x000000000000000000000000" } ],
         "m_axis_tvalid": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
         "m_axis_tready": [ { "direction": "in", "size_left": "3", "size_right": "0", "driver_value": "0xF" } ],
-        "m_axis_tdata": [ { "direction": "out", "size_left": "127", "size_right": "0" } ],
-        "m_axis_tkeep": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
+        "m_axis_tdata": [ { "direction": "out", "size_left": "255", "size_right": "0" } ],
+        "m_axis_tkeep": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
         "m_axis_tlast": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
         "m_axis_tdest": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
         "m_axis_tuser": [ { "direction": "out", "size_left": "383", "size_right": "0" } ],
@@ -408,8 +408,8 @@
           "port_maps": {
             "TVALID": [ { "physical_name": "s_axis_tvalid", "physical_left": "0", "physical_right": "0" } ],
             "TREADY": [ { "physical_name": "s_axis_tready", "physical_left": "0", "physical_right": "0" } ],
-            "TDATA": [ { "physical_name": "s_axis_tdata", "physical_left": "31", "physical_right": "0" } ],
-            "TKEEP": [ { "physical_name": "s_axis_tkeep", "physical_left": "3", "physical_right": "0" } ],
+            "TDATA": [ { "physical_name": "s_axis_tdata", "physical_left": "63", "physical_right": "0" } ],
+            "TKEEP": [ { "physical_name": "s_axis_tkeep", "physical_left": "7", "physical_right": "0" } ],
             "TLAST": [ { "physical_name": "s_axis_tlast", "physical_left": "0", "physical_right": "0" } ],
             "TDEST": [ { "physical_name": "s_axis_tdest", "physical_left": "3", "physical_right": "0" } ],
             "TUSER": [ { "physical_name": "s_axis_tuser", "physical_left": "95", "physical_right": "0" } ]
@@ -437,8 +437,8 @@
           "port_maps": {
             "TVALID": [ { "physical_name": "m_axis_tvalid", "physical_left": "0", "physical_right": "0" } ],
             "TREADY": [ { "physical_name": "m_axis_tready", "physical_left": "0", "physical_right": "0" } ],
-            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "31", "physical_right": "0" } ],
-            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "3", "physical_right": "0" } ],
+            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "63", "physical_right": "0" } ],
+            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "7", "physical_right": "0" } ],
             "TLAST": [ { "physical_name": "m_axis_tlast", "physical_left": "0", "physical_right": "0" } ],
             "TDEST": [ { "physical_name": "m_axis_tdest", "physical_left": "3", "physical_right": "0" } ],
             "TUSER": [ { "physical_name": "m_axis_tuser", "physical_left": "95", "physical_right": "0" } ]
@@ -466,8 +466,8 @@
           "port_maps": {
             "TVALID": [ { "physical_name": "m_axis_tvalid", "physical_left": "1", "physical_right": "1" } ],
             "TREADY": [ { "physical_name": "m_axis_tready", "physical_left": "1", "physical_right": "1" } ],
-            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "63", "physical_right": "32" } ],
-            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "7", "physical_right": "4" } ],
+            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "127", "physical_right": "64" } ],
+            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "15", "physical_right": "8" } ],
             "TLAST": [ { "physical_name": "m_axis_tlast", "physical_left": "1", "physical_right": "1" } ],
             "TDEST": [ { "physical_name": "m_axis_tdest", "physical_left": "7", "physical_right": "4" } ],
             "TUSER": [ { "physical_name": "m_axis_tuser", "physical_left": "191", "physical_right": "96" } ]
@@ -495,8 +495,8 @@
           "port_maps": {
             "TVALID": [ { "physical_name": "m_axis_tvalid", "physical_left": "2", "physical_right": "2" } ],
             "TREADY": [ { "physical_name": "m_axis_tready", "physical_left": "2", "physical_right": "2" } ],
-            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "95", "physical_right": "64" } ],
-            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "11", "physical_right": "8" } ],
+            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "191", "physical_right": "128" } ],
+            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "23", "physical_right": "16" } ],
             "TLAST": [ { "physical_name": "m_axis_tlast", "physical_left": "2", "physical_right": "2" } ],
             "TDEST": [ { "physical_name": "m_axis_tdest", "physical_left": "11", "physical_right": "8" } ],
             "TUSER": [ { "physical_name": "m_axis_tuser", "physical_left": "287", "physical_right": "192" } ]
@@ -524,8 +524,8 @@
           "port_maps": {
             "TVALID": [ { "physical_name": "m_axis_tvalid", "physical_left": "3", "physical_right": "3" } ],
             "TREADY": [ { "physical_name": "m_axis_tready", "physical_left": "3", "physical_right": "3" } ],
-            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "127", "physical_right": "96" } ],
-            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "15", "physical_right": "12" } ],
+            "TDATA": [ { "physical_name": "m_axis_tdata", "physical_left": "255", "physical_right": "192" } ],
+            "TKEEP": [ { "physical_name": "m_axis_tkeep", "physical_left": "31", "physical_right": "24" } ],
             "TLAST": [ { "physical_name": "m_axis_tlast", "physical_left": "3", "physical_right": "3" } ],
             "TDEST": [ { "physical_name": "m_axis_tdest", "physical_left": "15", "physical_right": "12" } ],
             "TUSER": [ { "physical_name": "m_axis_tuser", "physical_left": "383", "physical_right": "288" } ]

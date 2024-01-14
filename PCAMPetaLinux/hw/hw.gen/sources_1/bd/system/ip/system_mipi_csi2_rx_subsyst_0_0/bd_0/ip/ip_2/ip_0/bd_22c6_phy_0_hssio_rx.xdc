@@ -56,7 +56,7 @@ set_property DATA_RATE DDR [get_ports clk_rxp]
 set_property IOSTANDARD $diff_std [get_ports  clk_rxp]
 
 
-create_clock -period  2.500  [get_ports clk_rxp]
+create_clock -period  5.952  [get_ports clk_rxp]
 ##create_generated_clock -divide_by 4 -source [get_ports clk_rxp] -invert [get_pins -hier -filter name=~*bs_top_inst/u_rx_bs/RX_BS[0].rx_bitslice_if_bs/FIFO_WRCLK_OUT]
 ######################################## I/O constraints ##############################################
 set_property PACKAGE_PIN F1 [get_ports clk_rxn]

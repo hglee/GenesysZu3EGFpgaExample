@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-// Date        : Fri Jan 12 03:15:42 2024
+// Date        : Mon Jan 15 00:29:53 2024
 // Host        : hglee-3900X running 64-bit Ubuntu 22.04.3 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/hglee/Workspace/GenesysZu3EGFpgaExample/PCAMPetaLinux/hw/hw.gen/sources_1/bd/system/ip/system_zynq_ultra_ps_e_0_0/system_zynq_ultra_ps_e_0_0_sim_netlist.v
@@ -185,18 +185,18 @@ module system_zynq_ultra_ps_e_0_0
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_HPC0_FPD AWQOS" *) input [3:0]saxigp0_awqos;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_HPC0_FPD ARQOS" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXI_HPC0_FPD, NUM_WRITE_OUTSTANDING 16, NUM_READ_OUTSTANDING 16, DATA_WIDTH 128, PROTOCOL AXI4, FREQ_HZ 100000000, ID_WIDTH 6, ADDR_WIDTH 49, AWUSER_WIDTH 1, ARUSER_WIDTH 1, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, MAX_BURST_LENGTH 16, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input [3:0]saxigp0_arqos;
   output [93:0]emio_enet0_enet_tsu_timer_cnt;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_I" *) input [8:0]emio_gpio_i;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_O" *) output [8:0]emio_gpio_o;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_T" *) output [8:0]emio_gpio_t;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 PL_PS_IRQ0 INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_PS_IRQ0, SENSITIVITY LEVEL_HIGH:LEVEL_HIGH:LEVEL_HIGH:LEVEL_HIGH, PortWidth 4" *) input [3:0]pl_ps_irq0;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_I" *) input [4:0]emio_gpio_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_O" *) output [4:0]emio_gpio_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 GPIO_0 TRI_T" *) output [4:0]emio_gpio_t;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 PL_PS_IRQ0 INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_PS_IRQ0, SENSITIVITY LEVEL_HIGH:LEVEL_HIGH, PortWidth 2" *) input [1:0]pl_ps_irq0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 PL_RESETN0 RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_RESETN0, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output pl_resetn0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 PL_CLK0 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_CLK0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, INSERT_VIP 0" *) output pl_clk0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 PL_CLK1 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME PL_CLK1, FREQ_HZ 198750000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk1, INSERT_VIP 0" *) output pl_clk1;
 
   wire [93:0]emio_enet0_enet_tsu_timer_cnt;
-  wire [8:0]emio_gpio_i;
-  wire [8:0]emio_gpio_o;
-  wire [8:0]emio_gpio_t;
+  wire [4:0]emio_gpio_i;
+  wire [4:0]emio_gpio_o;
+  wire [4:0]emio_gpio_t;
   wire [39:0]maxigp2_araddr;
   wire [1:0]maxigp2_arburst;
   wire [3:0]maxigp2_arcache;
@@ -239,7 +239,7 @@ module system_zynq_ultra_ps_e_0_0
   wire maxihpm0_lpd_aclk;
   wire pl_clk0;
   wire pl_clk1;
-  wire [3:0]pl_ps_irq0;
+  wire [1:0]pl_ps_irq0;
   wire pl_resetn0;
   wire [48:0]saxigp0_araddr;
   wire [1:0]saxigp0_arburst;
@@ -794,7 +794,7 @@ module system_zynq_ultra_ps_e_0_0
   wire [44:0]NLW_inst_emio_enet3_rx_w_status_UNCONNECTED;
   wire [2:0]NLW_inst_emio_enet3_speed_mode_UNCONNECTED;
   wire [3:0]NLW_inst_emio_enet3_tx_r_status_UNCONNECTED;
-  wire [8:0]NLW_inst_emio_gpio_t_n_UNCONNECTED;
+  wire [4:0]NLW_inst_emio_gpio_t_n_UNCONNECTED;
   wire [2:0]NLW_inst_emio_sdio0_bus_volt_UNCONNECTED;
   wire [4:0]NLW_inst_emio_sdio0_dataena_UNCONNECTED;
   wire [4:0]NLW_inst_emio_sdio0_dataout_UNCONNECTED;
@@ -1010,7 +1010,7 @@ module system_zynq_ultra_ps_e_0_0
 
   (* C_DP_USE_AUDIO = "0" *) 
   (* C_DP_USE_VIDEO = "0" *) 
-  (* C_EMIO_GPIO_WIDTH = "9" *) 
+  (* C_EMIO_GPIO_WIDTH = "5" *) 
   (* C_EN_EMIO_TRACE = "0" *) 
   (* C_EN_FIFO_ENET0 = "0" *) 
   (* C_EN_FIFO_ENET1 = "0" *) 
@@ -1019,7 +1019,7 @@ module system_zynq_ultra_ps_e_0_0
   (* C_MAXIGP0_DATA_WIDTH = "128" *) 
   (* C_MAXIGP1_DATA_WIDTH = "128" *) 
   (* C_MAXIGP2_DATA_WIDTH = "32" *) 
-  (* C_NUM_F2P_0_INTR_INPUTS = "4" *) 
+  (* C_NUM_F2P_0_INTR_INPUTS = "2" *) 
   (* C_NUM_F2P_1_INTR_INPUTS = "1" *) 
   (* C_NUM_FABRIC_RESETS = "1" *) 
   (* C_PL_CLK0_BUF = "TRUE" *) 
@@ -1309,7 +1309,7 @@ module system_zynq_ultra_ps_e_0_0
         .emio_gpio_i(emio_gpio_i),
         .emio_gpio_o(emio_gpio_o),
         .emio_gpio_t(emio_gpio_t),
-        .emio_gpio_t_n(NLW_inst_emio_gpio_t_n_UNCONNECTED[8:0]),
+        .emio_gpio_t_n(NLW_inst_emio_gpio_t_n_UNCONNECTED[4:0]),
         .emio_hub_port_overcrnt_usb2_0(1'b0),
         .emio_hub_port_overcrnt_usb2_1(1'b0),
         .emio_hub_port_overcrnt_usb3_0(1'b0),
@@ -2543,10 +2543,10 @@ module system_zynq_ultra_ps_e_0_0
         .tst_rtc_timesetreg_we(1'b0));
 endmodule
 
-(* C_DP_USE_AUDIO = "0" *) (* C_DP_USE_VIDEO = "0" *) (* C_EMIO_GPIO_WIDTH = "9" *) 
+(* C_DP_USE_AUDIO = "0" *) (* C_DP_USE_VIDEO = "0" *) (* C_EMIO_GPIO_WIDTH = "5" *) 
 (* C_EN_EMIO_TRACE = "0" *) (* C_EN_FIFO_ENET0 = "0" *) (* C_EN_FIFO_ENET1 = "0" *) 
 (* C_EN_FIFO_ENET2 = "0" *) (* C_EN_FIFO_ENET3 = "0" *) (* C_MAXIGP0_DATA_WIDTH = "128" *) 
-(* C_MAXIGP1_DATA_WIDTH = "128" *) (* C_MAXIGP2_DATA_WIDTH = "32" *) (* C_NUM_F2P_0_INTR_INPUTS = "4" *) 
+(* C_MAXIGP1_DATA_WIDTH = "128" *) (* C_MAXIGP2_DATA_WIDTH = "32" *) (* C_NUM_F2P_0_INTR_INPUTS = "2" *) 
 (* C_NUM_F2P_1_INTR_INPUTS = "1" *) (* C_NUM_FABRIC_RESETS = "1" *) (* C_PL_CLK0_BUF = "TRUE" *) 
 (* C_PL_CLK1_BUF = "TRUE" *) (* C_PL_CLK2_BUF = "FALSE" *) (* C_PL_CLK3_BUF = "FALSE" *) 
 (* C_SAXIGP0_DATA_WIDTH = "128" *) (* C_SAXIGP1_DATA_WIDTH = "128" *) (* C_SAXIGP2_DATA_WIDTH = "128" *) 
@@ -4824,10 +4824,10 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   output [1:0]emio_enet1_dma_bus_width;
   output [1:0]emio_enet2_dma_bus_width;
   output [1:0]emio_enet3_dma_bus_width;
-  input [8:0]emio_gpio_i;
-  output [8:0]emio_gpio_o;
-  output [8:0]emio_gpio_t;
-  output [8:0]emio_gpio_t_n;
+  input [4:0]emio_gpio_i;
+  output [4:0]emio_gpio_o;
+  output [4:0]emio_gpio_t;
+  output [4:0]emio_gpio_t_n;
   input emio_i2c0_scl_i;
   output emio_i2c0_scl_o;
   output emio_i2c0_scl_t_n;
@@ -5023,7 +5023,7 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   output ps_pl_trigger_3;
   output [31:0]ftm_gpo;
   input [31:0]ftm_gpi;
-  input [3:0]pl_ps_irq0;
+  input [1:0]pl_ps_irq0;
   input [0:0]pl_ps_irq1;
   output pl_resetn0;
   output pl_resetn1;
@@ -7941,10 +7941,6 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   wire PS8_i_n_370;
   wire PS8_i_n_371;
   wire PS8_i_n_372;
-  wire PS8_i_n_3723;
-  wire PS8_i_n_3724;
-  wire PS8_i_n_3725;
-  wire PS8_i_n_3726;
   wire PS8_i_n_3727;
   wire PS8_i_n_3728;
   wire PS8_i_n_3729;
@@ -8499,9 +8495,9 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   wire PS8_i_n_98;
   wire PS8_i_n_99;
   wire [93:0]emio_enet0_enet_tsu_timer_cnt;
-  wire [8:0]emio_gpio_i;
-  wire [8:0]emio_gpio_o;
-  wire [8:0]emio_gpio_t;
+  wire [4:0]emio_gpio_i;
+  wire [4:0]emio_gpio_o;
+  wire [4:0]emio_gpio_t;
   wire emio_sdio0_cmdena_i;
   wire [4:0]emio_sdio0_dataena_i;
   wire emio_sdio1_cmdena_i;
@@ -8549,7 +8545,7 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   wire pl_clk0;
   wire pl_clk1;
   wire [1:0]pl_clk_unbuffered;
-  wire [3:0]pl_ps_irq0;
+  wire [1:0]pl_ps_irq0;
   wire pl_resetn0;
   wire [48:0]saxigp0_araddr;
   wire [1:0]saxigp0_arburst;
@@ -8653,8 +8649,8 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   wire NLW_PS8_i_PSS_ALTO_CORE_PAD_REFP3IN_UNCONNECTED;
   wire NLW_PS8_i_PSS_ALTO_CORE_PAD_SRSTB_UNCONNECTED;
   wire NLW_PS8_i_PSS_ALTO_CORE_PAD_ZQ_UNCONNECTED;
-  wire [94:9]NLW_PS8_i_EMIOGPIOO_UNCONNECTED;
-  wire [95:9]NLW_PS8_i_EMIOGPIOTN_UNCONNECTED;
+  wire [94:5]NLW_PS8_i_EMIOGPIOO_UNCONNECTED;
+  wire [95:5]NLW_PS8_i_EMIOGPIOTN_UNCONNECTED;
   wire [7:5]NLW_PS8_i_EMIOSDIO0DATAENA_UNCONNECTED;
   wire [7:5]NLW_PS8_i_EMIOSDIO0DATAOUT_UNCONNECTED;
   wire [127:32]NLW_PS8_i_MAXIGP2WDATA_UNCONNECTED;
@@ -9154,10 +9150,6 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
   assign emio_enet3_tx_r_status[1] = \<const0> ;
   assign emio_enet3_tx_r_status[0] = \<const0> ;
   assign emio_enet3_tx_sof = \<const0> ;
-  assign emio_gpio_t_n[8] = \<const0> ;
-  assign emio_gpio_t_n[7] = \<const0> ;
-  assign emio_gpio_t_n[6] = \<const0> ;
-  assign emio_gpio_t_n[5] = \<const0> ;
   assign emio_gpio_t_n[4] = \<const0> ;
   assign emio_gpio_t_n[3] = \<const0> ;
   assign emio_gpio_t_n[2] = \<const0> ;
@@ -12812,9 +12804,9 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
         .EMIOGEM3TSUTIMERCMPVAL(PS8_i_n_105),
         .EMIOGEM3TXRFIXEDLAT(PS8_i_n_106),
         .EMIOGEM3TXSOF(PS8_i_n_107),
-        .EMIOGPIOI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,emio_gpio_i}),
-        .EMIOGPIOO({pl_resetn0,NLW_PS8_i_EMIOGPIOO_UNCONNECTED[94:9],emio_gpio_o}),
-        .EMIOGPIOTN({NLW_PS8_i_EMIOGPIOTN_UNCONNECTED[95:9],PS8_i_n_3723,PS8_i_n_3724,PS8_i_n_3725,PS8_i_n_3726,PS8_i_n_3727,PS8_i_n_3728,PS8_i_n_3729,PS8_i_n_3730,PS8_i_n_3731}),
+        .EMIOGPIOI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,emio_gpio_i}),
+        .EMIOGPIOO({pl_resetn0,NLW_PS8_i_EMIOGPIOO_UNCONNECTED[94:5],emio_gpio_o}),
+        .EMIOGPIOTN({NLW_PS8_i_EMIOGPIOTN_UNCONNECTED[95:5],PS8_i_n_3727,PS8_i_n_3728,PS8_i_n_3729,PS8_i_n_3730,PS8_i_n_3731}),
         .EMIOHUBPORTOVERCRNTUSB20(1'b0),
         .EMIOHUBPORTOVERCRNTUSB21(1'b0),
         .EMIOHUBPORTOVERCRNTUSB30(1'b0),
@@ -13079,7 +13071,7 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
         .PLPSAPUGICFIQ({1'b0,1'b0,1'b0,1'b0}),
         .PLPSAPUGICIRQ({1'b0,1'b0,1'b0,1'b0}),
         .PLPSEVENTI(1'b0),
-        .PLPSIRQ0({1'b0,1'b0,1'b0,1'b0,pl_ps_irq0}),
+        .PLPSIRQ0({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,pl_ps_irq0}),
         .PLPSIRQ1({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .PLPSTRACECLK(1'b0),
         .PLPSTRIGACK({1'b0,1'b0,1'b0,1'b0}),
@@ -13619,26 +13611,6 @@ module system_zynq_ultra_ps_e_0_0_zynq_ultra_ps_e_v3_5_1_zynq_ultra_ps_e
     \emio_gpio_t[4]_INST_0 
        (.I0(PS8_i_n_3727),
         .O(emio_gpio_t[4]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \emio_gpio_t[5]_INST_0 
-       (.I0(PS8_i_n_3726),
-        .O(emio_gpio_t[5]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \emio_gpio_t[6]_INST_0 
-       (.I0(PS8_i_n_3725),
-        .O(emio_gpio_t[6]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \emio_gpio_t[7]_INST_0 
-       (.I0(PS8_i_n_3724),
-        .O(emio_gpio_t[7]));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \emio_gpio_t[8]_INST_0 
-       (.I0(PS8_i_n_3723),
-        .O(emio_gpio_t[8]));
   LUT1 #(
     .INIT(2'h2)) 
     i_0

@@ -84,15 +84,15 @@ public:
   sc_core::sc_in< bool > aresetn;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tvalid;
   sc_core::sc_out< sc_dt::sc_bv<1> > s_axis_tready;
-  sc_core::sc_in< sc_dt::sc_bv<32> > s_axis_tdata;
-  sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tkeep;
+  sc_core::sc_in< sc_dt::sc_bv<64> > s_axis_tdata;
+  sc_core::sc_in< sc_dt::sc_bv<8> > s_axis_tkeep;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tlast;
   sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tdest;
   sc_core::sc_in< sc_dt::sc_bv<96> > s_axis_tuser;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tvalid;
   sc_core::sc_in< sc_dt::sc_bv<4> > m_axis_tready;
-  sc_core::sc_out< sc_dt::sc_bv<128> > m_axis_tdata;
-  sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tkeep;
+  sc_core::sc_out< sc_dt::sc_bv<256> > m_axis_tdata;
+  sc_core::sc_out< sc_dt::sc_bv<32> > m_axis_tkeep;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tlast;
   sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tdest;
   sc_core::sc_out< sc_dt::sc_bv<384> > m_axis_tuser;
@@ -107,7 +107,7 @@ protected:
 
 private:
 
-  xtlm::xaxis_pin2xtlm_t<4,96,1,4,1,1>* mp_S00_AXIS_transactor;
+  xtlm::xaxis_pin2xtlm_t<8,96,1,4,1,1>* mp_S00_AXIS_transactor;
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tvalid_converter;
   sc_signal< bool > m_s_axis_tvalid_converter_signal;
   xsc::common::scalar2vectorN_converter<1>* mp_s_axis_tready_converter;
@@ -115,15 +115,15 @@ private:
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tlast_converter;
   sc_signal< bool > m_s_axis_tlast_converter_signal;
   sc_signal< bool > m_S00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M00_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M00_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_0;
   sc_signal< bool > m_m_axis_tvalid_converter_0_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_0;
   sc_signal< bool > m_m_axis_tready_converter_0_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_0;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_0_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_0;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_0_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_0;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_0_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_0;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_0_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_0;
   sc_signal< bool > m_m_axis_tlast_converter_0_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_0;
@@ -131,15 +131,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_0;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_0_signal;
   sc_signal< bool > m_M00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M01_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M01_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_1;
   sc_signal< bool > m_m_axis_tvalid_converter_1_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_1;
   sc_signal< bool > m_m_axis_tready_converter_1_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_1;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_1_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_1;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_1_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_1;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_1_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_1;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_1_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_1;
   sc_signal< bool > m_m_axis_tlast_converter_1_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_1;
@@ -147,15 +147,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_1;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_1_signal;
   sc_signal< bool > m_M01_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M02_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M02_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_2;
   sc_signal< bool > m_m_axis_tvalid_converter_2_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_2;
   sc_signal< bool > m_m_axis_tready_converter_2_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_2;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_2_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_2;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_2_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_2;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_2_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_2;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_2_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_2;
   sc_signal< bool > m_m_axis_tlast_converter_2_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_2;
@@ -163,15 +163,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_2;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_2_signal;
   sc_signal< bool > m_M02_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M03_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M03_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_3;
   sc_signal< bool > m_m_axis_tvalid_converter_3_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_3;
   sc_signal< bool > m_m_axis_tready_converter_3_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_3;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_3_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_3;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_3_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_3;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_3_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_3;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_3_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_3;
   sc_signal< bool > m_m_axis_tlast_converter_3_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_3;
@@ -180,11 +180,11 @@ private:
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_3_signal;
   sc_signal< bool > m_M03_AXIS_transactor_rst_signal;
 
-  xsc::xsc_concatenator<128, 4> * mp_m_axis_concat_tdata;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_0;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_1;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_2;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_3;
+  xsc::xsc_concatenator<256, 4> * mp_m_axis_concat_tdata;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_0;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_1;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_2;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_3;
 
   xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tdest;
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_0;
@@ -193,11 +193,11 @@ private:
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_3;
 
 
-  xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tkeep;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_0;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_1;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_2;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_3;
+  xsc::xsc_concatenator<32, 4> * mp_m_axis_concat_tkeep;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_0;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_1;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_2;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_3;
 
   xsc::xsc_concatenator<4, 4> * mp_m_axis_concat_tlast;
   sc_signal<sc_dt::sc_bv<4> > m_axis_concat_tlast_out_0;
@@ -244,15 +244,15 @@ public:
   sc_core::sc_in< bool > aresetn;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tvalid;
   sc_core::sc_out< sc_dt::sc_bv<1> > s_axis_tready;
-  sc_core::sc_in< sc_dt::sc_bv<32> > s_axis_tdata;
-  sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tkeep;
+  sc_core::sc_in< sc_dt::sc_bv<64> > s_axis_tdata;
+  sc_core::sc_in< sc_dt::sc_bv<8> > s_axis_tkeep;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tlast;
   sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tdest;
   sc_core::sc_in< sc_dt::sc_bv<96> > s_axis_tuser;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tvalid;
   sc_core::sc_in< sc_dt::sc_bv<4> > m_axis_tready;
-  sc_core::sc_out< sc_dt::sc_bv<128> > m_axis_tdata;
-  sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tkeep;
+  sc_core::sc_out< sc_dt::sc_bv<256> > m_axis_tdata;
+  sc_core::sc_out< sc_dt::sc_bv<32> > m_axis_tkeep;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tlast;
   sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tdest;
   sc_core::sc_out< sc_dt::sc_bv<384> > m_axis_tuser;
@@ -267,7 +267,7 @@ protected:
 
 private:
 
-  xtlm::xaxis_pin2xtlm_t<4,96,1,4,1,1>* mp_S00_AXIS_transactor;
+  xtlm::xaxis_pin2xtlm_t<8,96,1,4,1,1>* mp_S00_AXIS_transactor;
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tvalid_converter;
   sc_signal< bool > m_s_axis_tvalid_converter_signal;
   xsc::common::scalar2vectorN_converter<1>* mp_s_axis_tready_converter;
@@ -275,15 +275,15 @@ private:
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tlast_converter;
   sc_signal< bool > m_s_axis_tlast_converter_signal;
   sc_signal< bool > m_S00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M00_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M00_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_0;
   sc_signal< bool > m_m_axis_tvalid_converter_0_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_0;
   sc_signal< bool > m_m_axis_tready_converter_0_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_0;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_0_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_0;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_0_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_0;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_0_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_0;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_0_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_0;
   sc_signal< bool > m_m_axis_tlast_converter_0_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_0;
@@ -291,15 +291,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_0;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_0_signal;
   sc_signal< bool > m_M00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M01_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M01_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_1;
   sc_signal< bool > m_m_axis_tvalid_converter_1_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_1;
   sc_signal< bool > m_m_axis_tready_converter_1_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_1;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_1_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_1;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_1_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_1;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_1_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_1;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_1_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_1;
   sc_signal< bool > m_m_axis_tlast_converter_1_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_1;
@@ -307,15 +307,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_1;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_1_signal;
   sc_signal< bool > m_M01_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M02_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M02_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_2;
   sc_signal< bool > m_m_axis_tvalid_converter_2_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_2;
   sc_signal< bool > m_m_axis_tready_converter_2_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_2;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_2_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_2;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_2_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_2;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_2_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_2;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_2_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_2;
   sc_signal< bool > m_m_axis_tlast_converter_2_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_2;
@@ -323,15 +323,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_2;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_2_signal;
   sc_signal< bool > m_M02_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M03_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M03_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_3;
   sc_signal< bool > m_m_axis_tvalid_converter_3_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_3;
   sc_signal< bool > m_m_axis_tready_converter_3_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_3;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_3_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_3;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_3_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_3;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_3_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_3;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_3_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_3;
   sc_signal< bool > m_m_axis_tlast_converter_3_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_3;
@@ -340,11 +340,11 @@ private:
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_3_signal;
   sc_signal< bool > m_M03_AXIS_transactor_rst_signal;
 
-  xsc::xsc_concatenator<128, 4> * mp_m_axis_concat_tdata;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_0;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_1;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_2;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_3;
+  xsc::xsc_concatenator<256, 4> * mp_m_axis_concat_tdata;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_0;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_1;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_2;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_3;
 
   xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tdest;
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_0;
@@ -353,11 +353,11 @@ private:
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_3;
 
 
-  xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tkeep;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_0;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_1;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_2;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_3;
+  xsc::xsc_concatenator<32, 4> * mp_m_axis_concat_tkeep;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_0;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_1;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_2;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_3;
 
   xsc::xsc_concatenator<4, 4> * mp_m_axis_concat_tlast;
   sc_signal<sc_dt::sc_bv<4> > m_axis_concat_tlast_out_0;
@@ -404,15 +404,15 @@ public:
   sc_core::sc_in< bool > aresetn;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tvalid;
   sc_core::sc_out< sc_dt::sc_bv<1> > s_axis_tready;
-  sc_core::sc_in< sc_dt::sc_bv<32> > s_axis_tdata;
-  sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tkeep;
+  sc_core::sc_in< sc_dt::sc_bv<64> > s_axis_tdata;
+  sc_core::sc_in< sc_dt::sc_bv<8> > s_axis_tkeep;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tlast;
   sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tdest;
   sc_core::sc_in< sc_dt::sc_bv<96> > s_axis_tuser;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tvalid;
   sc_core::sc_in< sc_dt::sc_bv<4> > m_axis_tready;
-  sc_core::sc_out< sc_dt::sc_bv<128> > m_axis_tdata;
-  sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tkeep;
+  sc_core::sc_out< sc_dt::sc_bv<256> > m_axis_tdata;
+  sc_core::sc_out< sc_dt::sc_bv<32> > m_axis_tkeep;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tlast;
   sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tdest;
   sc_core::sc_out< sc_dt::sc_bv<384> > m_axis_tuser;
@@ -427,7 +427,7 @@ protected:
 
 private:
 
-  xtlm::xaxis_pin2xtlm_t<4,96,1,4,1,1>* mp_S00_AXIS_transactor;
+  xtlm::xaxis_pin2xtlm_t<8,96,1,4,1,1>* mp_S00_AXIS_transactor;
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tvalid_converter;
   sc_signal< bool > m_s_axis_tvalid_converter_signal;
   xsc::common::scalar2vectorN_converter<1>* mp_s_axis_tready_converter;
@@ -435,15 +435,15 @@ private:
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tlast_converter;
   sc_signal< bool > m_s_axis_tlast_converter_signal;
   sc_signal< bool > m_S00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M00_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M00_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_0;
   sc_signal< bool > m_m_axis_tvalid_converter_0_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_0;
   sc_signal< bool > m_m_axis_tready_converter_0_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_0;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_0_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_0;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_0_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_0;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_0_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_0;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_0_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_0;
   sc_signal< bool > m_m_axis_tlast_converter_0_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_0;
@@ -451,15 +451,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_0;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_0_signal;
   sc_signal< bool > m_M00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M01_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M01_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_1;
   sc_signal< bool > m_m_axis_tvalid_converter_1_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_1;
   sc_signal< bool > m_m_axis_tready_converter_1_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_1;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_1_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_1;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_1_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_1;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_1_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_1;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_1_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_1;
   sc_signal< bool > m_m_axis_tlast_converter_1_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_1;
@@ -467,15 +467,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_1;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_1_signal;
   sc_signal< bool > m_M01_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M02_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M02_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_2;
   sc_signal< bool > m_m_axis_tvalid_converter_2_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_2;
   sc_signal< bool > m_m_axis_tready_converter_2_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_2;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_2_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_2;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_2_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_2;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_2_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_2;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_2_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_2;
   sc_signal< bool > m_m_axis_tlast_converter_2_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_2;
@@ -483,15 +483,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_2;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_2_signal;
   sc_signal< bool > m_M02_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M03_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M03_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_3;
   sc_signal< bool > m_m_axis_tvalid_converter_3_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_3;
   sc_signal< bool > m_m_axis_tready_converter_3_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_3;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_3_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_3;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_3_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_3;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_3_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_3;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_3_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_3;
   sc_signal< bool > m_m_axis_tlast_converter_3_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_3;
@@ -500,11 +500,11 @@ private:
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_3_signal;
   sc_signal< bool > m_M03_AXIS_transactor_rst_signal;
 
-  xsc::xsc_concatenator<128, 4> * mp_m_axis_concat_tdata;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_0;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_1;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_2;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_3;
+  xsc::xsc_concatenator<256, 4> * mp_m_axis_concat_tdata;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_0;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_1;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_2;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_3;
 
   xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tdest;
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_0;
@@ -513,11 +513,11 @@ private:
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_3;
 
 
-  xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tkeep;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_0;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_1;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_2;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_3;
+  xsc::xsc_concatenator<32, 4> * mp_m_axis_concat_tkeep;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_0;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_1;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_2;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_3;
 
   xsc::xsc_concatenator<4, 4> * mp_m_axis_concat_tlast;
   sc_signal<sc_dt::sc_bv<4> > m_axis_concat_tlast_out_0;
@@ -568,15 +568,15 @@ public:
   sc_core::sc_in< bool > aresetn;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tvalid;
   sc_core::sc_out< sc_dt::sc_bv<1> > s_axis_tready;
-  sc_core::sc_in< sc_dt::sc_bv<32> > s_axis_tdata;
-  sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tkeep;
+  sc_core::sc_in< sc_dt::sc_bv<64> > s_axis_tdata;
+  sc_core::sc_in< sc_dt::sc_bv<8> > s_axis_tkeep;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tlast;
   sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tdest;
   sc_core::sc_in< sc_dt::sc_bv<96> > s_axis_tuser;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tvalid;
   sc_core::sc_in< sc_dt::sc_bv<4> > m_axis_tready;
-  sc_core::sc_out< sc_dt::sc_bv<128> > m_axis_tdata;
-  sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tkeep;
+  sc_core::sc_out< sc_dt::sc_bv<256> > m_axis_tdata;
+  sc_core::sc_out< sc_dt::sc_bv<32> > m_axis_tkeep;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tlast;
   sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tdest;
   sc_core::sc_out< sc_dt::sc_bv<384> > m_axis_tuser;
@@ -591,7 +591,7 @@ protected:
 
 private:
 
-  xtlm::xaxis_pin2xtlm_t<4,96,1,4,1,1>* mp_S00_AXIS_transactor;
+  xtlm::xaxis_pin2xtlm_t<8,96,1,4,1,1>* mp_S00_AXIS_transactor;
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tvalid_converter;
   sc_signal< bool > m_s_axis_tvalid_converter_signal;
   xsc::common::scalar2vectorN_converter<1>* mp_s_axis_tready_converter;
@@ -599,15 +599,15 @@ private:
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tlast_converter;
   sc_signal< bool > m_s_axis_tlast_converter_signal;
   sc_signal< bool > m_S00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M00_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M00_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_0;
   sc_signal< bool > m_m_axis_tvalid_converter_0_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_0;
   sc_signal< bool > m_m_axis_tready_converter_0_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_0;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_0_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_0;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_0_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_0;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_0_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_0;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_0_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_0;
   sc_signal< bool > m_m_axis_tlast_converter_0_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_0;
@@ -615,15 +615,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_0;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_0_signal;
   sc_signal< bool > m_M00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M01_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M01_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_1;
   sc_signal< bool > m_m_axis_tvalid_converter_1_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_1;
   sc_signal< bool > m_m_axis_tready_converter_1_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_1;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_1_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_1;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_1_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_1;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_1_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_1;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_1_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_1;
   sc_signal< bool > m_m_axis_tlast_converter_1_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_1;
@@ -631,15 +631,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_1;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_1_signal;
   sc_signal< bool > m_M01_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M02_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M02_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_2;
   sc_signal< bool > m_m_axis_tvalid_converter_2_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_2;
   sc_signal< bool > m_m_axis_tready_converter_2_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_2;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_2_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_2;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_2_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_2;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_2_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_2;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_2_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_2;
   sc_signal< bool > m_m_axis_tlast_converter_2_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_2;
@@ -647,15 +647,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_2;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_2_signal;
   sc_signal< bool > m_M02_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M03_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M03_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_3;
   sc_signal< bool > m_m_axis_tvalid_converter_3_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_3;
   sc_signal< bool > m_m_axis_tready_converter_3_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_3;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_3_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_3;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_3_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_3;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_3_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_3;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_3_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_3;
   sc_signal< bool > m_m_axis_tlast_converter_3_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_3;
@@ -664,11 +664,11 @@ private:
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_3_signal;
   sc_signal< bool > m_M03_AXIS_transactor_rst_signal;
 
-  xsc::xsc_concatenator<128, 4> * mp_m_axis_concat_tdata;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_0;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_1;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_2;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_3;
+  xsc::xsc_concatenator<256, 4> * mp_m_axis_concat_tdata;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_0;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_1;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_2;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_3;
 
   xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tdest;
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_0;
@@ -677,11 +677,11 @@ private:
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_3;
 
 
-  xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tkeep;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_0;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_1;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_2;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_3;
+  xsc::xsc_concatenator<32, 4> * mp_m_axis_concat_tkeep;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_0;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_1;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_2;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_3;
 
   xsc::xsc_concatenator<4, 4> * mp_m_axis_concat_tlast;
   sc_signal<sc_dt::sc_bv<4> > m_axis_concat_tlast_out_0;
@@ -741,15 +741,15 @@ public:
   sc_core::sc_in< bool > aresetn;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tvalid;
   sc_core::sc_out< sc_dt::sc_bv<1> > s_axis_tready;
-  sc_core::sc_in< sc_dt::sc_bv<32> > s_axis_tdata;
-  sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tkeep;
+  sc_core::sc_in< sc_dt::sc_bv<64> > s_axis_tdata;
+  sc_core::sc_in< sc_dt::sc_bv<8> > s_axis_tkeep;
   sc_core::sc_in< sc_dt::sc_bv<1> > s_axis_tlast;
   sc_core::sc_in< sc_dt::sc_bv<4> > s_axis_tdest;
   sc_core::sc_in< sc_dt::sc_bv<96> > s_axis_tuser;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tvalid;
   sc_core::sc_in< sc_dt::sc_bv<4> > m_axis_tready;
-  sc_core::sc_out< sc_dt::sc_bv<128> > m_axis_tdata;
-  sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tkeep;
+  sc_core::sc_out< sc_dt::sc_bv<256> > m_axis_tdata;
+  sc_core::sc_out< sc_dt::sc_bv<32> > m_axis_tkeep;
   sc_core::sc_out< sc_dt::sc_bv<4> > m_axis_tlast;
   sc_core::sc_out< sc_dt::sc_bv<16> > m_axis_tdest;
   sc_core::sc_out< sc_dt::sc_bv<384> > m_axis_tuser;
@@ -764,7 +764,7 @@ protected:
 
 private:
 
-  xtlm::xaxis_pin2xtlm_t<4,96,1,4,1,1>* mp_S00_AXIS_transactor;
+  xtlm::xaxis_pin2xtlm_t<8,96,1,4,1,1>* mp_S00_AXIS_transactor;
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tvalid_converter;
   sc_signal< bool > m_s_axis_tvalid_converter_signal;
   xsc::common::scalar2vectorN_converter<1>* mp_s_axis_tready_converter;
@@ -772,15 +772,15 @@ private:
   xsc::common::vectorN2scalar_converter<1>* mp_s_axis_tlast_converter;
   sc_signal< bool > m_s_axis_tlast_converter_signal;
   sc_signal< bool > m_S00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M00_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M00_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_0;
   sc_signal< bool > m_m_axis_tvalid_converter_0_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_0;
   sc_signal< bool > m_m_axis_tready_converter_0_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_0;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_0_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_0;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_0_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_0;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_0_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_0;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_0_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_0;
   sc_signal< bool > m_m_axis_tlast_converter_0_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_0;
@@ -788,15 +788,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_0;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_0_signal;
   sc_signal< bool > m_M00_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M01_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M01_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_1;
   sc_signal< bool > m_m_axis_tvalid_converter_1_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_1;
   sc_signal< bool > m_m_axis_tready_converter_1_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_1;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_1_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_1;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_1_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_1;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_1_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_1;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_1_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_1;
   sc_signal< bool > m_m_axis_tlast_converter_1_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_1;
@@ -804,15 +804,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_1;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_1_signal;
   sc_signal< bool > m_M01_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M02_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M02_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_2;
   sc_signal< bool > m_m_axis_tvalid_converter_2_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_2;
   sc_signal< bool > m_m_axis_tready_converter_2_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_2;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_2_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_2;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_2_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_2;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_2_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_2;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_2_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_2;
   sc_signal< bool > m_m_axis_tlast_converter_2_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_2;
@@ -820,15 +820,15 @@ private:
   xsc::common::vector2vector_converter<384,384>* mp_m_axis_tuser_converter_2;
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_2_signal;
   sc_signal< bool > m_M02_AXIS_transactor_rst_signal;
-  xtlm::xaxis_xtlm2pin_t<16,384,4,16,1,1>* mp_M03_AXIS_transactor;
+  xtlm::xaxis_xtlm2pin_t<32,384,4,16,1,1>* mp_M03_AXIS_transactor;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tvalid_converter_3;
   sc_signal< bool > m_m_axis_tvalid_converter_3_signal;
   xsc::common::vectorN2scalar_converter<4>* mp_m_axis_tready_converter_3;
   sc_signal< bool > m_m_axis_tready_converter_3_signal;
-  xsc::common::vector2vector_converter<128,128>* mp_m_axis_tdata_converter_3;
-  sc_signal< sc_bv<128> > m_m_axis_tdata_converter_3_signal;
-  xsc::common::vector2vector_converter<16,16>* mp_m_axis_tkeep_converter_3;
-  sc_signal< sc_bv<16> > m_m_axis_tkeep_converter_3_signal;
+  xsc::common::vector2vector_converter<256,256>* mp_m_axis_tdata_converter_3;
+  sc_signal< sc_bv<256> > m_m_axis_tdata_converter_3_signal;
+  xsc::common::vector2vector_converter<32,32>* mp_m_axis_tkeep_converter_3;
+  sc_signal< sc_bv<32> > m_m_axis_tkeep_converter_3_signal;
   xsc::common::scalar2vectorN_converter<4>* mp_m_axis_tlast_converter_3;
   sc_signal< bool > m_m_axis_tlast_converter_3_signal;
   xsc::common::vector2vector_converter<16,16>* mp_m_axis_tdest_converter_3;
@@ -837,11 +837,11 @@ private:
   sc_signal< sc_bv<384> > m_m_axis_tuser_converter_3_signal;
   sc_signal< bool > m_M03_AXIS_transactor_rst_signal;
 
-  xsc::xsc_concatenator<128, 4> * mp_m_axis_concat_tdata;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_0;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_1;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_2;
-  sc_signal<sc_dt::sc_bv<128> > m_axis_concat_tdata_out_3;
+  xsc::xsc_concatenator<256, 4> * mp_m_axis_concat_tdata;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_0;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_1;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_2;
+  sc_signal<sc_dt::sc_bv<256> > m_axis_concat_tdata_out_3;
 
   xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tdest;
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_0;
@@ -850,11 +850,11 @@ private:
   sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tdest_out_3;
 
 
-  xsc::xsc_concatenator<16, 4> * mp_m_axis_concat_tkeep;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_0;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_1;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_2;
-  sc_signal<sc_dt::sc_bv<16> > m_axis_concat_tkeep_out_3;
+  xsc::xsc_concatenator<32, 4> * mp_m_axis_concat_tkeep;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_0;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_1;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_2;
+  sc_signal<sc_dt::sc_bv<32> > m_axis_concat_tkeep_out_3;
 
   xsc::xsc_concatenator<4, 4> * mp_m_axis_concat_tlast;
   sc_signal<sc_dt::sc_bv<4> > m_axis_concat_tlast_out_0;

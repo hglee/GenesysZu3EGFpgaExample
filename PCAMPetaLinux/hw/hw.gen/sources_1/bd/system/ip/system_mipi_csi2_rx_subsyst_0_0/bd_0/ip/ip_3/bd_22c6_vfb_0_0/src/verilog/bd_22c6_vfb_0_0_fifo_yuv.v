@@ -50,17 +50,17 @@ module bd_22c6_vfb_0_0_fifo_yuv (
   input         s_axis_aresetn ,
   output    s_fifo_tr      ,
   input     s_fifo_tv      ,
-  input      [32-1:0]  s_fifo_td      ,
+  input      [64-1:0]  s_fifo_td      ,
   input      [96-1:0]  s_fifo_tu      ,
   input      [4-1:0] s_fifo_tdst      ,
-  input      [4-1:0] s_fifo_tk      ,
+  input      [8-1:0] s_fifo_tk      ,
   input      s_fifo_tl      ,
   input     m_fifo_tr      ,
   output     m_fifo_tv      ,
-  output   [32-1:0]   m_fifo_td      ,
+  output   [64-1:0]   m_fifo_td      ,
   output   [4-1:0] m_fifo_tdst ,
   output   [96-1:0]  m_fifo_tu      ,
-  output    [4-1:0] m_fifo_tk      ,
+  output    [8-1:0] m_fifo_tk      ,
   output      m_fifo_tl      
 );
 
@@ -75,7 +75,7 @@ xpm_fifo_axis#(
       .RD_DATA_COUNT_WIDTH(1),        // DECIMAL
       .RELATED_CLOCKS(0),             // DECIMAL
       .SIM_ASSERT_CHK(0),             // DECIMAL; 0=disable simulation messages, 1=enable simulation messages
-      .TDATA_WIDTH(32),               // DECIMAL
+      .TDATA_WIDTH(64),               // DECIMAL
       .TDEST_WIDTH(4),                // DECIMAL
       .TUSER_WIDTH(96),                // DECIMAL
       .USE_ADV_FEATURES("1000"),      // String

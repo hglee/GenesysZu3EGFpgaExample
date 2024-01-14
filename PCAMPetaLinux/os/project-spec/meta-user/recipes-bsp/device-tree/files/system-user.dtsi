@@ -9,10 +9,8 @@
 // GPIO 78 : I2C mux reset
 // GPIO 79 : MIPI A power
 // GPIO 80 : MIPI CSI RX
-// GPIO 81 : demosaic
-// GPIO 82 : gamma
-// GPIO 83 : vp csc
-// GPIO 84 : vframe buffer write
+// GPIO 81 : vp csc
+// GPIO 82 : vframe buffer write
 
 / {
 	pcam_clk: pcam_clk {
@@ -480,7 +478,7 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &mipi_csi2_rx_subsyst_0 {
-        xlnx,csi-pxl-format = <0x2a>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
+        xlnx,csi-pxl-format = <0x1e>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
 };
 
 &mipi_csi_inmipi_csi2_rx_subsyst_0 {
@@ -493,5 +491,5 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &csc_port0v_proc_ss_csc {
-        xlnx,video-format = <XVIP_VF_RBG>; // gamma -> csc in
+        xlnx,video-format = <XVIP_VF_YUV_422>; // mipi -> csc in
 };

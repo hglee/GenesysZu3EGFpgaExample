@@ -43,14 +43,14 @@
 # 
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
-#Test 1.250
+#Test 2.976
 create_clock -name dphy_clk -period 5.00 [get_ports { dphy_clk_200M } ]
 #use this clock period for 3.2G
 #create_clock -period  0.312 [get_ports mipi_phy_if_clk_p] 
 
 #use this clock period for 3.5G
 #create_clock -period  0.285 [get_ports mipi_phy_if_clk_p] 
-#create_clock -period  1.250  [get_ports mipi_phy_if_clk_p] 
+#create_clock -period  2.976  [get_ports mipi_phy_if_clk_p] 
 
 #lite 100M
 create_clock -name lite_clk -period 10 [get_ports { lite_aclk } ]

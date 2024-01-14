@@ -70,15 +70,15 @@ module bd_22c6_vfb_0_0_axisswitch (
   input bit_as_bool aresetn,
   input bit [0 : 0] s_axis_tvalid,
   output bit [0 : 0] s_axis_tready,
-  input bit [31 : 0] s_axis_tdata,
-  input bit [3 : 0] s_axis_tkeep,
+  input bit [63 : 0] s_axis_tdata,
+  input bit [7 : 0] s_axis_tkeep,
   input bit [0 : 0] s_axis_tlast,
   input bit [3 : 0] s_axis_tdest,
   input bit [95 : 0] s_axis_tuser,
   output bit [3 : 0] m_axis_tvalid,
   input bit [3 : 0] m_axis_tready,
-  output bit [127 : 0] m_axis_tdata,
-  output bit [15 : 0] m_axis_tkeep,
+  output bit [255 : 0] m_axis_tdata,
+  output bit [31 : 0] m_axis_tkeep,
   output bit [3 : 0] m_axis_tlast,
   output bit [15 : 0] m_axis_tdest,
   output bit [383 : 0] m_axis_tuser,
@@ -96,15 +96,15 @@ module bd_22c6_vfb_0_0_axisswitch (aclk,aresetn,s_axis_tvalid,s_axis_tready,s_ax
   input bit aresetn;
   input bit [0 : 0] s_axis_tvalid;
   output wire [0 : 0] s_axis_tready;
-  input bit [31 : 0] s_axis_tdata;
-  input bit [3 : 0] s_axis_tkeep;
+  input bit [63 : 0] s_axis_tdata;
+  input bit [7 : 0] s_axis_tkeep;
   input bit [0 : 0] s_axis_tlast;
   input bit [3 : 0] s_axis_tdest;
   input bit [95 : 0] s_axis_tuser;
   output wire [3 : 0] m_axis_tvalid;
   input bit [3 : 0] m_axis_tready;
-  output wire [127 : 0] m_axis_tdata;
-  output wire [15 : 0] m_axis_tkeep;
+  output wire [255 : 0] m_axis_tdata;
+  output wire [31 : 0] m_axis_tkeep;
   output wire [3 : 0] m_axis_tlast;
   output wire [15 : 0] m_axis_tdest;
   output wire [383 : 0] m_axis_tuser;

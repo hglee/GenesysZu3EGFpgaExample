@@ -86,9 +86,9 @@ system_zynq_ultra_ps_e_0_0_sc::system_zynq_ultra_ps_e_0_0_sc(const sc_core::sc_m
     model_param_props.addLong("C_USE_DEBUG_TEST", "0");
     model_param_props.addLong("C_SD0_INTERNAL_BUS_WIDTH", "5");
     model_param_props.addLong("C_SD1_INTERNAL_BUS_WIDTH", "8");
-    model_param_props.addLong("C_NUM_F2P_0_INTR_INPUTS", "4");
+    model_param_props.addLong("C_NUM_F2P_0_INTR_INPUTS", "2");
     model_param_props.addLong("C_NUM_F2P_1_INTR_INPUTS", "1");
-    model_param_props.addLong("C_EMIO_GPIO_WIDTH", "9");
+    model_param_props.addLong("C_EMIO_GPIO_WIDTH", "5");
     model_param_props.addLong("C_NUM_FABRIC_RESETS", "1");
     model_param_props.addString("C_EN_FIFO_ENET0", "0");
     model_param_props.addString("C_EN_FIFO_ENET1", "0");

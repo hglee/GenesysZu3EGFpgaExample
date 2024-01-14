@@ -2,10 +2,10 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
--- Date        : Fri Jan 12 02:28:03 2024
+-- Date        : Mon Jan 15 00:29:59 2024
 -- Host        : hglee-3900X running 64-bit Ubuntu 22.04.3 LTS
--- Command     : write_vhdl -force -mode synth_stub -rename_top system_auto_pc_0 -prefix
---               system_auto_pc_0_ system_auto_pc_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/hglee/Workspace/GenesysZu3EGFpgaExample/PCAMPetaLinux/hw/hw.gen/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0_stub.vhdl
 -- Design      : system_auto_pc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xczu3eg-sfvc784-1-e

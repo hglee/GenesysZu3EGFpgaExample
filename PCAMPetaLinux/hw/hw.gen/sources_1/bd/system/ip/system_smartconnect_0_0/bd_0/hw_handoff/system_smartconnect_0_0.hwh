@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jan 12 03:14:50 2024" VIVADOVERSION="2023.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 15 00:28:57 2024" VIVADOVERSION="2023.2">
 
   <SYSTEMINFO ARCH="zynquplus" BOARD="digilentinc.com:gzu_3eg:part0:1.1" DEVICE="xczu3eg" NAME="bd_919a" PACKAGE="sfvc784" SPEEDGRADE="-1"/>
 

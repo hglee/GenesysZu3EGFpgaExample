@@ -49,8 +49,8 @@ module bd_22c6_vfb_0_0_axis_ycomp_dconverter (
   input aresetn,
   input s_axis_tvalid,
   output s_axis_tready,
-  input [32-1:0] s_axis_tdata,
-  input [4-1:0] s_axis_tkeep,
+  input [64-1:0] s_axis_tdata,
+  input [8-1:0] s_axis_tkeep,
   input [4-1:0]  s_axis_tdest,
   input [96-1:0] s_axis_tuser,
   input s_axis_tlast,
@@ -62,7 +62,7 @@ module bd_22c6_vfb_0_0_axis_ycomp_dconverter (
   output s_yuv_detect,
   output [31:0] m_axis_tdata,
   output [31:0] m1_axis_tdata,
-  output [2-1:0] m_axis_tkeep,
+  output [4-1:0] m_axis_tkeep,
   output [4-1:0]  m_axis_tdest,
   output [96-1:0] m_axis_tuser,
   output [96-1:0] m1_axis_tuser,
@@ -123,7 +123,7 @@ assign s_axis_tdata_uv = {
 //  assign m_odd_tready = odd_lines ? m_axis_tready: 1'b0 ;
 
 vfb_v1_0_23_ydconverter #(
-.AXIS_TDATA_WIDTH(32),
+.AXIS_TDATA_WIDTH(64),
 .AXIS_TUSER_WIDTH(96),
 .AXIS_TDEST_WIDTH(4)
 ) ydconverter (

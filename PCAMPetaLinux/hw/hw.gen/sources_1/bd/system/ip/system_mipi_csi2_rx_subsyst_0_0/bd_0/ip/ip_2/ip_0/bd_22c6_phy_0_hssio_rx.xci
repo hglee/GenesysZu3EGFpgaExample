@@ -22,7 +22,7 @@
         "BUS_DIR": [ { "value": "1", "value_src": "propagated", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ],
         "FIFO_RD_EN_CONTROL": [ { "value": "1", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "PLL0_DATA_SPEED": [ { "value": "1500.00", "value_src": "propagated", "resolve_type": "user", "format": "float", "usage": "all" } ],
-        "MIPI_RX_DATA_SPEED": [ { "value": "800", "value_src": "propagated", "resolve_type": "user", "format": "float", "usage": "all" } ],
+        "MIPI_RX_DATA_SPEED": [ { "value": "336", "value_src": "propagated", "resolve_type": "user", "format": "float", "usage": "all" } ],
         "PLL0_INPUT_CLK_FREQ": [ { "value": "200.000", "value_src": "propagated", "resolve_type": "user", "format": "float", "usage": "all" } ],
         "PLL0_RX_EXTERNAL_CLK_TO_DATA": [ { "value": "3", "value_src": "propagated", "resolve_type": "user", "format": "long", "enabled": false, "usage": "all" } ],
         "EN_ADV_STRB_SEL": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],

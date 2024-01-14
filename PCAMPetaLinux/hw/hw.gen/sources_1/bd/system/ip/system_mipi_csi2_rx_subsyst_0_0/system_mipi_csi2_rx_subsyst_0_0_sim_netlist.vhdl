@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
--- Date        : Fri Jan 12 02:29:05 2024
+-- Date        : Mon Jan 15 00:31:00 2024
 -- Host        : hglee-3900X running 64-bit Ubuntu 22.04.3 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/hglee/Workspace/GenesysZu3EGFpgaExample/PCAMPetaLinux/hw/hw.gen/sources_1/bd/system/ip/system_mipi_csi2_rx_subsyst_0_0/system_mipi_csi2_rx_subsyst_0_0_sim_netlist.vhdl
@@ -49,7 +49,7 @@ entity system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
     system_rst_out : out STD_LOGIC;
     video_aclk : in STD_LOGIC;
     video_aresetn : in STD_LOGIC;
-    video_out_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    video_out_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     video_out_tdest : out STD_LOGIC_VECTOR ( 9 downto 0 );
     video_out_tlast : out STD_LOGIC;
     video_out_tready : in STD_LOGIC;
@@ -194,8 +194,8 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
     m_axis_tready : in STD_LOGIC;
     m_axis_tvalid : out STD_LOGIC;
     m_axis_tlast : out STD_LOGIC;
-    m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axis_tkeep : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axis_tdata : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    m_axis_tkeep : out STD_LOGIC_VECTOR ( 7 downto 0 );
     m_axis_tuser : out STD_LOGIC_VECTOR ( 95 downto 0 );
     m_axis_tdest : out STD_LOGIC_VECTOR ( 3 downto 0 );
     mdt_tv : in STD_LOGIC;
@@ -215,8 +215,8 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
     s_axis_tready : out STD_LOGIC;
     s_axis_tvalid : in STD_LOGIC;
     s_axis_tlast : in STD_LOGIC;
-    s_axis_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axis_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axis_tdata : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    s_axis_tkeep : in STD_LOGIC_VECTOR ( 7 downto 0 );
     s_axis_tuser : in STD_LOGIC_VECTOR ( 95 downto 0 );
     s_axis_tdest : in STD_LOGIC_VECTOR ( 3 downto 0 );
     mdt_tv : out STD_LOGIC;
@@ -236,7 +236,7 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
     vfb_eol : out STD_LOGIC;
     vfb_sof : out STD_LOGIC_VECTOR ( 0 to 0 );
     vfb_vcdt : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    vfb_data : out STD_LOGIC_VECTOR ( 15 downto 0 )
+    vfb_data : out STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   end component system_mipi_csi2_rx_subsyst_0_0_bd_22c6_vfb_0_0;
   signal phy_rx_mipi_ppi_if_CL_ENABLE : STD_LOGIC;
@@ -266,9 +266,9 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
   signal phy_rx_mipi_ppi_if_DL1_STOPSTATE : STD_LOGIC;
   signal r_sync_peripheral_reset : STD_LOGIC;
   signal rx_core_men_vfb : STD_LOGIC;
-  signal rx_m_axis_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal rx_m_axis_TDATA : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal rx_m_axis_TDEST : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal rx_m_axis_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal rx_m_axis_TKEEP : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal rx_m_axis_TLAST : STD_LOGIC;
   signal rx_m_axis_TREADY : STD_LOGIC;
   signal rx_m_axis_TUSER : STD_LOGIC_VECTOR ( 95 downto 0 );
@@ -332,7 +332,7 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
   attribute X_INTERFACE_INFO of mipi_phy_if_clk_n : signal is "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if CLK_N";
   attribute X_INTERFACE_INFO of mipi_phy_if_clk_p : signal is "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if CLK_P";
   attribute X_INTERFACE_INFO of rxbyteclkhs : signal is "xilinx.com:signal:clock:1.0 CLK.RXBYTECLKHS CLK";
-  attribute X_INTERFACE_PARAMETER of rxbyteclkhs : signal is "XIL_INTERFACENAME CLK.RXBYTECLKHS, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0";
+  attribute X_INTERFACE_PARAMETER of rxbyteclkhs : signal is "XIL_INTERFACENAME CLK.RXBYTECLKHS, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0";
   attribute X_INTERFACE_INFO of system_rst_out : signal is "xilinx.com:signal:reset:1.0 RST.SYSTEM_RST_OUT RST";
   attribute X_INTERFACE_PARAMETER of system_rst_out : signal is "XIL_INTERFACENAME RST.SYSTEM_RST_OUT, INSERT_VIP 0, POLARITY ACTIVE_LOW";
   attribute X_INTERFACE_INFO of video_aclk : signal is "xilinx.com:signal:clock:1.0 CLK.VIDEO_ACLK CLK";
@@ -353,7 +353,7 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0_bd_22c6 is
   attribute X_INTERFACE_INFO of mipi_phy_if_data_n : signal is "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if DATA_N";
   attribute X_INTERFACE_INFO of mipi_phy_if_data_p : signal is "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if DATA_P";
   attribute X_INTERFACE_INFO of video_out_tdata : signal is "xilinx.com:interface:axis:1.0 video_out TDATA";
-  attribute X_INTERFACE_PARAMETER of video_out_tdata : signal is "XIL_INTERFACENAME video_out, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.0, TDATA_NUM_BYTES 2, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 1";
+  attribute X_INTERFACE_PARAMETER of video_out_tdata : signal is "XIL_INTERFACENAME video_out, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, FREQ_HZ 100000000, HAS_TKEEP 0, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.0, TDATA_NUM_BYTES 4, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 1";
   attribute X_INTERFACE_INFO of video_out_tdest : signal is "xilinx.com:interface:axis:1.0 video_out TDEST";
   attribute X_INTERFACE_INFO of video_out_tuser : signal is "xilinx.com:interface:axis:1.0 video_out TUSER";
 begin
@@ -464,9 +464,9 @@ rx: component system_mipi_csi2_rx_subsyst_0_0_bd_22c6_rx_0
       interrupt => csirxss_csi_irq,
       m_axis_aclk => video_aclk,
       m_axis_aresetn => video_aresetn,
-      m_axis_tdata(31 downto 0) => rx_m_axis_TDATA(31 downto 0),
+      m_axis_tdata(63 downto 0) => rx_m_axis_TDATA(63 downto 0),
       m_axis_tdest(3 downto 0) => rx_m_axis_TDEST(3 downto 0),
-      m_axis_tkeep(3 downto 0) => rx_m_axis_TKEEP(3 downto 0),
+      m_axis_tkeep(7 downto 0) => rx_m_axis_TKEEP(7 downto 0),
       m_axis_tlast => rx_m_axis_TLAST,
       m_axis_tready => rx_m_axis_TREADY,
       m_axis_tuser(95 downto 0) => rx_m_axis_TUSER(95 downto 0),
@@ -508,9 +508,9 @@ vfb_0: component system_mipi_csi2_rx_subsyst_0_0_bd_22c6_vfb_0_0
       mdt_tv => vfb_0_mdt_tv,
       s_axis_aclk => video_aclk,
       s_axis_aresetn => video_aresetn,
-      s_axis_tdata(31 downto 0) => rx_m_axis_TDATA(31 downto 0),
+      s_axis_tdata(63 downto 0) => rx_m_axis_TDATA(63 downto 0),
       s_axis_tdest(3 downto 0) => rx_m_axis_TDEST(3 downto 0),
-      s_axis_tkeep(3 downto 0) => rx_m_axis_TKEEP(3 downto 0),
+      s_axis_tkeep(7 downto 0) => rx_m_axis_TKEEP(7 downto 0),
       s_axis_tlast => rx_m_axis_TLAST,
       s_axis_tready => rx_m_axis_TREADY,
       s_axis_tuser(95 downto 0) => rx_m_axis_TUSER(95 downto 0),
@@ -519,7 +519,7 @@ vfb_0: component system_mipi_csi2_rx_subsyst_0_0_bd_22c6_vfb_0_0
       sdt_tv => vfb_0_sdt_tv,
       vfb_arstn => video_aresetn,
       vfb_clk => video_aclk,
-      vfb_data(15 downto 0) => video_out_tdata(15 downto 0),
+      vfb_data(31 downto 0) => video_out_tdata(31 downto 0),
       vfb_eol => video_out_tlast,
       vfb_full => vfb_0_vfb_full,
       vfb_ready => video_out_tready,
@@ -565,7 +565,7 @@ entity system_mipi_csi2_rx_subsyst_0_0 is
     csirxss_s_axi_wready : out STD_LOGIC;
     csirxss_s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
     csirxss_s_axi_wvalid : in STD_LOGIC;
-    video_out_tdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    video_out_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     video_out_tdest : out STD_LOGIC_VECTOR ( 9 downto 0 );
     video_out_tlast : out STD_LOGIC;
     video_out_tready : in STD_LOGIC;
@@ -615,7 +615,7 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0 is
   attribute X_INTERFACE_INFO of mipi_phy_if_clk_n : signal is "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if CLK_N";
   attribute X_INTERFACE_INFO of mipi_phy_if_clk_p : signal is "xilinx.com:interface:mipi_phy:1.0 mipi_phy_if CLK_P";
   attribute X_INTERFACE_INFO of rxbyteclkhs : signal is "xilinx.com:signal:clock:1.0 CLK.rxbyteclkhs CLK";
-  attribute X_INTERFACE_PARAMETER of rxbyteclkhs : signal is "XIL_INTERFACENAME CLK.rxbyteclkhs, FREQ_HZ 100000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of rxbyteclkhs : signal is "XIL_INTERFACENAME CLK.rxbyteclkhs, FREQ_HZ 42000000.0, FREQ_TOLERANCE_HZ 0, PHASE 0, CLK_DOMAIN bd_22c6_phy_0_rxbyteclkhs, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of system_rst_out : signal is "xilinx.com:signal:reset:1.0 RST.system_rst_out RST";
   attribute X_INTERFACE_PARAMETER of system_rst_out : signal is "XIL_INTERFACENAME RST.system_rst_out, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of video_aclk : signal is "xilinx.com:signal:clock:1.0 CLK.video_aclk CLK";
@@ -625,7 +625,7 @@ architecture STRUCTURE of system_mipi_csi2_rx_subsyst_0_0 is
   attribute X_INTERFACE_INFO of video_out_tlast : signal is "xilinx.com:interface:axis:1.0 video_out TLAST";
   attribute X_INTERFACE_INFO of video_out_tready : signal is "xilinx.com:interface:axis:1.0 video_out TREADY";
   attribute X_INTERFACE_INFO of video_out_tvalid : signal is "xilinx.com:interface:axis:1.0 video_out TVALID";
-  attribute X_INTERFACE_PARAMETER of video_out_tvalid : signal is "XIL_INTERFACENAME video_out, TDATA_NUM_BYTES 2, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of video_out_tvalid : signal is "XIL_INTERFACENAME video_out, TDATA_NUM_BYTES 4, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN system_zynq_ultra_ps_e_0_0_pl_clk0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of csirxss_s_axi_araddr : signal is "xilinx.com:interface:aximm:1.0 csirxss_s_axi ARADDR";
   attribute X_INTERFACE_INFO of csirxss_s_axi_awaddr : signal is "xilinx.com:interface:aximm:1.0 csirxss_s_axi AWADDR";
   attribute X_INTERFACE_INFO of csirxss_s_axi_bresp : signal is "xilinx.com:interface:aximm:1.0 csirxss_s_axi BRESP";
@@ -673,7 +673,7 @@ inst: entity work.system_mipi_csi2_rx_subsyst_0_0_bd_22c6
       system_rst_out => system_rst_out,
       video_aclk => video_aclk,
       video_aresetn => video_aresetn,
-      video_out_tdata(15 downto 0) => video_out_tdata(15 downto 0),
+      video_out_tdata(31 downto 0) => video_out_tdata(31 downto 0),
       video_out_tdest(9 downto 0) => video_out_tdest(9 downto 0),
       video_out_tlast => video_out_tlast,
       video_out_tready => video_out_tready,
