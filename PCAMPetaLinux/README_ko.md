@@ -34,8 +34,8 @@ Board preset으로 자동화한 후, 블럭을 더블 클릭하여 수정합니�
 * EMIO 4 (GPIO 82) : gamma LUT reset
 * EMIO 5 (GPIO 83) : Video processing CSC reset
 * EMIO 6 (GPIO 84) : Video frame buffer write reset
-* EMIO 7 (GPIO 85) : ov5640 power down
-* EMIO 8 (GPIO 86) : ov5640 reset
+* EMIO 7 (GPIO 85) : reserved
+* EMIO 8 (GPIO 86) : reserved
 
 <img src='doc/01_GPIO.png' alt='GPIO' width='600'/>
 
@@ -156,8 +156,6 @@ PetaLinux 빌드 이후 자동으로 생성된 `components/plnx_workspace/device
 // GPIO 82 : gamma
 // GPIO 83 : vp csc
 // GPIO 84 : vframe buffer write
-// GPIO 85 : ov5640 power down
-// GPIO 86 : ov5640 reset
 
 / {
 	pcam_clk: pcam_clk {
@@ -288,8 +286,6 @@ devicetree/bindings/mux/mux-controller.txt
 		                AVDD-supply = <&AVDD>;  /* 2.8v */
 		                DVDD-supply = <&DVDD>;  /* 1.5v */
 
-		                powerdown-gpios = <&gpio 85 GPIO_ACTIVE_HIGH>;
-		                reset-gpios = <&gpio 86 GPIO_ACTIVE_HIGH>;
 		                port {
 			        	ov5640_to_mipi_csi2: endpoint {
 				                     remote-endpoint = <&mipi_csi_inmipi_csi2_rx_subsyst_0>;
@@ -627,7 +623,7 @@ devicetree/bindings/mux/mux-controller.txt
 };
 
 &mipi_csi2_rx_subsyst_0 {
-        xlnx,csi-pxl-format = <0x2a>; // RAW8
+        xlnx,csi-pxl-format = <0x2a>; // YUV4228B: 0x1e, RGB565: 0x22, RGB888: 0x24, RAW8: 0x2a
 };
 
 &mipi_csi_inmipi_csi2_rx_subsyst_0 {
