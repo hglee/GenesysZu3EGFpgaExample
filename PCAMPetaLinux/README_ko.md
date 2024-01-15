@@ -19,11 +19,11 @@ Pcam 5C 를 사용한 petalinux 예제입니다.
 
 기본적인 생성 방법은 [BasicPetaLinux](../BasicPetaLinux/README_ko.md) 을 참고합니다.
 
-1. 새 RTL 프로젝트 생성
+### 1. 새 RTL 프로젝트 생성
 
-2. 새 블럭 디자인 생성
+### 2. 새 블럭 디자인 생성
 
-3. Zynq MPSoc IP 추가
+### 3. Zynq MPSoc IP 추가
 
 Board preset으로 자동화한 후, 블럭을 더블 클릭하여 수정합니다. 5비트 GPIO EMIO를 설정합니다. 전체 GPIO EMIO 구성은 다음과 같습니다.
 
@@ -39,12 +39,12 @@ PL 클럭 출력을 다음과 같이 변경합니다. 두번째 클럭(PL1)은 D
 
 <img src='doc/02_clock.png' alt='클럭' width='600'/>
 
-3. 전체 블럭 구성
+### 4. 전체 블럭 구성
 
 전체 블럭 구성은 [출력 파일](doc/system2.pdf)을 참고합니다.
 
 MIPI CSI2 RX -> CSC -> Video frame buffer write
-c
+
 - Slice을 통하여 EMIO 0, 1을 외부로 내보냅니다. 이름은 추후 constraints 와 일치하여야 합니다.
 
 - MIPI CSI2 RX를 추가합니다. EMIO를 slice를 통하여 reset에 연결하고, pl_clk1을 DPHY 200MHz에 연결합니다. Video clock은 pl_clk0 에 연결합니다. 속성을 다음과 같이 설정합니다.
@@ -69,21 +69,21 @@ c
 
 <img src='doc/10_vframe_buf.png' alt='Video frame buffer' width='600'/>
 
-4. 남은 항목 연결
+### 5. 남은 항목 연결
 
 Automation 등을 통하여 남은 항목을 연결하고 처리합니다.
 
-5. 블럭 디자인 검증
+### 6. 블럭 디자인 검증
 
-6. HDL wrapper 생성
+### 7. HDL wrapper 생성
 
-7. Constraints 추가
+### 8. Constraints 추가
 
 `constraints/Genesys-ZU-3EG-D-Master.xdc` 파일을 사용하여 constratins를 추가합니다. I2C mux pin, MIPI A power 외부 pin 이름과 일치하도록 주의합니다.
 
-8. Bitstream 생성
+### 9. Bitstream 생성
 
-9. 하드웨어 내보내기
+### 10. 하드웨어 내보내기
 
 ## PetaLinux 프로젝트 생성 및 빌드
 
@@ -91,11 +91,11 @@ Automation 등을 통하여 남은 항목을 연결하고 처리합니다.
 
 기본적인 생성 방법은 [BasicPetaLinux](../BasicPetaLinux/README_ko.md) 을 참고합니다.
 
-1. 새 PetaLinux 프로젝트 생성
+### 1. 새 PetaLinux 프로젝트 생성
 
-2. Export된 하드웨어로 프로젝트 설정
+### 2. Export된 하드웨어로 프로젝트 설정
 
-3. rootfs 설정
+### 3. rootfs 설정
 
 다음 명령으로 rootfs 설정에 진입합니다.
 
@@ -109,7 +109,7 @@ rootfs에서 다음의 항목을 선택합니다. 추가로 필요한 항목이 
 * Filesystem Packages/misc/v4l-utils
 * Filesystem Packages/misc/yavta
 
-4. 커널 설정
+### 4. 커널 설정
 
 다음 명령으로 커널 설정에 진입합니다.
 
@@ -126,7 +126,7 @@ petalinux-config -c kernel
 * Device Drivers/Graphic support/Xilinx DRM CSC Driver
 * Device Drivers/Graphic support/Xilinx DRM Scaler Driver
 
-5. 사용자 device tree 파일 수정
+### 5. 사용자 device tree 파일 수정
 
 빌드 전 `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 위의 EMIO 및 전체 설정에 맞게 수정되었습니다.
 
@@ -630,13 +630,13 @@ devicetree/bindings/mux/mux-controller.txt
 };
 ```
 
-6. PetaLinux 빌드
+### 6. PetaLinux 빌드
 
-7. 부트 이미지 생성
+### 7. 부트 이미지 생성
 
-8. 카메라 연결
+### 8. 카메라 연결
 
-9. 전원 및 부팅
+### 9. 전원 및 부팅
 
 ## 카메라 캡쳐
 

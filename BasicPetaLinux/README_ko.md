@@ -16,19 +16,19 @@ GPIO LED 만을 사용한 기본 petalinux 예제입니다.
 
 `hw` 디렉토리에서 미리 생성된 프로젝트를 찾을 수 있습니다.
 
-1. Vivado에서 새 RTL 프로젝트를 생성합니다.
+### 1. Vivado에서 새 RTL 프로젝트를 생성합니다.
 
 생성 중 `Genesys ZU 3EG` 보드를 선택합니다. 해당 보드를 찾을 수 없는 경우, 갱신 버튼을 눌러서 항목을 먼저 갱신합니다.
 
 <img src='doc/01_board.png' alt='보드' width='800'/>
 
-2. 새 블럭 디자인 생성
+### 2. 새 블럭 디자인 생성
 
 <img src='doc/02_create_block.png' alt='블럭 디자인 생성' width='250' />
 
 <img src='doc/03_create_block.png' alt='블럭 디자인 생성 다이얼로그' width='350' />
 
-3. Zynq MPSoC IP 추가
+### 3. Zynq MPSoC IP 추가
 
 Zynq MPSoC IP를 추가하고 block automation 을 board preset으로 실행합니다. Zynq 블럭을 더블 클릭하여 1비트 GPIO EMIO를 추가해줍니다. 이것은 회로상 I2C mux reset pin으로 사용됩니다.
 
@@ -36,35 +36,35 @@ Zynq MPSoC IP를 추가하고 block automation 을 board preset으로 실행합�
 
 <img src='doc/05_gpio.png' alt='GPIO EMIO' width='800' />
 
-3. AXI GPIO IP 추가
+### 4. AXI GPIO IP 추가
 
 AXI GPIO IP를 추가하고 block automation 을 GPIO (led 4bits), S_AXI (auto)로 실행합니다.
 
 <img src='doc/06_gpio_led.png' alt='GPIO LED' width='800' />
 
-4. 남은 항목 연결
+### 5. 남은 항목 연결
 
 `saxihpc0_fpd_aclk` 을 `pl_clk0` 에 연결합니다. Zynq 블럭의 GPIO_0을 외부로 내보냅니다.
 
 <img src='doc/07_block.png' alt='블럭 디자인' width='800' />
 
-5. 블럭 디자인 검증
+### 6. 블럭 디자인 검증
 
 블럭 디자인 검증 버튼을 눌러서 오류를 미리 확인합니다.
 
-6. HDL Wrapper 생성
+### 7. HDL Wrapper 생성
 
 Source 쪽의 design에서 우클릭하여 HDL Wrapper를 생성합니다.
 
 <img src='doc/08_wrapper.png' alt='HDL Wrapper 생성' width='700' />
 
-7. Constraints 추가
+### 8. Constraints 추가
 
 `constraints/Genesys-ZU-3EG-D-Master.xdc` 파일을 사용하여 constraints 를 추가합니다. I2C mux pin이 외부 pin의 이름과 일치하도록 주의합니다. GPIO LED pin은 내부적으로 처리되므로 constratins에 추가할 필요는 없습니다.
 
-7. Bitstream 생성
+### 9. Bitstream 생성
 
-8. 하드웨어 내보내기
+### 10. 하드웨어 내보내기
 
 `File/Export/Export Hardware`를  `Include bitstream` 옵션으로 실행합니다.
 
@@ -72,13 +72,13 @@ Source 쪽의 design에서 우클릭하여 HDL Wrapper를 생성합니다.
 
 `os` 디렉토리에서 미리 생성된 프로젝트를 찾을 수 있습니다.
 
-1. 새 PetaLinux 프로젝트 생성
+### 1. 새 PetaLinux 프로젝트 생성
 
 ```
 petalinux-create --type project --template zynqMP --name test_min
 ```
 
-2. Export된 하드웨어로 프로젝트 설정
+### 2. Export된 하드웨어로 프로젝트 설정
 
 내보낸 xsa 디렉토리를 지정하여 설정을 실행합니다.
 
@@ -94,7 +94,7 @@ tftp로 부팅을 위해서는 `Image Packaging Configuration/tftpboot directory
 
 쓰기 가능한 rootfs로 부팅하기 위해서는 `Image Packaging Configuration/Root filesystem type` 의 root file system을 `ext4`로 변경합니다. 기본값은 `initrd`이고 변경된 값은 저장되지 않습니다. 이 동작이 상관없다면 기본값인 `initrd`로 두어도 괜찮습니다.
 
-3. 사용자 device tree 파일 수정
+### 3. 사용자 device tree 파일 수정
 
 빌드 전 `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 https://github.com/Digilent/Genesys-ZU 의 내용을 기반으로 2023.2 에 맞게 수정되었습니다.
 
@@ -529,13 +529,13 @@ devicetree/bindings/mux/mux-controller.txt
 };
 ```
 
-4. PetaLinux 빌드
+### 4. PetaLinux 빌드
 
 ```
 petalinux-build
 ```
 
-5. 부트 이미지 생성
+### 5. 부트 이미지 생성
 
 ```
 petalinux-package --boot --force --fsbl images/linux/zynqmp_fsbl.elf --fpga images/linux/system.bit --u-boot
@@ -543,7 +543,7 @@ petalinux-package --boot --force --fsbl images/linux/zynqmp_fsbl.elf --fpga imag
 
 ## SD 카드로 부팅하기
 
-0. SD 카드 파티션 및 새 파일 시스템 생성
+### 0. SD 카드 파티션 및 새 파일 시스템 생성
 
 이전에 SD 카드를 준비한 적이 없다면, 파티션 및 새 파일 시스템을 먼저 생성합니다. `fdisk`, `parted`, `gparted` 등 어떠한 파티션 프로그램도 사용가능합니다.
 
@@ -560,7 +560,7 @@ sudo mkfs.vfat /dev/sdc1
 sudo mkfs.ext4 /dev/sdc2
 ```
 
-1. 파티션 mount
+### 1. 파티션 mount
 
 OS 에서 자동적으로 mount한다면 이 단계를 생략합니다.
 
@@ -571,7 +571,7 @@ sudo mount /dev/sdc1 /mnt/sd_card_vfat
 sudo mount /dev/sdc2 /mnt/sd_card_ext4
 ```
 
-2. 부트 파일 복사
+### 2. 부트 파일 복사
 
 BOOT.BIN, boot.scr, image.ub 파일을 SD카드의 FAT 파티션으로 복사합니다.
 
@@ -581,7 +581,7 @@ sudo cp images/linux/boot.scr /mnt/sd_card_vfat/
 sudo cp images/linux/image.ub /mnt/sd_card_vfat/
 ```
 
-3. 루트 파일 복사
+### 3. 루트 파일 복사
 
 rootfs.tar.gz 파일을 SD 카드의 ext4 파티션에 풉니다.
 
@@ -589,13 +589,13 @@ rootfs.tar.gz 파일을 SD 카드의 ext4 파티션에 풉니다.
 sudo tar -xvzf images/linux/roofs.tar.gz -C /mnt/sd_card_ext4/
 ```
 
-4. 파티션 unmount
+### 4. 파티션 unmount
 
-5. SD 카드를 보드에 삽입
+### 5. SD 카드를 보드에 삽입
 
-6. Micro USB를 보드에 연결
+### 6. Micro USB를 보드에 연결
 
-7. 시리얼 터미널 열기
+### 7. 시리얼 터미널 열기
 
 이전에 부트 이미지에 암호를 설정한 적이 없다면 시리얼로 먼저 로그인해야 합니다.
 
@@ -605,11 +605,11 @@ minicom을 사용한다면 옵션에서 'Hardware Flow Control' 를 비활성화
 sudo minicom -b 115200 -D /dev/ttyUSB1
 ```
 
-8. 보드에 전원 넣기
+### 8. 보드에 전원 넣기
 
 보드의 부팅 점퍼는 미리 SD로 되어있어야 합니다.
 
-9. Linux로 로그인
+### 9. Linux로 로그인
 
 root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 해야 합니다.
 
@@ -623,7 +623,7 @@ root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 �
 
 tftp를 사용하면 위의 복사 과정을 생략할 수 있습니다.
 
-0. 환경 설정
+### 0. 환경 설정
 
 세부 설정은 다음을 참고합니다: https://www.pixela.co.jp/products/pickup/dev/petalinux/p4_tftp.html
 
@@ -654,9 +654,9 @@ sudo service tftpd-hpa restart
 
 케이블 드라이버 설치 스크립트는 Vivado 설치 디렉토리의 `data/xicom/cable_drivers/lin64/install_script/install_drivers` 에서 찾을 수 있습니다.
 
-1. 보드 부트 점퍼를 JTAG으로 변경
+### 1. 보드 부트 점퍼를 JTAG으로 변경
 
-2. 시리얼 터미널 열기
+### 2. 시리얼 터미널 열기
 
 minicom을 사용한다면 옵션에서 'Hardware Flow Control' 를 비활성화합니다.
 
@@ -664,17 +664,17 @@ minicom을 사용한다면 옵션에서 'Hardware Flow Control' 를 비활성화
 sudo minicom -b 115200 -D /dev/ttyUSB1
 ```
 
-3. 보드에 전원 넣기
+### 3. 보드에 전원 넣기
 
 SD 카드 상에 부트 이미지가 없도록 합니다. SD 카드에 부트 이미지가 있으면 해당 이미지로 부팅됩니다.
 
-4. JTAG 부팅
+### 4. JTAG 부팅
 
 ```
 petalinux-boot --jtag --u-boot
 ```
 
-5. 부팅하기 위한 명령 실행
+### 5. 부팅하기 위한 명령 실행
 
 예를 들어 tftp 서버의 주소가 192.168.0.18 이면 다음과 같이 명령을 입력합니다.
 
@@ -684,7 +684,7 @@ pxe get
 pxe boot
 ```
 
-6. Linux로 로그인
+### 6. Linux로 로그인
 
 root 계정 로그인이 막혀있으므로 `petalinux` 계정으로 로그인 해야 합니다.
 

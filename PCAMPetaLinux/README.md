@@ -19,11 +19,11 @@ You can find prebuilt project in `hw` directory.
 
 See [BasicPetaLinux](../BasicPetaLinux/README.md) for base.
 
-1. Create new RTL project in Vivado
+### 1. Create new RTL project in Vivado
 
-2. Create new block design
+### 2. Create new block design
 
-3. Add Zynq MPSoC IP
+### 3. Add Zynq MPSoC IP
 
 After applying board preset, edit properties of Zynq block. Set 5-bit GPIO EMIO. The GPIO EMIO configuration is as follows.
 
@@ -39,7 +39,7 @@ Change the PL clock output as follows. The second clock (PL1) is used for DPHY 2
 
 <img src='doc/02_clock.png' alt='Clock' width='600'/>
 
-3. Full block configuration
+### 4. Full block configuration
 
 For complete block configuration, see [output file](doc/system.pdf).
 
@@ -69,21 +69,21 @@ MIPI CSI2 RX -> CSC -> Video frame buffer write
 
 <img src='doc/10_vframe_buf.png' alt='Video frame buffer' width='600'/>
 
-4. Connect the remaining
+### 5. Connect the remaining
 
 Connect and process remaining items through automation, etc.
 
-5. Validate block design
+### 6. Validate block design
 
-6. Create HDL Wrapper
+### 7. Create HDL Wrapper
 
-7. Add constraints
+### 8. Add constraints
 
 Add constraints using `constraints/Genesys-ZU-3EG-D-Master.xdc`. Make sure I2C mux pin, MIPI A power pin match to names in external pin.
 
-8. Generate bitstream
+### 9. Generate bitstream
 
-9. Export hardware
+### 10. Export hardware
 
 ## Create PetaLinux Project and Build
 
@@ -91,11 +91,11 @@ You can find prebuilt project in `os` directory.
 
 See [BasicPetaLinux](../BasicPetaLinux/README.md) for base.
 
-1. Create new PetaLinux project
+### 1. Create new PetaLinux project
 
-2. Configure project with exported hardware
+### 2. Configure project with exported hardware
 
-3. Configure rootfs
+### 3. Configure rootfs
 
 Enter rootfs configuration with the following command.
 
@@ -109,7 +109,7 @@ Select the following items from rootfs. Select additional items as you require.
 * Filesystem Packages/misc/v4l-utils
 * Filesystem Packages/misc/yavta
 
-4. kernel configuration
+### 4. kernel configuration
 
 Enter kernel configuration with the following command.
 
@@ -126,7 +126,7 @@ Uncheck the following items in kernel configuration. If the following items are 
 * Device Drivers/Graphic support/Xilinx DRM CSC Driver
 * Device Drivers/Graphic support/Xilinx DRM Scaler Driver
 
-5. Edit user device tree file
+### 5. Edit user device tree file
 
 Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` before building. The file contents below have been modified to match the EMIO and other settings.
 
@@ -630,13 +630,13 @@ devicetree/bindings/mux/mux-controller.txt
 };
 ```
 
-6. Build PetaLinux
+### 6. Build PetaLinux
 
-7. Create boot image
+### 7. Create boot image
 
-8. Connect camera
+### 8. Connect camera
 
-9. Power the board and boot
+### 9. Power the board and boot
 
 ## Camera capture
 

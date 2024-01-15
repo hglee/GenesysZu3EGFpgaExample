@@ -16,19 +16,19 @@ Minimum petalinux example with GPIO LED only.
 
 You can find prebuilt project in `hw` directory.
 
-1. Create new RTL project in Vivado
+### 1. Create new RTL project in Vivado
 
 You need to select board `Genesys ZU 3EG`. If you cannot find board, refresh list first.
 
 <img src='doc/01_board.png' alt='Board' width='800'/>
 
-2. Create new block design
+### 2. Create new block design
 
 <img src='doc/02_create_block.png' alt='Create block' width='250' />
 
 <img src='doc/03_create_block.png' alt='Create block dialog' width='350' />
 
-3. Add Zynq MPSoC IP
+### 3. Add Zynq MPSoC IP
 
 Add Zynq MPSoC IP and run block automation and apply board preset. Then double click block and add 1 bit GPIO EMIO. This will be I2C mux reset pin.
 
@@ -36,31 +36,31 @@ Add Zynq MPSoC IP and run block automation and apply board preset. Then double c
 
 <img src='doc/05_gpio.png' alt='GPIO EMIO' width='800' />
 
-3. Add AXI GPIO IP
+### 4. Add AXI GPIO IP
 
 Add AXI GPIO IP and run block automation with GPIO (led 4bits), S_AXI (auto).
 
 <img src='doc/06_gpio_led.png' alt='GPIO LED' width='800' />
 
-4. Connect remains
+### 5. Connect remains
 
 Connect `saxihpc0_fpd_aclk` to `pl_clk0`. Make external to GPIO_0 of Zynq block.
 
 <img src='doc/07_block.png' alt='Block Design' width='800' />
 
-5. Validate block design
+### 6. Validate block design
 
-6. Create HDL Wrapper
+### 7. Create HDL Wrapper
 
 <img src='doc/08_wrapper.png' alt='Create HDL Wrapper' width='700' />
 
-7. Add constraints
+### 8. Add constraints
 
 Add constraints using `constraints/Genesys-ZU-3EG-D-Master.xdc`. Make sure I2C mux pin match to name in external pin. In this case, it will be `GPIO_0_0_tri`. The GPIO LED pins can be skipped since they are handled internally.
 
-7. Generate bitstream
+### 9. Generate bitstream
 
-8. Export hardware
+### 10. Export hardware
 
 Run `File/Export/Export Hardware` with `Include bitstream`.
 
@@ -68,13 +68,13 @@ Run `File/Export/Export Hardware` with `Include bitstream`.
 
 You can find prebuilt project in `os` directory.
 
-1. Create new PetaLinux project
+### 1. Create new PetaLinux project
 
 ```
 petalinux-create --type project --template zynqMP --name test_min
 ```
 
-2. Configure project with exported hardware
+### 2. Configure project with exported hardware
 
 Specifies the exported xsa directory.
 
@@ -88,7 +88,7 @@ To boot with tftp, change tftp directory in `Image Packaging Configuration/tftpb
 
 To boot with writable rootfs, change the root file system type in `Image Packaging Configuration/Root filesystem type` to `ext4`. The default is `initrd` and changes will not be saved. Leave it as `initrd` if you don't care.
 
-3. Edit user device tree file
+### 3. Edit user device tree file
 
 Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` before building. The file below was taken from https://github.com/Digilent/Genesys-ZU and edited for 2023.2.
 
@@ -523,13 +523,13 @@ devicetree/bindings/mux/mux-controller.txt
 };
 ```
 
-4. Build PetaLinux
+### 4. Build PetaLinux
 
 ```
 petalinux-build
 ```
 
-5. Create boot image
+### 5. Create boot image
 
 ```
 petalinux-package --boot --force --fsbl images/linux/zynqmp_fsbl.elf --fpga images/linux/system.bit --u-boot
@@ -537,7 +537,7 @@ petalinux-package --boot --force --fsbl images/linux/zynqmp_fsbl.elf --fpga imag
 
 ## Booting with SD Card
 
-0. Partition SD card and create new file system
+### 0. Partition SD card and create new file system
 
 If you haven't prepared SD card before, create partitions and new file systems first. You can use any partitioning program, such as `fdisk`, `parted` or `gparted`.
 
@@ -554,7 +554,7 @@ sudo mkfs.vfat /dev/sdc1
 sudo mkfs.ext4 /dev/sdc2
 ```
 
-1. Mount partitions
+### 1. Mount partitions
 
 Skip this if you OS mounts automatically.
 
@@ -565,7 +565,7 @@ sudo mount /dev/sdc1 /mnt/sd_card_vfat
 sudo mount /dev/sdc2 /mnt/sd_card_ext4
 ```
 
-2. Copy boot files
+### 2. Copy boot files
 
 Copy BOOT.BIN, boot.scr, image.ub to the FAT partition of your SD card.
 
@@ -575,7 +575,7 @@ sudo cp images/linux/boot.scr /mnt/sd_card_vfat/
 sudo cp images/linux/image.ub /mnt/sd_card_vfat/
 ```
 
-3. Copy root files
+### 3. Copy root files
 
 Extract rootfs.tar.gz to the ext4 partition of your SD card.
 
@@ -583,13 +583,13 @@ Extract rootfs.tar.gz to the ext4 partition of your SD card.
 sudo tar -xvzf images/linux/roofs.tar.gz -C /mnt/sd_card_ext4/
 ```
 
-4. Unmount partitions
+### 4. Unmount partitions
 
-5. Insert SD card to board
+### 5. Insert SD card to board
 
-6. Connect micro USB to board
+### 6. Connect micro USB to board
 
-7. Open serial terminal
+### 7. Open serial terminal
 
 If you have not set a password before, you must login with serial first.
 
@@ -599,11 +599,11 @@ If you use the minicom, you must disable 'Hardware Flow Control' in the options.
 sudo minicom -b 115200 -D /dev/ttyUSB1
 ```
 
-8. Power on the board
+### 8. Power on the board
 
 Make sure the boot jumper is set to SD.
 
-9. Login to Linux
+### 9. Login to Linux
 
 The root account is disabled, so you need to log in to `petalinux` account.
 
@@ -617,7 +617,7 @@ After setting a password, you can log in using SSH.
 
 If you use tftp, you can skip the copy process.
 
-0. Setup environment
+### 0. Setup environment
 
 See for detailed setting: https://www.pixela.co.jp/products/pickup/dev/petalinux/p4_tftp.html
 
@@ -648,9 +648,9 @@ sudo service tftpd-hpa restart
 
 You can find the driver installation script in `data/xicom/cable_drivers/lin64/install_script/install_drivers` under Vivado installation directory.
 
-1. Change boot jumper to JTAG
+### 1. Change boot jumper to JTAG
 
-2. Open serial terminal
+### 2. Open serial terminal
 
 If you use the minicom, you must disable 'hardware flow control' in the options.
 
@@ -658,17 +658,17 @@ If you use the minicom, you must disable 'hardware flow control' in the options.
 sudo minicom -b 115200 -D /dev/ttyUSB1
 ```
 
-3. Power on the board
+### 3. Power on the board
 
 Make sure there is no boot image on SD card. If there is a boot image on the SD card, it will boot from that image.
 
-4. Boot to JTAG
+### 4. Boot to JTAG
 
 ```
 petalinux-boot --jtag --u-boot
 ```
 
-5. Run command to boot
+### 5. Run command to boot
 
 For example, if the address of your tftp server is 192.168.0.18,
 
@@ -678,7 +678,7 @@ pxe get
 pxe boot
 ```
 
-6. Login to Linux
+### 6. Login to Linux
 
 The root account is disabled, so you need to log in to `petalinux` account.
 
