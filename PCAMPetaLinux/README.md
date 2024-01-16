@@ -802,8 +802,12 @@ Checking the test pattern can be done in the same way as the camera capture abov
 
 ### Different resolution
 
-* 2592x1944 (RAW8, YUV422) : Problem with only white screen being captured for RAW8, YUV422. Only the test pattern was captured normally.
-* 1920x1080 (RAW8, YUV422) : Problem with only abnormal screen being captured for RAW8. Problem with only gray screen being captured for YUV422. Only the test pattern was captured normally.
+| Resolution | Format | Test Pattern | Problem |
+|-|-|-|-|
+| 2592x1944 | RAW8 | OK | Auto gain: white image only. Manual gain: not tested. |
+| 2592x1944 | YUV422 | OK | Auto gain: white image only. Manual gain: only outline can be identified. |
+| 1920x1080 | RAW8 | OK | Auto gain: abnormal image. Manual gain: not tested. |
+| 1920x1080 | YUV422 | OK | Auto gain: gray image. Manual gain: no improvement with gray image. |
 
 ### Capture image quality
 
