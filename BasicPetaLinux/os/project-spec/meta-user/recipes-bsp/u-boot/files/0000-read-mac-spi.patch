@@ -1,0 +1,50 @@
+diff --git a/board/xilinx/common/board.c b/board/xilinx/common/board.c
+index 66edf857f1..d525a39d96 100644
+--- a/board/xilinx/common/board.c
++++ b/board/xilinx/common/board.c
+@@ -20,6 +20,8 @@
+ #include <linux/sizes.h>
+ #include <malloc.h>
+ #include "board.h"
++#include <spi.h>
++#include <spi_flash.h>
+ #include <dm.h>
+ #include <i2c_eeprom.h>
+ #include <net.h>
+@@ -490,6 +492,36 @@ int board_late_init_xilinx(void)
+ 		}
+ 	}
+ 
++        if (highest_id < 0) {
++		/* try read on flash at first MAC 0x1FFF000 */
++		struct spi_flash *flash;
++		u8 mac_addr[ETH_ALEN];
++
++		flash = spi_flash_probe(CONFIG_SF_DEFAULT_BUS,
++		    CONFIG_SF_DEFAULT_CS,
++		    0,
++		    0);
++		if (flash) {
++
++                        if (spi_flash_read(flash, 0x1FFF000, 6, mac_addr)
++                            == 0) {
++
++                                printf("SPI ethaddr: %02X:%02X:%02X:%02X:%02X:%02X\n",
++                                    mac_addr[0],
++                                    mac_addr[1],
++                                    mac_addr[2],
++                                    mac_addr[3],
++                                    mac_addr[4],
++                                    mac_addr[5]);
++
++                                ret |= eth_env_set_enetaddr_by_index("eth",
++                                    0, mac_addr);
++                        }
++
++                        spi_flash_free(flash);
++		}
++        }
++
+ 	if (ret)
+ 		printf("%s: Saving run time variables FAILED\n", __func__);
+ 
