@@ -94,6 +94,8 @@ tftp로 부팅을 위해서는 `Image Packaging Configuration/tftpboot directory
 
 쓰기 가능한 rootfs로 부팅하기 위해서는 `Image Packaging Configuration/Root filesystem type` 의 root file system을 `ext4`로 변경합니다. 기본값은 `initrd`이고 변경된 값은 저장되지 않습니다. 이 동작이 상관없다면 기본값인 `initrd`로 두어도 괜찮습니다.
 
+u-boot에서 SPI로 부터 ethaddr을 읽어오기 위해서 변형된 패치를 추가해두었습니다. 이것을 위해서 `Subsystem AUTO Hardware Settings/Ethernet Settings/Ethernet MAC address` 를 비워둡니다.
+
 ### 3. 사용자 device tree 파일 수정
 
 빌드 전 `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 https://github.com/Digilent/Genesys-ZU 의 내용을 기반으로 2023.2 에 맞게 수정되었습니다.

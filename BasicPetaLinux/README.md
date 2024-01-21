@@ -88,6 +88,8 @@ To boot with tftp, change tftp directory in `Image Packaging Configuration/tftpb
 
 To boot with writable rootfs, change the root file system type in `Image Packaging Configuration/Root filesystem type` to `ext4`. The default is `initrd` and changes will not be saved. Leave it as `initrd` if you don't care.
 
+I added a modified patch to read ethaddr from SPI in u-boot. For this, leave the `Subsystem AUTO Hardware Settings/Ethernet Settings/Ethernet MAC address` as blank.
+
 ### 3. Edit user device tree file
 
 Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` before building. The file below was taken from https://github.com/Digilent/Genesys-ZU and edited for 2023.2.
