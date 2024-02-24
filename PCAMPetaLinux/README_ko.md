@@ -702,11 +702,11 @@ Device topology
 다음 명령으로 각 해상도 및 color format을 지정합니다.
 
 ```
-media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/2592x1944 field:none]"
 ```
 
 위의 명령을 실행 후 `media-ctl -p`을 통하여 다시 한번 검토합니다. 검토 중 정상적으로 설정되지 않은 항목이 있다면, 해당 항목을 다시 설정합니다. 각 항목 중 불일치하는 항목이 있다면 캡쳐 시 `Broken pipe` 등의 오류가 발생할 수 있습니다.
@@ -727,13 +727,14 @@ Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 
         Type: Video capture mplanes (9)
         Name: 24-bit RGB 8-8-8
 
-Video format: YUYV (56595559) 1920x0 field none, 0 planes:
+Video format: RGB24 (33424752) 2592x1944 field none, 1 planes: 
+ * Stride 7776, buffer size 15116544
 ```
 
 다음 명령으로 캡쳐를 수행하여 파일로 저장합니다.
 
 ```
-yavta -n 3 -c10 -f RGB24 -s 1024x768 --skip 7 -F /dev/video0
+yavta -n 3 -c10 -f RGB24 -s 2592x1944 --skip 7 -F /dev/video0
 ```
 
 정상 동작시 다음과 같이 출력됩니다.
@@ -741,37 +742,37 @@ yavta -n 3 -c10 -f RGB24 -s 1024x768 --skip 7 -F /dev/video0
 ```
 Device /dev/video0 opened.
 Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 'xilinx-vipp') supports video, capture, with mplanes.
-Video format set: RGB24 (33424752) 1024x768 field none, 1 planes:
- * Stride 3072, buffer size 2359296
-Video format: RGB24 (33424752) 1024x768 field none, 1 planes:
- * Stride 3072, buffer size 2359296
+Video format set: RGB24 (33424752) 2592x1944 field none, 1 planes: 
+ * Stride 7776, buffer size 15116544
+Video format: RGB24 (33424752) 2592x1944 field none, 1 planes: 
+ * Stride 7776, buffer size 15116544
 3 buffers requested.
-length: 1 offset: 4124529752 timestamp type/source: mono/EoF
-Buffer 0/0 mapped at address 0xffff9a630000.
-length: 1 offset: 4124529752 timestamp type/source: mono/EoF
-Buffer 1/0 mapped at address 0xffff9a3f0000.
-length: 1 offset: 4124529752 timestamp type/source: mono/EoF
-Buffer 2/0 mapped at address 0xffff9a1b0000.
-0 (0) [-] none 0 2359296 B 428.869881 428.869895 4.149 fps ts mono/EoF
-1 (1) [-] none 1 2359296 B 428.903181 428.903192 30.030 fps ts mono/EoF
-2 (2) [-] none 2 2359296 B 428.936478 428.936490 30.033 fps ts mono/EoF
-3 (0) [-] none 3 2359296 B 428.969777 428.969789 30.031 fps ts mono/EoF
-4 (1) [-] none 4 2359296 B 429.003077 429.003089 30.030 fps ts mono/EoF
-5 (2) [-] none 5 2359296 B 429.036375 429.036387 30.032 fps ts mono/EoF
-6 (0) [-] none 6 2359296 B 429.069674 429.069686 30.031 fps ts mono/EoF
-7 (1) [-] none 7 2359296 B 429.102974 429.102986 30.030 fps ts mono/EoF
-8 (2) [-] none 8 2359296 B 429.136274 429.142651 30.030 fps ts mono/EoF
-9 (0) [-] none 9 2359296 B 429.169570 429.182596 30.034 fps ts mono/EoF
-Captured 10 frames in 0.553732 seconds (18.059274 fps, 0.000000 B/s).
+length: 1 offset: 3450757784 timestamp type/source: mono/EoF
+Buffer 0/0 mapped at address 0xffffb8a95000.
+length: 1 offset: 3450757784 timestamp type/source: mono/EoF
+Buffer 1/0 mapped at address 0xffffb7c2a000.
+length: 1 offset: 3450757784 timestamp type/source: mono/EoF
+Buffer 2/0 mapped at address 0xffffb6dbf000.
+0 (0) [-] none 0 15116544 B 90.701435 90.701452 0.890 fps ts mono/EoF
+1 (1) [-] none 1 15116544 B 90.791711 90.791724 11.077 fps ts mono/EoF
+2 (2) [-] none 2 15116544 B 90.881987 90.882000 11.077 fps ts mono/EoF
+3 (0) [-] none 3 15116544 B 90.972263 90.972275 11.077 fps ts mono/EoF
+4 (1) [-] none 4 15116544 B 91.062541 91.062553 11.077 fps ts mono/EoF
+5 (2) [-] none 5 15116544 B 91.152816 91.152828 11.077 fps ts mono/EoF
+6 (0) [-] none 6 15116544 B 91.243093 91.243105 11.077 fps ts mono/EoF
+7 (1) [-] none 7 15116544 B 91.333369 91.333381 11.077 fps ts mono/EoF
+8 (2) [-] none 8 15116544 B 91.423654 91.587482 11.076 fps ts mono/EoF
+9 (0) [-] none 9 15116544 B 91.513931 91.841057 11.077 fps ts mono/EoF
+Captured 10 frames in 2.262639 seconds (4.419618 fps, 0.000000 B/s).
 3 buffers released.
 ```
 
 `sftp` 등으로 접속하여 파일을 PC로 전송 후 이미지를 확인합니다. ImageMagick으로 변환하려면 `imagemagick-6.q16` 미리 설치하고 다음의 명령으로 변환을 수행합니다.
 
 ```
-convert -size 1024x768 -depth 8 RGB:frame-000008.bin cam.png
+convert -size 2592x1944 -depth 8 RGB:frame-000008.bin cam.png
 ```
-<img src='doc/cam2.png' alt='카메라 이미지 (1024x768 YUV422)' width='800'/>
+<img src='doc/cam3.png' alt='카메라 이미지 (2592x1944 YUV422)' width='800'/>
 
 ## 테스트 패턴
 
@@ -796,20 +797,3 @@ yavta -w '0x009f0903 1' /dev/v4l-subdev2
 * Linux ov5640 드라이버에서 8 bpp인 경우 최소 1280x720 부터 지원합니다.
 * Linux ov5640 드라이버에서 24 bpp 인 경우 최대 1280x720 까지만 지원합니다.
 * Linux ov5640 드라이버에서 미리 지정된 모드만 지원합니다. 다른 해상도를 지정할 경우 지정된 모드 중에 설정됩니다.
-
-## 할일
-
-### 다른 해상도 동작 확인
-
-| 해상도 | 포맷 | 테스트 패턴 | 문제점 |
-|-|-|-|-|
-| 2592x1944 | RAW8 | OK | 자동 gain: 흰 이미지만 캡쳐. 수동 gain: 미확인. |
-| 2592x1944 | YUV422 | OK | 자동 gain: 흰 이미지만 캡쳐. 수동 gain: 이미지 외각선만 구별 가능. |
-| 1920x1080 | RAW8 | OK | 자동 gain: 깨진 이미지만 캡쳐. 수동 gain: 미확인. |
-| 1920x1080 | YUV422 | OK | 자동 gain: 회색 이미지만 캡쳐. 수동 gain: 회색 이미지에서 개선 없음. |
-
-### 캡쳐 이미지 품질 확인
-
-* 1280x720 (RAW8, YUV422): 이미지 품질이 특히 떨어짐
-
-<img src='doc/cam.png' alt='Camera Image (1280x720 RAW8)' width='800'/>

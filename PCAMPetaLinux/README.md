@@ -702,11 +702,11 @@ Device topology
 Configure resolution and color format with the follwing commands.
 
 ```
-media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:UYVY8_1X16/1024x768 field:none]"
-media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/1024x768 field:none]"
+media-ctl -d /dev/media0 -v -V "\"ov5640 2-003c\":0 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":0 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80000000.mipi_csi2_rx_subsystem\":1 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":0 [fmt:UYVY8_1X16/2592x1944 field:none]"
+media-ctl -d /dev/media0 -v -V "\"80040000.v_proc_ss\":1 [fmt:RBG888_1X24/2592x1944 field:none]"
 ```
 
 After executing the above command, review again using `media-ctl -p` command. If you see something that isn't set up correctly during review, set them again. If any of the items do not match, errors such as `Broken pipe` may occur.
@@ -727,13 +727,14 @@ Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 
         Type: Video capture mplanes (9)
         Name: 24-bit RGB 8-8-8
 
-Video format: YUYV (56595559) 1920x0 field none, 0 planes:
+Video format: RGB24 (33424752) 2592x1944 field none, 1 planes: 
+ * Stride 7776, buffer size 15116544
 ```
 
 Capture with the following command and save it as a file.
 
 ```
-yavta -n 3 -c10 -f RGB24 -s 1024x768 --skip 7 -F /dev/video0
+yavta -n 3 -c10 -f RGB24 -s 2592x1944 --skip 7 -F /dev/video0
 ```
 
 It will look like this if work properly.
@@ -741,37 +742,37 @@ It will look like this if work properly.
 ```
 Device /dev/video0 opened.
 Device `vcap_v_proc_ss_csc output 0' on `platform:vcap_v_proc_ss_csc:0' (driver 'xilinx-vipp') supports video, capture, with mplanes.
-Video format set: RGB24 (33424752) 1024x768 field none, 1 planes:
- * Stride 3072, buffer size 2359296
-Video format: RGB24 (33424752) 1024x768 field none, 1 planes:
- * Stride 3072, buffer size 2359296
+Video format set: RGB24 (33424752) 2592x1944 field none, 1 planes: 
+ * Stride 7776, buffer size 15116544
+Video format: RGB24 (33424752) 2592x1944 field none, 1 planes: 
+ * Stride 7776, buffer size 15116544
 3 buffers requested.
-length: 1 offset: 4124529752 timestamp type/source: mono/EoF
-Buffer 0/0 mapped at address 0xffff9a630000.
-length: 1 offset: 4124529752 timestamp type/source: mono/EoF
-Buffer 1/0 mapped at address 0xffff9a3f0000.
-length: 1 offset: 4124529752 timestamp type/source: mono/EoF
-Buffer 2/0 mapped at address 0xffff9a1b0000.
-0 (0) [-] none 0 2359296 B 428.869881 428.869895 4.149 fps ts mono/EoF
-1 (1) [-] none 1 2359296 B 428.903181 428.903192 30.030 fps ts mono/EoF
-2 (2) [-] none 2 2359296 B 428.936478 428.936490 30.033 fps ts mono/EoF
-3 (0) [-] none 3 2359296 B 428.969777 428.969789 30.031 fps ts mono/EoF
-4 (1) [-] none 4 2359296 B 429.003077 429.003089 30.030 fps ts mono/EoF
-5 (2) [-] none 5 2359296 B 429.036375 429.036387 30.032 fps ts mono/EoF
-6 (0) [-] none 6 2359296 B 429.069674 429.069686 30.031 fps ts mono/EoF
-7 (1) [-] none 7 2359296 B 429.102974 429.102986 30.030 fps ts mono/EoF
-8 (2) [-] none 8 2359296 B 429.136274 429.142651 30.030 fps ts mono/EoF
-9 (0) [-] none 9 2359296 B 429.169570 429.182596 30.034 fps ts mono/EoF
-Captured 10 frames in 0.553732 seconds (18.059274 fps, 0.000000 B/s).
+length: 1 offset: 3450757784 timestamp type/source: mono/EoF
+Buffer 0/0 mapped at address 0xffffb8a95000.
+length: 1 offset: 3450757784 timestamp type/source: mono/EoF
+Buffer 1/0 mapped at address 0xffffb7c2a000.
+length: 1 offset: 3450757784 timestamp type/source: mono/EoF
+Buffer 2/0 mapped at address 0xffffb6dbf000.
+0 (0) [-] none 0 15116544 B 90.701435 90.701452 0.890 fps ts mono/EoF
+1 (1) [-] none 1 15116544 B 90.791711 90.791724 11.077 fps ts mono/EoF
+2 (2) [-] none 2 15116544 B 90.881987 90.882000 11.077 fps ts mono/EoF
+3 (0) [-] none 3 15116544 B 90.972263 90.972275 11.077 fps ts mono/EoF
+4 (1) [-] none 4 15116544 B 91.062541 91.062553 11.077 fps ts mono/EoF
+5 (2) [-] none 5 15116544 B 91.152816 91.152828 11.077 fps ts mono/EoF
+6 (0) [-] none 6 15116544 B 91.243093 91.243105 11.077 fps ts mono/EoF
+7 (1) [-] none 7 15116544 B 91.333369 91.333381 11.077 fps ts mono/EoF
+8 (2) [-] none 8 15116544 B 91.423654 91.587482 11.076 fps ts mono/EoF
+9 (0) [-] none 9 15116544 B 91.513931 91.841057 11.077 fps ts mono/EoF
+Captured 10 frames in 2.262639 seconds (4.419618 fps, 0.000000 B/s).
 3 buffers released.
 ```
 
 Transfer the file to the PC using `sftp`, etc and check the image. To convert with ImageMagick, install `imagemagick-6.q16` in advance and perform the conversion with the following command.
 
 ```
-convert -size 1024x768 -depth 8 RGB:frame-000008.bin cam.png
+convert -size 2592x1944 -depth 8 RGB:frame-000008.bin cam.png
 ```
-<img src='doc/cam2.png' alt='Camera Image (1024x768 YUV422)' width='800'/>
+<img src='doc/cam3.png' alt='Camera Image (2592x1944 YUV422)' width='800'/>
 
 ## Test Pattern
 
@@ -797,20 +798,3 @@ Checking the test pattern can be done in the same way as the camera capture abov
 * Linux ov5640 driver support at least 1280x720 at 8bpp.
 * Linux ov5640 driver only supports up to 1280x720 at 24bpp.
 * Linux ov5640 driver only supports predefined modes. If you specify a different resolution, it will be set to predefined mode.
-
-## TODO
-
-### Different resolution
-
-| Resolution | Format | Test Pattern | Problem |
-|-|-|-|-|
-| 2592x1944 | RAW8 | OK | Auto gain: white image only. Manual gain: not tested. |
-| 2592x1944 | YUV422 | OK | Auto gain: white image only. Manual gain: only outline can be identified. |
-| 1920x1080 | RAW8 | OK | Auto gain: abnormal image. Manual gain: not tested. |
-| 1920x1080 | YUV422 | OK | Auto gain: gray image. Manual gain: no improvement with gray image. |
-
-### Capture image quality
-
-* 1280x720 (RAW8, YUV422) : Especially poor image quality at 1280x720.
-
-<img src='doc/cam.png' alt='Camera Image (1280x720 RAW8)' width='800'/>
