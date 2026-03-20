@@ -128,11 +128,11 @@ Uncheck the following items in kernel configuration. If the following items are 
 
 ### 5. Edit user device tree file
 
-Edit `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` before building. The file contents below have been modified to match the EMIO and other settings.
-
-Review the `components/plnx_workspace/device-tree/device-tree/pl.dtsi` file that automatically generated after the PetaLinux build, and edit user device tree file again if modifications are necessary.
+Edit `project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi` before building. The file contents below have been modified to match the EMIO and other settings.
 
 * [system-user.dtsi](os/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi)
+
+Review the `components/plnx_workspace/device-tree/device-tree/pl.dtsi` file that automatically generated for the PL side after the PetaLinux build, and edit user device tree file again if modifications are necessary.
 
 ### 6. Build PetaLinux
 

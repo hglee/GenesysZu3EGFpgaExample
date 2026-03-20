@@ -128,11 +128,11 @@ petalinux-config -c kernel
 
 ### 5. 사용자 device tree 파일 수정
 
-빌드 전 `project-spec/meta-user/meta-xilinx-tools/recipes-bsp/uboot-device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 위의 EMIO 및 전체 설정에 맞게 수정되었습니다.
-
-PetaLinux 빌드 이후 자동으로 생성된 `components/plnx_workspace/device-tree/device-tree/pl.dtsi` 파일을 검토하고, 수정이 필요한 경우 다시 수정합니다.
+빌드 전 `project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi` 파일을 수정합니다. 아래 파일 내용은 위의 EMIO 및 전체 설정에 맞게 수정되었습니다.
 
 * [system-user.dtsi](os/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi)
+
+PL 측에 대하여 PetaLinux 빌드 이후 자동으로 생성된 `components/plnx_workspace/device-tree/device-tree/pl.dtsi` 파일을 검토하고, 수정이 필요한 경우 다시 수정합니다.
 
 ### 6. PetaLinux 빌드
 
