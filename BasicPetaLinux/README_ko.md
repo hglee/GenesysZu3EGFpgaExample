@@ -635,7 +635,7 @@ tftp를 사용하면 위의 복사 과정을 생략할 수 있습니다.
 sudo apt install tftpd-hpa
 ```
 
-- tftpd-hpa 설정 편집
+- tftpd-hpa 설정 편집 : /etc/default/tftpd-hpa
 
 TFTP_OPTIONS 옵션을 `--secure --create` 로 변경합니다.
 

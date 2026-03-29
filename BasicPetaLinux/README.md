@@ -629,7 +629,7 @@ See for detailed setting: https://www.pixela.co.jp/products/pickup/dev/petalinux
 sudo apt install tftpd-hpa
 ```
 
-- Edit tftpd-hpa config
+- Edit tftpd-hpa config : /etc/default/tftpd-hpa
 
 Change TFTP_OPTIONS option to `--secure --create`.
 
